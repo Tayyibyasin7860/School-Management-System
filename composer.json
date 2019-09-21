@@ -10,15 +10,18 @@
     "require": {
         "php": "^7.2",
         "backpack/crud": "^3.6",
+        "backpack/newscrud": "^2.1",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "spatie/laravel-permission": "^3.0"
     },
     "require-dev": {
         "backpack/generators": "1.2.*",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "laracasts/generators": "dev-master",
+        "laravel/ui": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"

@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/fee', 'HomeController@fee')->name('fee');
+Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::put('/profile', 'HomeController@updateProfile');
+Route::get('/notice-board', 'HomeController@noticeBoard')->name('notice-board');

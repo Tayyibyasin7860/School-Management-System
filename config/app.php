@@ -174,7 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        'Backpack\NewsCRUD\NewsCRUDServiceProvider',
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
