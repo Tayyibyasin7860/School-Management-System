@@ -38,6 +38,10 @@ class Student extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+//    public function BackPackUser()
+//    {
+//        return $this->belongsTo('App\Models\BackPackUser');
+//    }
     public function ClassRoom()
     {
         return $this->belongsTo('App\Models\ClassRoom');

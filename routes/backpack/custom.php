@@ -25,4 +25,5 @@ Route::group([
     CRUD::resource('result', 'ResultCrudController');
     CRUD::resource('student', 'StudentCrudController');
     CRUD::resource('fee', 'FeeCrudController');
+    CRUD::resource('user', 'UserCrudController');
 });

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Hash;
+use function GuzzleHttp\Promise\all;
 
 class HomeController extends Controller
 {
@@ -27,13 +30,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+       dd(auth()->user()->Student->id);
         return view('home');
     }
 
     public function profile()
     {
-        $role = Role::create('admin');
-        dd($role);
+        //Role::create(['name' => 'admin']);
+        //Role::create(['name' => 'student']);
+        //$permission = Permission::create(['name' => 'view profile']);
         $user = auth()->user();
         $user_id = auth()->user()->id;
         $student = DB::table('student_details')->where('user_id', $user_id)->first();

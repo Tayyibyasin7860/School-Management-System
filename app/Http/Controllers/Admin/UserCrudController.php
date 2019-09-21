@@ -36,6 +36,21 @@ class UserCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
 
+        $this->crud->addFilter([ // add a "simple" filter called Draft
+            'type' => 'simple',
+            'name' => 'name',
+            'label'=> 'Name'
+        ],
+            false, // the simple filter has no values, just the "Draft" label specified above
+            function() { // if the filter is active (the GET parameter "draft" exits)
+                $this->crud->addClause('where', 'name', 'Admin');
+                // we've added a clause to the CRUD so that only elements with draft=1 are shown in the table
+                // an alternative syntax to this would have been
+                // $this->crud->query = $this->crud->query->where('draft', '1');
+                // another alternative syntax, in case you had a scopeDraft() on your model:
+                // $this->crud->addClause('draft');
+            });
+
         // add asterisk for fields that are required in UserRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
