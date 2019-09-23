@@ -98,6 +98,15 @@ class FeeCrudController extends CrudController
             ],
 
         ]);
+        $this->crud->addFilter([ // simple filter
+            'type' => 'simple',
+            'name' => 'status',
+            'label'=> 'Pending Fee Students'
+        ],
+            false,
+            function() { // if the filter is active
+                $this->crud->addClause('where', 'status', 'Pending');
+            } );
         // add asterisk for fields that are required in FeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

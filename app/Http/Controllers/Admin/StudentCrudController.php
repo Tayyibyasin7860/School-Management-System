@@ -18,15 +18,26 @@ class StudentCrudController extends CrudController
 {
     public function setup()
     {
+
+        $studentid = \Route::current()->parameter('student_id');
+        // set a different route for the admin panel buttons
+        $this->crud->setRoute(config('backpack.base.route_prefix')."/student/".$studentid.'/profile');
+
+
+        // show only that admin users
+
+
+
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Student');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
-        $this->crud->setEntityNameStrings('student', 'students');
+      //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
+        $this->crud->setEntityNameStrings('profile', 'profiles');
 
+        $this->crud->addClause('where', 'user_id', '=', $studentid);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

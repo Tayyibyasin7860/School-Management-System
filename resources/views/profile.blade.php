@@ -59,7 +59,7 @@
                                         <tr data-dt-row="0" data-dt-column="7">
                                             <td style="vertical-align:top; border:none;"><strong>Email:<strong></strong></strong>
                                             </td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $student->email }}</span>
+                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $user->email }}</span>
                                             </td>
                                         </tr>
                                         <tr data-dt-row="0" data-dt-column="8">

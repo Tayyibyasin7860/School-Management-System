@@ -44,7 +44,7 @@ class ExamCrudController extends CrudController
             ],
             [
                 'label' => 'Title',
-                'name' => 'title'
+                'name' => 'title',
             ],
             [
                 'label' => 'Subject',

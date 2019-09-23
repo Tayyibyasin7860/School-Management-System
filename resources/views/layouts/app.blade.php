@@ -52,6 +52,10 @@
                         <li class="nav-item"><a class="nav-link" href="{{route('fee')}}">Fee</a></li>
 
                         <li class="nav-item"><a class="nav-link" href="{{route('notice-board')}}">Notice Board</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="{{route('exam')}}">Exams</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="{{route('result')}}">Results</a></li>
                         @endguest
                     </ul>
 

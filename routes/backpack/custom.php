@@ -10,8 +10,19 @@ Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'App\Http\Controllers\Admin',
-], function () { // custom admin routes
+], function () {
+    //auth routes
+//    Route::auth();
+//    Route::post('logout','Auth/LoginController@logout')->name('logout');
+
+    // custom admin routes
     CRUD::resource('user', 'UserCrudController');
+    CRUD::resource('student', 'StudentUserCrudController');
+    Route::group(['prefix' => 'student/{student_id}'], function() {
+        CRUD::resource('profile', 'StudentCrudController');
+
+    });
+    CRUD::resource('school-admin', 'SchoolAdminUserCrudController');
     CRUD::resource('subject', 'SubjectCrudController');
     CRUD::resource('class', 'ClassCrudController');
 
@@ -20,10 +31,14 @@ Route::group([
     CRUD::resource('category', 'CategoryCrudController');
     CRUD::resource('tag', 'TagCrudController');
 
-
+    Route::get('mailbox', 'MailboxController@index');
     CRUD::resource('exam', 'ExamCrudController');
     CRUD::resource('result', 'ResultCrudController');
-    CRUD::resource('student', 'StudentCrudController');
+
     CRUD::resource('fee', 'FeeCrudController');
-    CRUD::resource('user', 'UserCrudController');
+
+    CRUD::resource('role', 'RoleCrudController');
+    Route::get('/permission/generate', 'PermissionCrudController@generatePermissions');
+    CRUD::resource('permission', 'PermissionCrudController');
+
 });

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Backpack\CRUD\CrudTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -11,23 +12,9 @@ use App\Models\Student;
 
 class User extends Authenticatable
 {
+    use CrudTrait;
     use Notifiable;
     use HasRoles;
-
-    protected $guard_name = 'web';
-
-    public function Student(){
-        return $this->hasOne('App\Models\Student');
-    }
-    public function Exam(){
-        return $this->hasMany('App\Models\Exam');
-    }
-    public function Result(){
-        return $this->hasMany('App\Models\Result');
-    }
-    public function Fee(){
-        return $this->hasMany('App\Models\Fee');
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -35,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','admin_id'
     ];
 
     /**
@@ -55,4 +42,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $guard_name = 'web';
+
+    public
+    function student(){
+        return $this->hasOne('App\Models\Student');
+    }
+
+    public function schoolAdmin()
+    {
+        return $this->belongsTo('App\User', 'admin_id');
+    }
+
+    public function exams(){
+        return $this->hasMany('App\Models\Exam');
+    }
+
+    public function results(){
+        return $this->hasMany('App\Models\Result');
+    }
+
+    public function fee(){
+        return $this->hasMany('App\Models\Fee');
+    }
+
+    public function classRoom(){
+        return $this->belongsTo('App\Models\ClassRoom');
+    }
+
+    public function profileButton(){
+        return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+    }
 }

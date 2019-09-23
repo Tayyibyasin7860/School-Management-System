@@ -36,11 +36,11 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     */
     public function User()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->hasMany('App\User');
     }
     public function Exam()
     {
-        return $this->hasMany('App\Models\Exam');
+        return $this->hasOne('App\Models\Exam');
     }
     public function Result()
     {
@@ -53,6 +53,10 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     public function Subject()
     {
         return $this->hasMany('App\Models\Subject');
+    }
+    public function Student()
+    {
+        return $this->hasMany('App\Models\Student');
     }
 
     /*

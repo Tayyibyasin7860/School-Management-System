@@ -15,7 +15,12 @@
 
                       @if( ( old( $field["name"] ) && in_array($connected_entity_entry->getKey(), old( $field["name"])) ) || (isset($field['value']) && in_array($connected_entity_entry->getKey(), $field['value']->pluck($connected_entity_entry->getKeyName(), $connected_entity_entry->getKeyName())->toArray())))
                              checked = "checked"
-                      @endif > {!! $connected_entity_entry->{$field['attribute']} !!}
+                      @endif >
+                      @if( ( old( $field["name"] ) && in_array($connected_entity_entry->getKey(), old( $field["name"])) ) || (isset($field['value']) && in_array($connected_entity_entry->getKey(), $field['value']->pluck($connected_entity_entry->getKeyName(), $connected_entity_entry->getKeyName())->toArray())))
+                      <span class="text-primary">{!! $connected_entity_entry->{$field['attribute']} !!}</span>
+                      @else
+                      {!! $connected_entity_entry->{$field['attribute']} !!}
+                      @endif
                   </label>
                 </div>
             </div>

@@ -12,17 +12,17 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => 'Backpack',
+    'project_name' => 'School Management System',
 
     // Menu logos
-    'logo_lg'   => '<b>Back</b>pack',
-    'logo_mini' => '<b>B</b>p',
+    'logo_lg'   => '<b>School Management System</b>',
+    'logo_mini' => '<b>SMS</b>',
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Cristian Tabacitu',
+    'developer_name' => 'Tayyab Yasin',
 
     // Developer website. Link in footer.
-    'developer_link' => 'http://tabacitu.ro',
+    'developer_link' => 'http://vu.edu.pk',
 
     // Show powered by Laravel Backpack in the footer?
     'show_powered_by' => true,
@@ -109,7 +109,7 @@ return [
 
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => 'backpack',
+    'guard' => 'web',
 
     // The password reset configuration for Backpack.
     // If null, the config.auth.defaults.passwords value will be used.

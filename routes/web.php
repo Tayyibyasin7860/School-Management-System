@@ -17,8 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function (){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/fee', 'HomeController@fee')->name('fee');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::put('/profile', 'HomeController@updateProfile');
 Route::get('/notice-board', 'HomeController@noticeBoard')->name('notice-board');
+Route::get('/exam', 'HomeController@exam')->name('exam');
+Route::get('/result', 'HomeController@result')->name('result');
+
+});
+

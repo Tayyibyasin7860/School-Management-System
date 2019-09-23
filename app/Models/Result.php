@@ -35,7 +35,7 @@ class Result extends Model
     |--------------------------------------------------------------------------
     */
     public function User(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
     public function ClassRoom(){
         return $this->belongsTo('App\Models\ClassRoom');

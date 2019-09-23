@@ -36,15 +36,15 @@ class Student extends Model
     */
     public function User()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 //    public function BackPackUser()
 //    {
 //        return $this->belongsTo('App\Models\BackPackUser');
 //    }
-    public function ClassRoom()
+    public function classRoom()
     {
-        return $this->belongsTo('App\Models\ClassRoom');
+        return $this->belongsTo('App\Models\ClassRoom', 'class_id');
     }
     public function Exam(){
         return $this->hasMany('App\Models\Exam');
