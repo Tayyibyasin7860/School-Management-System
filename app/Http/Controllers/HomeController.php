@@ -6,7 +6,7 @@ use App\Models\Exam;
 use App\Models\Result;
 use Backpack\NewsCRUD\app\Models\Article;
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\StudentDetails;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Hash;

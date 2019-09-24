@@ -34,19 +34,19 @@ class Exam extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function User()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
-    public function ClassRoom()
+    public function classRoom()
     {
         return $this->belongsTo('App\Models\ClassRoom');
     }
-    public function Result()
+    public function result()
     {
         return $this->hasOne('App\Models\Result');
     }
-    public function Subject()
+    public function subject()
     {
         return $this->belongsTo('App\Models\Subject');
     }

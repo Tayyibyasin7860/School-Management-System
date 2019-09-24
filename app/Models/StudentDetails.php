@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Student extends Model
+class StudentDetails extends Model
 {
     use CrudTrait;
 
@@ -34,26 +34,22 @@ class Student extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function User()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
-//    public function BackPackUser()
-//    {
-//        return $this->belongsTo('App\Models\BackPackUser');
-//    }
     public function classRoom()
     {
         return $this->belongsTo('App\Models\ClassRoom', 'class_id');
     }
-    public function Exam(){
+    public function exams(){
         return $this->hasMany('App\Models\Exam');
     }
-    public function Result(){
+    public function results(){
         return $this->hasMany('App\Models\Result');
     }
-    public function Fee(){
-        return $this->hasMany('App\Models\Result');
+    public function fees(){
+        return $this->hasMany('App\Models\Fee');
     }
     /*
     |--------------------------------------------------------------------------

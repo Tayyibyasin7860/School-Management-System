@@ -54,9 +54,9 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     {
         return $this->hasMany('App\Models\Subject');
     }
-    public function Student()
+    public function StudentDetails()
     {
-        return $this->hasMany('App\Models\Student');
+        return $this->hasMany('App\Models\StudentDetails');
     }
 
     /*

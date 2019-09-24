@@ -33,7 +33,7 @@ class StudentCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Student');
+        $this->crud->setModel('App\Models\StudentDetails');
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
 

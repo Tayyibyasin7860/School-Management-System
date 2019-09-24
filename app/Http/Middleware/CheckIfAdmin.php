@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 
 class CheckIfAdmin
@@ -22,10 +23,7 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        if($user->hasRole('school-admin') == 1){
-            return true;
-        }
-//        return true;
+       return true;
     }
 
     /**

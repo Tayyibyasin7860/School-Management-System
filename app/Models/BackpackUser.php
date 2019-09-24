@@ -12,10 +12,6 @@ class BackpackUser extends User
 
     protected $table = 'users';
 
-    public function Student(){
-        return $this->hasOne('App\Models\Student');
-    }
-
     /**
      * Send the password reset notification.
      *
