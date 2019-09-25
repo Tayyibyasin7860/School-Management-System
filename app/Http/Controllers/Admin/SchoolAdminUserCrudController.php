@@ -42,7 +42,7 @@ class SchoolAdminUserCrudController extends CrudController
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
 
-        $this->crud->addClause('role','admin');
+        $this->crud->addClause('role','school_admin');
     }
 
     public function store(StoreRequest $request)

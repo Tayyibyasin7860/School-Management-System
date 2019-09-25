@@ -54,21 +54,20 @@
     </div>
     <div class="container">
 
-        <div style="padding: 20% 10%; text-align: center;">
+        <div style="padding-top: 17%;padding-bottom:  30%; text-align: center; color: white;">
             <h1>School Managemene Website</h1>
-            <p class="lead">The all in one solution for your school management problems<br> All you get is this text
-                and a mostly barebones HTML document.</p>
+            <p class="lead">The all in one solution for your school management problems<br>
         </div>
 
     </div>
 </div>
 <section id="about" class="about container" style="padding-bottom: 1%;">
     <h1 style="padding-top: 30px;" class="text-center"> About Us</h1>
-    <div class="col-md-6 features-text wow fadeInLeft animated"
-         style="visibility: visible; animation-name: fadeInLeft; padding-bottom: 30px;">
-        <small>INSPINIA</small>
-        <h2>Perfectly designed </h2>
-        <p>School Expert Software helps manage Student, Teacher, Classes, Sections, time table, Fees, Attendance, and Marks..</p>
+    <div class="col-md-5 features-text wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft; padding-bottom: 30px; padding-right: 0px; padding-left: 0px;">
+        <h2>SCHOOL MANAGEMENT SYSTEM FEATURES
+        </h2>
+        <p>School Management System or School Management System is highly professional website designed to meet the ever growing needs of any School, College, and Academy.</p>
+        <p>School Expert Software helps manage Student, Classes, Sections, Fees, Exams and Marks..</p>
         <a href="" class="btn btn-primary">Learn more</a>
     </div>
     <div class="col-lg-6 text-right wow fadeInRight animated"
@@ -137,8 +136,7 @@
             </div>
             <div class="col-md-6">
                 <h3 class="line-bottom mt-0">Get in touch with us</h3>
-                <p>Aliquam officia dolor rerum enim doloremque iusto eos atque tempora dignissimos similique, quae,
-                    maxime sit accusantium delectus.</p>
+                <p>Let’s talk about how can you grow your business, have a cup of coffee/tea with us. We are sure you will get satisfied with our work and our School Management Website. .</p>
                 <ul class="list-inline social-icon">
                     <li><a href="#"><i class="fa fa-twitter"></i></a>
                     </li>

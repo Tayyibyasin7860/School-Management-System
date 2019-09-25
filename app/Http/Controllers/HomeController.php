@@ -35,13 +35,6 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function profile()
-    {
-        $user = auth()->user();
-        $user_id = auth()->user()->id;
-        $student = DB::table('student_details')->where('user_id', $user_id)->first();
-        return view('profile', compact('student','user'));
-    }
     public function updateProfile(){
         $user = auth()->user();
 

@@ -147,7 +147,6 @@ class PermissionCrudController extends CrudController
         }
 
         app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
-//        die;
         \Alert::success("Permissions created successfully.")->flash();
         return redirect('admin/permission');
     }

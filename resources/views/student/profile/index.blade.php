@@ -57,27 +57,27 @@
                                             </td>
                                         </tr>
                                         <tr data-dt-row="0" data-dt-column="7">
-                                            <td style="vertical-align:top; border:none;"><strong>Email:<strong></strong></strong>
-                                            </td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $user->email }}</span>
+                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
+                                                <form method="POST" action="{{ route('profile') }} ">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="text" name="email" value="{{ $user->email }}"><br><br>
                                             </td>
                                         </tr>
                                         <tr data-dt-row="0" data-dt-column="8">
                                             <td style="vertical-align:top; border:none;"><strong>Phone
                                                     Number:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $student->phone_number }}</span>
+                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
+                                                <input type="text" name="email" value="{{ $student->phone_number }}"><br><br>
                                             </td>
                                         </tr>
                                         <tr data-dt-row="0" data-dt-column="9">
                                             <td style="vertical-align:top; border:none;">
                                                 <strong>Password:<strong></strong></strong></td>
                                             <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <form method="POST" action="{{ route('profile') }} ">
-                                                    @csrf
-                                                    @method('PUT')
                                                     <input type="password" name="password"><br><br>
                                                     <input type="password" name="password_confirmation" ><br><br>
-                                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                                    <button type="submit" class="btn btn-primary">Change Profile</button>
                                                 </form>
                                             </td>
                                         </tr>

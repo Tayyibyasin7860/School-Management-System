@@ -8,13 +8,14 @@ use App\Http\Middleware\AdminCheck;
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
-    'middleware' => ['web','AdminCheck'],
+    'middleware' => ['web', 'AdminCheck', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () {
     //auth routes
 //    Route::auth();
 //    Route::post('logout','Auth/LoginController@logout')->name('logout');
 
+    Route::get('dashboard', 'DashboardController@dashboard');
     // custom admin routes
     CRUD::resource('user', 'UserCrudController');
     CRUD::resource('student', 'StudentUserCrudController');

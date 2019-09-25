@@ -35,7 +35,10 @@ class StudentUserCrudController extends CrudController
         $this->crud->addButtonFromModelFunction('line', 'profile', 'profileButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
+
+        $this->crud->removeColumn('admin_id');
         $this->crud->removeField('admin_id');
+//        dd(backpack_user()->hasRole('super_admin'));
         if(backpack_user()->hasRole('super_admin')) {
             $this->crud->addFields([
                 [
@@ -46,7 +49,23 @@ class StudentUserCrudController extends CrudController
                     'attribute' => 'name',
                 ],
             ]);
+            $this->crud->addColumns([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select2',
+                    'entity' => 'schoolAdmin',
+                    'attribute' => 'name',
+                ],
+            ]);
         }
+        $this->crud->addFields([
+                [
+                    'label' => 'Confirm Password',
+                    'name' => 'password_confirmation',
+                    'type' => 'password'
+                ],
+            ]);
         // add asterisk for fields that are required in UserRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
