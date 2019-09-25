@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\AdminCheck;
 // --------------------------
 // Custom Backpack Routes
 // --------------------------
@@ -8,7 +8,7 @@
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
-    'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
+    'middleware' => ['web','AdminCheck'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () {
     //auth routes

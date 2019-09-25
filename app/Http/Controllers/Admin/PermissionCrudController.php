@@ -85,17 +85,17 @@ class PermissionCrudController extends CrudController
 
 
 
-//        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete', 'generatePermissions']);
-//        if(request()->user()->can('list permission'))
-//            $this->crud->allowAccess('list');
-//        if(request()->user()->can('create permission'))
-//            $this->crud->allowAccess('create');
-//        if(request()->user()->can('update permission'))
-//            $this->crud->allowAccess('update');
-//        if(request()->user()->can('delete permission'))
-//            $this->crud->allowAccess('delete');
-//        if(request()->user()->can('generate permission'))
-//            $this->crud->allowAccess(['generatePermissions']);
+        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete', 'generatePermissions']);
+        if(request()->user()->can('list permission'))
+            $this->crud->allowAccess('list');
+        if(request()->user()->can('create permission'))
+            $this->crud->allowAccess('create');
+        if(request()->user()->can('update permission'))
+            $this->crud->allowAccess('update');
+        if(request()->user()->can('delete permission'))
+            $this->crud->allowAccess('delete');
+        if(request()->user()->can('generate permission'))
+            $this->crud->allowAccess(['generatePermissions']);
     }
 
     public function store(StoreRequest $request)

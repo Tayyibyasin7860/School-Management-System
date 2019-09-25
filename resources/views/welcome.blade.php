@@ -20,96 +20,59 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body id="page-top" class="landing-page">
-<div class="navbar-wrapper">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @if (Route::has('login'))
-                    <div class="top-right links">
-                        @auth
-                            <a class="navbar-brand" href="{{ url('/home') }}">Dashboard</a>
-                        @else
-                            <a class="navbar-brand" href="{{ route('login') }}">Login as Student</a>
-                        @endauth
-                @endif
-                            <a class="navbar-brand" href="/admin">Login as Admin</a>
-                    </div>
-
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="page-scroll" href="#page-top">Home</a></li>
-                    <li><a class="page-scroll" href="#about">About Us</a></li>
-                    <li><a class="page-scroll" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<!--div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-        <li data-target="#inSlider" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
+<div style="background-image: url('img/landing/header_two1.jpg'); background-size: cover;">
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-                <div-- class="carousel-caption">
-                    <h1>We craft<br/>
-                        brands, web apps,<br/>
-                        and user interfaces<br/>
-                        we are IN+ studio</h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing.</p>
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
-                        <a class="caption-link" href="#" role="button">Inspinia Theme</a>
-                    </p>
-                </div-->
-<div  style="position: static;">
-    <img src="{{ asset('img/landing/header_two1.jpg') }}" alt="laptop" class="img-responsive"/>
-</div>
-<!--/div>
-< Set background for slide in css -->
-<!--div class="header-back one"></div>!
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @if (Route::has('login'))
+                        <div class="top-right links">
+                            @auth
+                                <a class="navbar-brand" href="{{ url('/home') }}">Dashboard</a>
+                            @else
+                                <a class="navbar-brand" href="{{ route('login') }}">Login</a>
+                            @endauth
+                            @endif
+                        </div>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="#page-top">Home</a></li>
+                        <li><a class="page-scroll" href="#about">About Us</a></li>
+                        <li><a class="page-scroll" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
 
-<!--/div>
-<div class="item">
-<div class="container">
-    <div class="carousel-caption blank">
-        <h1>We create meaningful <br/> interfaces that inspire.</h1>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+        <div style="padding: 20% 10%; text-align: center;">
+            <h1>School Managemene Website</h1>
+            <p class="lead">The all in one solution for your school management problems<br> All you get is this text
+                and a mostly barebones HTML document.</p>
+        </div>
+
     </div>
 </div>
-<!-- Set background for slide in css -->
-<!--div class="header-back two"></div>
-<!--/div>
-</div>
-<a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
-<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-<span class="sr-only">Previous</span>
-</a>
-<a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
-<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span class="sr-only">Next</span>
-</a>
-</div-->
-
-<section id="about" class="about container">
+<section id="about" class="about container" style="padding-bottom: 1%;">
     <h1 style="padding-top: 30px;" class="text-center"> About Us</h1>
-    <div class="col-lg-6 features-text wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft; padding-bottom: 30px;">
+    <div class="col-md-6 features-text wow fadeInLeft animated"
+         style="visibility: visible; animation-name: fadeInLeft; padding-bottom: 30px;">
         <small>INSPINIA</small>
         <h2>Perfectly designed </h2>
-        <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with latest jQuery plugins.</p>
+        <p>School Expert Software helps manage Student, Teacher, Classes, Sections, time table, Fees, Attendance, and Marks..</p>
         <a href="" class="btn btn-primary">Learn more</a>
     </div>
-    <div class="col-lg-6 text-right wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight; padding-top: 10px; padding-bottom: 30px;">
+    <div class="col-lg-6 text-right wow fadeInRight animated"
+         style="visibility: visible; animation-name: fadeInRight; padding-top: 10px; padding-bottom: 30px;">
         <img src="img/landing/dashboard.png" alt="dashboard" class="img-responsive pull-right">
     </div>
 </section>
@@ -127,13 +90,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Name <small>*</small></label>
-                                <input name="form_name" class="form-control" type="text" placeholder="Enter Name" required="" aria-required="true">
+                                <input name="form_name" class="form-control" type="text" placeholder="Enter Name"
+                                       required="" aria-required="true">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Email <small>*</small></label>
-                                <input name="form_email" class="form-control required email" type="email" placeholder="Enter Email" aria-required="true">
+                                <input name="form_email" class="form-control required email" type="email"
+                                       placeholder="Enter Email" aria-required="true">
                             </div>
                         </div>
                     </div>
@@ -142,7 +107,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Subject <small>*</small></label>
-                                <input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject" aria-required="true">
+                                <input name="form_subject" class="form-control required" type="text"
+                                       placeholder="Enter Subject" aria-required="true">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -155,11 +121,14 @@
 
                     <div class="form-group">
                         <label>Message</label>
-                        <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message" aria-required="true"></textarea>
+                        <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message"
+                                  aria-required="true"></textarea>
                     </div>
                     <div class="form-group">
                         <input name="form_botcheck" class="form-control" type="hidden" value="">
-                        <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5" data-loading-text="Please wait...">Send your message</button>
+                        <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"
+                                data-loading-text="Please wait...">Send your message
+                        </button>
                         <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button>
                     </div>
                 </form>
@@ -168,7 +137,8 @@
             </div>
             <div class="col-md-6">
                 <h3 class="line-bottom mt-0">Get in touch with us</h3>
-                <p>Aliquam officia dolor rerum enim doloremque iusto eos atque tempora dignissimos similique, quae, maxime sit accusantium delectus.</p>
+                <p>Aliquam officia dolor rerum enim doloremque iusto eos atque tempora dignissimos similique, quae,
+                    maxime sit accusantium delectus.</p>
                 <ul class="list-inline social-icon">
                     <li><a href="#"><i class="fa fa-twitter"></i></a>
                     </li>
@@ -178,13 +148,15 @@
                     </li>
                 </ul>
 
-                <div class="icon-box media mb-0 pb-0 pt-0 mt-0"> <a class="media-left pull-left flip mr-15" href="#"> <i class="pe-7s-call text-theme-colored"></i></a>
+                <div class="icon-box media mb-0 pb-0 pt-0 mt-0"><a class="media-left pull-left flip mr-15" href="#"> <i
+                            class="pe-7s-call text-theme-colored"></i></a>
                     <div class="media-body">
                         <h5 class="mt-0">Contact Number</h5>
                         <p><a href="tel:+325-12345-65478">+325-12345-65478</a></p>
                     </div>
                 </div>
-                <div class="icon-box media mb-0 pb-0 pt-0 mt-0"> <a class="media-left pull-left flip mr-15" href="#"> <i class="pe-7s-mail text-theme-colored"></i></a>
+                <div class="icon-box media mb-0 pb-0 pt-0 mt-0"><a class="media-left pull-left flip mr-15" href="#"> <i
+                            class="pe-7s-mail text-theme-colored"></i></a>
                     <div class="media-body">
                         <h5 class="mt-0">Email Address</h5>
                         <p><a href="mailto:supporte@yourdomin.com">supporte@yourdomin.com</a></p>
@@ -194,7 +166,8 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy;School Mangement Website</strong><br/> The all in one solution for your school management problems</p>
+                <p><strong>&copy;School Mangement Website</strong><br/> The all in one solution for your school
+                    management problems</p>
             </div>
         </div>
     </div>
@@ -222,7 +195,7 @@
         });
 
         // Page scrolling feature
-        $('a.page-scroll').bind('click', function(event) {
+        $('a.page-scroll').bind('click', function (event) {
             var link = $(this);
             $('html, body').stop().animate({
                 scrollTop: $(link.attr('href')).offset().top - 50
@@ -232,32 +205,35 @@
         });
     });
 
-    var cbpAnimatedHeader = (function() {
+    var cbpAnimatedHeader = (function () {
         var docElem = document.documentElement,
-            header = document.querySelector( '.navbar-default' ),
+            header = document.querySelector('.navbar-default'),
             didScroll = false,
             changeHeaderOn = 200;
+
         function init() {
-            window.addEventListener( 'scroll', function( event ) {
-                if( !didScroll ) {
+            window.addEventListener('scroll', function (event) {
+                if (!didScroll) {
                     didScroll = true;
-                    setTimeout( scrollPage, 250 );
+                    setTimeout(scrollPage, 250);
                 }
-            }, false );
+            }, false);
         }
+
         function scrollPage() {
             var sy = scrollY();
-            if ( sy >= changeHeaderOn ) {
+            if (sy >= changeHeaderOn) {
                 $(header).addClass('navbar-scroll')
-            }
-            else {
+            } else {
                 $(header).removeClass('navbar-scroll')
             }
             didScroll = false;
         }
+
         function scrollY() {
             return window.pageYOffset || docElem.scrollTop;
         }
+
         init();
 
     })();

@@ -68,18 +68,19 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         $user = auth()->user();
-
         if($user->hasRole('student')){
-            dd('student');
             return redirect()->route('home');
         }
-        elseif ($user->hasRole('school_admin')){
 
-//            dd('a school admin');
+        elseif ($user->hasRole('school_admin')){
             return redirect('/admin/dashboard');
         }
-        elseif($user->hasRole('super-admin')){
-            dd('super-admin');
+
+        elseif($user->hasRole('super_admin')){
+            return redirect('/admin/dashboard');
+        }
+        else{
+            die('sorry you can not access, contact school admin to assign you a role');
         }
 
     }

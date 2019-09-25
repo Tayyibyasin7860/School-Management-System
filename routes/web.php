@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([]);
 
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => ['auth']], function (){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/fee', 'HomeController@fee')->name('fee');
 Route::get('/profile', 'HomeController@profile')->name('profile');

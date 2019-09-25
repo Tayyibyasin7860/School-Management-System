@@ -94,18 +94,18 @@ class RoleCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-       // $this->crud->
 
 
-//        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
-//        if(request()->user()->can('list role'))
-//            $this->crud->allowAccess('list');
-//        if(request()->user()->can('create role'))
-//            $this->crud->allowAccess('create');
-//        if(request()->user()->can('update role'))
-//            $this->crud->allowAccess('update');
-//        if(request()->user()->can('delete role'))
-//            $this->crud->allowAccess('delete');
+
+        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        if(request()->user()->can('list role'))
+            $this->crud->allowAccess('list');
+        if(request()->user()->can('create role'))
+            $this->crud->allowAccess('create');
+        if(request()->user()->can('update role'))
+            $this->crud->allowAccess('update');
+        if(request()->user()->can('delete role'))
+            $this->crud->allowAccess('delete');
     }
 
     public function store(StoreRequest $request)
