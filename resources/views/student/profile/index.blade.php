@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Profile</div>
+                    <div class="card-header"><span style="vertical-align: center;">Profile</span><a href="profile/{{ $user }}/edit" class="float-right btn btn-primary">Update Profile</a></div>
 
                     <div class="card-body">
 

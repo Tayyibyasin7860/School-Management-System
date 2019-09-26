@@ -59,9 +59,10 @@ class StudentDetailsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(StudentDetails $student)
+    public function edit($user)
     {
-            dd($student);
+            dd($user->id);
+            return view('/profile/edit', compact('$student'));
     }
 
     /**
