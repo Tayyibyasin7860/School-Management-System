@@ -2,6 +2,105 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/materialize.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/style-mob.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/style2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfontd41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regulard41d.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Bold-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Bold.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Light-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Light.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Medium-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Medium.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Regular-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Regular.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Thin-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/roboto/Roboto-Thin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/adv/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/ami/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/awa/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/cor1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/cor3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/cor4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/cor5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/db1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/db2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/db3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/db4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/db5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/flag-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/form-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/form-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/form-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/form-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/h-ic1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/h-ic2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/h-ic3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icon/h-ic4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/slider/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/slider/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/slider/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sm/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/contact/1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/contact/2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/contact/3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/main.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/materialize.min.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/layouts/app2.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" afterDir="false" />
@@ -237,7 +336,7 @@
       <workItem from="1569296968320" duration="33658000" />
       <workItem from="1569381357309" duration="33668000" />
       <workItem from="1569480537486" duration="43686000" />
-      <workItem from="1569563211499" duration="4028000" />
+      <workItem from="1569563211499" duration="5810000" />
     </task>
     <servers />
   </component>
