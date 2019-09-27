@@ -1,52 +1,33 @@
-@extends('layouts.app')
-@section('title', 'Notice Board')
+@extends('layouts.app2')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-                <h2 style="background-color: white;">My Announcements</h2><br>
-                    <table class="table" style="background-color: white;">
-                        <thead>
-                        <th>
-                            Result title
-                        </th>
-                        <th>
-                            Subject title
-                        </th>
-                        <th>
-                            Total Marks
-                        </th>
-                        <th>
-                            Obtained Marks
-                        </th>
-                        <th>
-                            Teacher Remarks
-                        </th>
-                        </thead>
-                        <tbody>
-                        @foreach($all_announcements as $announcement)
-                            <tr>
-                                <td>
-                                    {{ $announcement->title }}
-                                </td>
-                                <td>
-                                    {{ $announcement->slug }}
-                                </td>
-                                <td>
-                                    {{ $announcement->content }}
-                                </td>
-                                <td>
-                                    {{ $announcement->date }}
-                                </td>
-                                <td>
-                                    {{ $announcement->remarks }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+    <div class="ed-about-tit">
+        <div class="con-title">
+            <h2>College <span> Events</span></h2>
+        </div>
+        <div>
+            <div class="ho-event pg-eve-main">
+                <ul>
+                    @foreach($all_announcements as $announcement)
+                        <li>
+                            <div class="s17-eve-time">
+                                <div class="ho-ev-date pg-eve-date">
+                                    <span>{{ $announcement->date->format('d') }}</span><span>{{ $announcement->date->format('M') }}, 20{{ $announcement->date->format('y') }}</span>
+                                </div>
+                                <div class="s17-eve-time-msg">
+                                    <h4>{{ $announcement->title }}</h4>
+                                    <p>{{ $announcement->content }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{ $all_announcements->links() }}
+            </div>
         </div>
     </div>
-</div>
 @endsection

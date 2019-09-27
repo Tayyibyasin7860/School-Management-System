@@ -1,94 +1,56 @@
-@extends('layouts.app')
-@section('title', 'Profile')
+@extends('layouts.app2')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><span style="vertical-align: center;">Profile</span><a href="profile/{{ $user }}/edit" class="float-right btn btn-primary">Update Profile</a></div>
-
-                    <div class="card-body">
-
-                        <div class="well well-sm">
-                            <div class="row">
-
-                                <div class="col-sm-4 col-md-3">
-                                    <img src="http://placehold.it/100x150" alt="" class="img-rounded img-responsive"/>
-                                </div>
-                                <div class="col-sm-6 col-md-8">
-                                    <table class="table table-hover m-b-0">
-                                        <tbody>
-                                        <tr data-dt-row="0" data-dt-column="0">
-                                            <td style="vertical-align:top; border:none;">
-                                                <strong>Student ID:<strong></strong></strong>
-                                            </td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <span>{{ $user->id }}</span></td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="1">
-                                            <td style="vertical-align:top; border:none;"><strong>Name:<strong></strong></strong>
-                                            </td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <span>{{ $user->name }}</span></td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="3">
-                                            <td style="vertical-align:top; border:none;"><strong>Class:<strong></strong></strong>
-                                            </td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <span>{{ $student->class_id }}</span></td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="4">
-                                            <td style="vertical-align:top; border:none;"><strong>Father
-                                                    Name:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $student->father_name }}</span>
-                                            </td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="5">
-                                            <td style="vertical-align:top; border:none;">
-                                                <strong>gender:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <span>{{ $student->gender }}</span></td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="6">
-                                            <td style="vertical-align:top; border:none;"><strong>Date of
-                                                    Birth:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;"><span>{{ $student->date_of_birth }}</span>
-                                            </td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="7">
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <form method="POST" action="{{ route('profile') }} ">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <input type="text" name="email" value="{{ $user->email }}"><br><br>
-                                            </td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="8">
-                                            <td style="vertical-align:top; border:none;"><strong>Phone
-                                                    Number:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                <input type="text" name="email" value="{{ $student->phone_number }}"><br><br>
-                                            </td>
-                                        </tr>
-                                        <tr data-dt-row="0" data-dt-column="9">
-                                            <td style="vertical-align:top; border:none;">
-                                                <strong>Password:<strong></strong></strong></td>
-                                            <td style="padding-left:10px;padding-bottom:10px; border:none;">
-                                                    <input type="password" name="password"><br><br>
-                                                    <input type="password" name="password_confirmation" ><br><br>
-                                                    <button type="submit" class="btn btn-primary">Change Profile</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <h4><img src="{{ asset('images/icon/db1.png') }}" alt=""/> My Profile</h4>
+            <div class="sdb-tabl-com sdb-pro-table">
+                <table class="responsive-table bordered">
+                    <tbody>
+                    <tr>
+                        <td>Student Name</td>
+                        <td>:</td>
+                        <td>{{ $user->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Student Id</td>
+                        <td>:</td>
+                        <td>{{ $user->id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Class</td>
+                        <td>:</td>
+                        <td>{{ $student->class_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>:</td>
+                        <td>{{ $student->gender }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td>{{ $user->email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>:</td>
+                        <td>{{ $student->phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date of birth</td>
+                        <td>:</td>
+                        <td>{{ $student->date_of_birth }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td>{{ $student->address }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="sdb-bot-edit">
+                    <a href="profile/{{ $user->id }}/edit"
+                       class="waves-effect waves-light btn-large sdb-btn sdb-btn-edit btn btn-primary"><i
+                            class="fa fa-pencil"></i> Edit My Profile</a>
                 </div>
             </div>
-        </div>
-    </div>
 @endsection

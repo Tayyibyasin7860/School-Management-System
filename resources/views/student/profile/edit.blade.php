@@ -1,46 +1,45 @@
-@extends('layouts.app')
-@section('title', 'Profile')
-
+@extends('layouts.app2')
 @section('content')
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-{{--<tr data-dt-row="0" data-dt-column="7">--}}
-{{--    <td style="padding-left:10px;padding-bottom:10px; border:none;">--}}
-{{--        <form method="POST" action="{{ route('profile') }} ">--}}
-{{--            @csrf--}}
-{{--            @method('PUT')--}}
-{{--            <input type="text" name="email" value="{{ $user->email }}"><br><br>--}}
-{{--    </td>--}}
-{{--</tr>--}}
-{{--<tr data-dt-row="0" data-dt-column="8">--}}
-{{--    <td style="vertical-align:top; border:none;"><strong>Phone--}}
-{{--            Number:<strong></strong></strong></td>--}}
-{{--    <td style="padding-left:10px;padding-bottom:10px; border:none;">--}}
-{{--        <input type="text" name="email" value="{{ $student->phone_number }}"><br><br>--}}
-{{--    </td>--}}
-{{--</tr>--}}
-{{--<tr data-dt-row="0" data-dt-column="9">--}}
-{{--    <td style="vertical-align:top; border:none;">--}}
-{{--        <strong>Password:<strong></strong></strong></td>--}}
-{{--    <td style="padding-left:10px;padding-bottom:10px; border:none;">--}}
-{{--        <input type="password" name="password"><br><br>--}}
-{{--        <input type="password" name="password_confirmation" ><br><br>--}}
-{{--        <button type="submit" class="btn btn-primary">Change Profile</button>--}}
-{{--        </form>--}}
-{{--    </td>--}}
-{{--</tr>--}}
+    <h4>You may change following details</h4>
+    <div class="justify-content-center">
+    <div class="col-md-8">
+        <form method="post" action="/profile/{{ $user->id }}">
+            @method('put')
+            @csrf
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" class="form-control"
+                       value="{{ old('email') ?? $user->email }}">
+                <small class="form-text text-muted text-danger">
+                    {{ $errors->first('email') }}
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" name="phone_number" class="form-control"
+                       value="{{ old('phone_number') ?? $student->phone_number }}">
+                <small class="form-text text-muted text-danger">
+                    {{ $errors->first('phone_number') }}
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <small>(if you don't want to change password, then enter your old password)</small>
+                <input type="password" name="password" class="form-control"
+                       placeholder="Enter new Password">
+                <small class="form-text text-muted text-danger">
+                    {{ $errors->first('password') }}
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" class="form-control" name="password_confirmation"
+                       placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    </div>
 @endsection
+
+

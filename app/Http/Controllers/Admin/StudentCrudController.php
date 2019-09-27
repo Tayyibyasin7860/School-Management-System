@@ -33,7 +33,7 @@ class StudentCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\StudentDetails');
+        $this->crud->setModel('App\Models\StudentDetail');
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
 
@@ -49,12 +49,6 @@ class StudentCrudController extends CrudController
 
         $this->crud->addColumns([
             [
-                'name' => 'row_number',
-                'type' => 'row_number',
-                'label' => 'Sr. #',
-                'orderable' => false,
-            ],
-            [
                 'label' => 'Student ID',
                 'name' => 'user_id',
                 'type' => 'number',
@@ -62,15 +56,19 @@ class StudentCrudController extends CrudController
                 'attribute' => 'id'
             ],
             [
+                'label' => 'photo',
+                'name' => 'photo',
+                'type' => 'image',
+                'prefix' => 'storage/',
+                'height' => '40px',
+                'width' => '40px'
+            ],
+            [
                 'label' => 'Name',
                 'name' => 'name',
                 'type' => 'select',
                 'entity' => 'User',
                 'attribute' => 'name',
-            ],
-            [
-                'label' => 'photo',
-                'name' => 'photo'
             ],
             [
                 'label' => 'Class',

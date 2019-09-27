@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Http\Controllers\Role;
 use Illuminate\Notifications\Notifiable;
-use App\Models\StudentDetails;
+use App\Models\StudentDetail;
 
 class User extends Authenticatable
 {
@@ -45,8 +45,8 @@ class User extends Authenticatable
     protected $guard_name = 'web';
 
     public
-    function student(){
-        return $this->hasOne('App\Models\StudentDetails');
+    function studentDetail(){
+        return $this->hasOne('App\Models\StudentDetail');
     }
 
     public function schoolAdmin()
@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Result');
     }
 
-    public function fee(){
+    public function fees(){
         return $this->hasMany('App\Models\Fee');
     }
 

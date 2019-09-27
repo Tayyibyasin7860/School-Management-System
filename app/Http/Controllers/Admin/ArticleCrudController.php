@@ -54,13 +54,6 @@ class ArticleCrudController extends CrudController
                                 'type' => 'text',
                                 'placeholder' => 'Your title here',
                             ]);
-        $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Will be automatically generated from your title, if left empty.',
-                                // 'disabled' => 'disabled'
-                            ]);
 
         $this->crud->addField([    // TEXT
                                 'name' => 'date',
@@ -79,11 +72,6 @@ class ArticleCrudController extends CrudController
                                 'label' => 'Content',
                                 'type' => 'ckeditor',
                                 'placeholder' => 'Your textarea text here',
-                            ]);
-        $this->crud->addField([    // Image
-                                'name' => 'image',
-                                'label' => 'Image',
-                                'type' => 'browse',
                             ]);
         $this->crud->addField([    // SELECT
                                 'label' => 'Category',

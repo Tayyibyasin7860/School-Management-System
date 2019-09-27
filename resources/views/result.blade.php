@@ -1,59 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('title', 'Student Results')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="">My Results</h2>
-                    </div>
-
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <th>
-                                Result title
-                            </th>
-                            <th>
-                                Subject title
-                            </th>
-                            <th>
-                                Total Marks
-                            </th>
-                            <th>
-                                Obtained Marks
-                            </th>
-                            <th>
-                                Teacher Remarks
-                            </th>
-                            </thead>
-                            <tbody>
-                            @foreach($user_results as $result)
-                                <tr>
-                                    <td>
-                                        {{ $result->Exam->title }}
-                                    </td>
-                                    <td>
-                                        {{ $result->Subject->title }}
-                                    </td>
-                                    <td>
-                                        {{ $result->total_marks }}
-                                    </td>
-                                    <td>
-                                        {{ $result->obtained_marks }}
-                                    </td>
-                                    <td>
-                                        {{ $result->remarks }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="con-title">
+        <h2>My <span> Results</span></h2>
     </div>
+    <table class="table text-capitalize">
+        <thead>
+        <th>
+            <b>Result title</b>
+        </th>
+        <th>
+            <b>Subject title</b>
+        </th>
+        <th>
+            <b>Total Marks</b>
+        </th>
+        <th>
+            <b>Obtained Marks</b>
+        </th>
+        <th>
+            <b>Teacher Remarks</b>
+        </th>
+        </thead>
+        <tbody>
+        @foreach($user_results as $result)
+            <tr>
+                <td>
+                    {{ $result->Exam->title }}
+                </td>
+                <td>
+                    {{ $result->Subject->title }}
+                </td>
+                <td>
+                    {{ $result->total_marks }}
+                </td>
+                <td>
+                    {{ $result->obtained_marks }}
+                </td>
+                <td>
+                    {{ $result->remarks }}
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection

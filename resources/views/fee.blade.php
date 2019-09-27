@@ -1,18 +1,42 @@
-@extends('layouts.app')
-@section('title', 'Fee details')
+@extends('layouts.app2')
+@section('title', 'Student Results')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Fee</div>
-
-                <div class="card-body">
-                    Put fee details here
-                </div>
-            </div>
-        </div>
+    <div class="con-title">
+        <h2>My <span> Fees</span></h2>
     </div>
-</div>
+    <table class="table table-responsive">
+        <thead class="text-capitalize">
+        <th>
+            <b>Fee title</b>
+        </th>
+        <th>
+            <b>Amount</b>
+        </th>
+        <th>
+            <b>Due Date</b>
+        </th>
+        <th>
+            <b>Status</b>
+        </th>
+        </thead>
+        <tbody class="text-capitalize">
+        @foreach($user_fees as $fee)
+            <tr>
+                <td>
+                    {{ $fee->title }}
+                </td>
+                <td>
+                    {{ $fee->amount }}
+                </td>
+                <td>
+                    {{ $fee->due_date}}
+                </td>
+                <td>
+                    {{ $fee->status}}
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection

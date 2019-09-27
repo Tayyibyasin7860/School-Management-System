@@ -22,8 +22,9 @@ Route::group(['middleware' => ['auth','StudentCheck']], function () {
     Route::get('/fee', 'HomeController@fee')->name('fee');
     Route::get('/profile', 'StudentDetailsController@index')->name('profile');
     Route::get('/profile/{user}/edit', 'StudentDetailsController@edit');
+    Route::put('/profile/{user}', 'StudentDetailsController@update');
+    Route::patch('/update-photo/{user}', 'StudentDetailsController@updateImage');
 
-    Route::put('/profile', 'HomeController@updateProfile');
     Route::get('/notice-board', 'HomeController@noticeBoard')->name('notice-board');
     Route::get('/exam', 'HomeController@exam')->name('exam');
     Route::get('/result', 'HomeController@result')->name('result');

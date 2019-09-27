@@ -1,0 +1,545 @@
+/*-----------------------------------------
+ [RESPONSIV(MOBILE)E STYLE SHEET]
+ * Project: Education Master HTML Template
+ * Version: v1.0
+ * Copyright 2017-2020 rn53themes
+ * Last Changes: 10 jan 2018
+ * Author: RN53 Themes
+ * Email:      rn53themes@gmail.com
+ * Website:    http://www.rn53themes.net 
+ -----------------------------------------------*/
+ 
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 1300px wide,below css will be applied.
+/*-------------------------------------------------------*/
+@media screen and (max-width:1300px){
+     .wed-hom-ser{
+         display:none;
+    }
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 1200px wide,below css will be applied.
+/*-------------------------------------------------------*/
+@media screen and (max-width:1200px){
+.ed-rsear-in{width:100%;}
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 992px wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (max-width:992px){
+	.ad-log-in {
+		width: 80%;
+		padding: 25px;
+	}
+	 .ed-rsear-in ul li{
+		 width:100%;
+	 }
+     .web-search-form div input{
+         margin-bottom:0px;
+    }
+     .web-search-form div input i{
+         display:block;
+    }
+     .wed-search-1 {
+         padding: 115px 0px 50px 0px;
+    }
+     .h-quote:before {
+         width: 100%;
+    }
+     .admiss-form {
+         padding: 0px 30px;
+         margin-top: 50px;
+    }
+     .admiss-form form label{
+         color:#fff;
+    }
+     .help-arrow{
+         display:none;
+    }
+     .semi-form{
+         margin-top:40px;
+    }
+     .semi-left{
+         width:100%;
+         padding:0px 0px 0px 0px;
+    }
+     .semi-right{
+         width:100%;
+    }
+     .pg-eve-reg{
+         display:none;
+    }
+     .ho-ev-link {
+         width: 75%;
+    }
+     .search-form {
+         width: 100%;
+    }
+     .sf-list{
+         width:57.5%;
+    }
+     .sf-submit {
+         width: 40%;
+    }
+     .sf-type {
+         width: 60%;
+    }
+     .top-logo,.ed-top{
+         display:none;
+    }
+     .ed-mob-menu{
+         display:block;
+    }
+     .search-top{
+         margin-top: 55px;
+         border: 0px;
+    }
+     .carousel {
+         margin-top: 0px;
+    }
+     .home-top-cour-desc h3{
+         margin-top:20px;
+    }
+     .ho-event-mob-bot-sp{
+         margin-bottom:50px;
+    }
+     .bb-link {
+         margin-top: 15px;
+    }
+     .bb-img {
+         margin-bottom: 15px;
+    }
+     .wed-foot-link div {
+         position:relative;
+         overflow:hidden;
+         border-right: 0px groove #6a83a0;
+    }
+     .wed-foot-link {
+         padding: 0px;
+         border:0px;
+    }
+     .wed-foot-link h4{
+         border-top: 1px groove #6a83a0;
+         padding-top: 35px;
+         margin-top: 35px;
+    }
+     .foot-tc-mar-t-o{
+    }
+     .wed-foot-link .foot-tc-mar-t-o h4{
+         margin-top:0px;
+    }
+     .wed-hom-footer h4{
+         margin-top: 35px;
+    }
+     .wed-foot-link-1 {
+         padding-top: 0px;
+    }
+     .log-in-pop-left {
+         width: 100%;
+         padding: 7%;
+    }
+     .log-in-pop-right {
+         width: 100%;
+         padding: 7%;
+    }
+     .log-in-pop {
+         width: 75%;
+    }
+     .modal-open .modal {
+         width: 100%;
+    }
+     .carousel-caption {
+         right: 20%;
+         left: 20%;
+         top:10%;
+         padding-bottom: 30px;
+    }
+     .slider-con h2{
+         font-size:32px;
+    }
+     .slider-con h2 span{
+         font-size:32px;
+    }
+     .slider-con p{
+         font-size:16px;
+    }
+     .ed-advan ul li{
+         width: 100%;
+         background: #f5f5f5;
+         border: 5px solid #fff !important;
+         border-radius: 5px;
+    }
+     .ed-advan ul li:nth-child(1){
+         border:0px;
+    }
+     .ed-advan ul li:nth-child(2){
+         border:0px;
+    }
+     .ed-advan ul li:nth-child(3){
+         border:0px;
+    }
+     .ed-advan ul li:nth-child(4){
+         border:0px;
+    }
+     .ed-advan ul li:nth-child(5){
+         border:0px;
+    }
+     .ed-advan ul li:nth-child(6){
+         border:0px;
+    }
+     .pad-top-173 {
+         padding-top: 120px;
+    }
+     .h-quote {
+    }
+     .p-semi {
+    }
+     .head-2 {
+         margin-top: 0px;
+    }
+     .head-2-inn {
+         padding-top: 120px;
+    }
+     .pro-user{
+         margin-top:0px;
+    }
+     .pro-menu ul li{
+         width:50%;
+    }
+     .pro-menu ul {
+         margin-bottom: 0px;
+         margin-left: 0px;
+         padding: 20px 0px;
+    }
+     .pro-menu ul li {
+         width: 50%;
+         display: block;
+         float: left;
+         box-sizing: border-box;
+    }
+     .pro-menu ul li a {
+         padding: 0px 20px;
+         line-height: 53px;
+         color: #fff;
+         font-weight: 500;
+         border: 1px solid #3a5d84;
+         width: 98%;
+         display: block;
+         margin: 5px;
+         box-sizing: border-box;
+         text-align: center;
+    }
+     .sdb-cl-day {
+         width: 100%;
+         padding-bottom: 25px;
+    }
+     .udb {
+         padding: 0px;
+         margin-top: 35px;
+    }
+     .sdb-cl-class {
+         width: 100%;
+    }
+     .cor-p6 {
+         margin-top: 0px;
+         position: relative;
+         overflow: hidden;
+    }
+     .cor-side-com {
+         position: relative;
+         overflow: hidden;
+         margin-bottom: 0px;
+         width: 100%;
+         margin-top: 40px;
+    }
+     .cor-p5 ul li a img {
+         margin: 0 auto;
+    }
+     .cor-mid-img{
+         margin-top:50px;
+    }
+     .overlay-contact {
+         width: 100%;
+         padding: 35px 0px;
+         margin-bottom: 100px;
+         margin-top: 50px;
+    }
+     .contact-map iframe {
+         height: 250px;
+    }
+     .new-con1{
+         height:150px;
+    }
+     .new-con3{
+    }
+     .new-con4{
+    }
+.ed-ban-tit {
+    width: 100%;
+    padding: 25px;
+}	
+.ed-ref-form {
+    width: 100%;
+	padding-top:25px;
+    padding-left: 0px;
+}
+.head-2-inn-padd-top{padding-top:0px;}
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 860 wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (max-width:860px){
+     .slider-con p{
+         margin-bottom:15px;
+    }
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 767 wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (max-width:767px){
+     .mob-hide{
+         display:none;
+    }
+     .wed-logo a img {
+         width: 200px;
+         margin-top: 5px;
+    }
+     .wed-search-1 {
+         width: 90%;
+    }
+     .wed-hom-ser ul li a {
+         width: 75px;
+         height: 75px;
+         display: block;
+         padding: 10px 2px 10px 2px;
+    }
+     .web-search-form label {
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
+    }
+     .wed-menu {
+         float: right;
+         padding-top: 14px;
+         position: fixed;
+         right: 0px;
+         top: 0px;
+    }
+     .desk-hide{
+         display: block;
+         position: fixed;
+         top: 9px;
+         font-size: 17px;
+         border: 1px solid #fff;
+         padding: 3px 6px 0px 6px;
+         border-radius: 2px;
+         background: #fff;
+         color: #803e88;
+         right: 22px;
+         cursor: pointer;
+    }
+     .man-drop {
+         position: fixed;
+         left: 0px;
+         margin-left: 0px;
+         width: 100%;
+         top: 29px;
+         height: 100%;
+         overflow-x: hidden;
+         overflow-y: auto;
+    }
+     .man-drop ul li {
+         width: 98%;
+    }
+     .man-drop:before {
+         left: 94%;
+    }
+     .mob-cfw{
+         padding-left:0px !important;
+         padding-right:0px !important;
+    }
+     .s17-eve-time-tim{
+         display:none;
+    }
+     .s17-eve-time-msg{
+         width: 100%;
+         padding-right:20px;
+    }
+     .carousel-caption {
+         right: 10%;
+         left: 10%;
+         top: 5%;
+         padding-bottom: 30px;
+    }
+     .slider-con h2{
+         font-size:32px;
+    }
+     .slider-con h2 span{
+         font-size:32px;
+    }
+     .slider-con p{
+         font-size:16px;
+    }
+     .slider-con p{
+         margin-top:25px;
+    }
+     .slider-con a{
+         display:none;
+    }
+     .cor-p5 ul li a span{
+         display:none;
+    }
+     .sdb-cours ul li {
+         width: 100%;
+         padding-right: 0px;
+    }
+     .sdb-cours ul li:nth-child(3) {
+         margin-bottom: 15px;
+    }
+     .sdb-cl-class-tim {
+         width: 100%;
+         border-right: 0px solid #dcdcdc;
+         border-bottom: 1px solid #dcdcdc;
+         padding-bottom: 15px;
+         margin-bottom: 15px;
+    }
+     .sdb-cl-class-name {
+         width: 100%;
+    }
+     .new-con1{
+         height:auto;
+    }
+     .new-con h4{
+        margin-top:35px;
+    }
+.ed-ban-tit-31 {
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+}	
+.ed-ban-tit-32 {
+    width: 100%;
+}
+.ed-ref-form-inn form ul li{
+	width:100%;
+}
+.pg-blog {
+    width: 90%;
+}
+.ed-pho-gal ul li{
+	float:left;
+	width:50%;
+}
+
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 550 wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (max-width:550px){
+     .carousel-caption {
+         right: 10%;
+         left: 10%;
+         top: 5%;
+         padding-bottom: 30px;
+    }
+     .slider-con h2{
+         font-size:24px;
+         line-height: 24px 
+    }
+     .slider-con h2 span{
+         font-size:24px;
+         line-height: 24px 
+    }
+     .slider-con p{
+         margin-top: 0px;
+         font-size: 12px;
+         line-height: 16px;
+    }
+     .slider-con a{
+         display:none;
+    }
+     .pro-menu ul li {
+         width: 100%;
+    }
+.ed-rsear-dec a span {
+    font-size: 10px;
+}	
+.ed-rsear-dec a{
+	font-size: 10px;
+}
+.ed-rsear-dec h4 a{
+	font-size:12px;
+}
+.ed-rsear-dec {
+    padding: 8px 15px;
+}
+.ed-rsear-img img{
+	width:70px;
+}
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 0px and 480 wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (max-width:480px){
+     .wed-hom-ser ul li a {
+         width: 62px;
+         height: 62px;
+         display: block;
+         padding: 10px 2px 38px 2px;
+         line-height: 10px;
+    }
+     .man-drop ul li {
+         width: 98%;
+    }
+     .quote-title h2{
+         font-size:42px;
+    }
+     .ho-ev-link {
+         width: 100%;
+         padding-top: 20px;
+    }
+     .sf-submit input{
+         font-size:12px;
+         padding: 15px 4px;
+    }
+     .carousel-caption {
+         right: 10%;
+         left: 10%;
+         top: 0%;
+         padding-bottom: 30px;
+    }
+     .slider-con h2{
+         font-size:24px;
+         margin-top:10px;
+    }
+     .slider-con h2 span{
+         font-size:24px;
+    }
+     .slider-con p{
+         font-size:16px;
+    }
+     .slider-con p{
+         margin-top:10px;
+         font-size:12px;
+         line-height:24px;
+    }
+     .slider-con a{
+         display:none;
+    }
+}
+
+/*-------------------------------------------------------*/
+/* When the browser is between 1366px to above wide,below css will be applied.
+/*-------------------------------------------------------*/
+ @media screen and (min-width: 1366px){
+     .semi-inn {
+         width: 1000px;
+    }
+}
+ 
