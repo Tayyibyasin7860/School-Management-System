@@ -68,4 +68,25 @@ class StudentDetail extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function setThumbnailImageAttribute($value) {
+
+        $image=$value;
+        $input['thumbnail_image'] = $image->getClientOriginalName();
+        $img = \Image::make($image->getRealPath());
+
+        $destinationPath = public_path('/uploads/thumbnailImages');
+        $img->resize(750, 450, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['thumbnail_image']);
+
+        $destinationPath = public_path('storage/uploads/thumbnailImages');
+
+        $img->resize(100, 100, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['thumbnail_image']);
+
+        $image->move($destinationPath, $input['thumbnail_image']);
+        $this->attributes['thumbnail_image'] = $input['thumbnail_image'];
+
+    }
 }

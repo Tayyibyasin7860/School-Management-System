@@ -44,30 +44,29 @@ class User extends Authenticatable
     ];
     protected $guard_name = 'web';
 
-    public
-    function studentDetail(){
-        return $this->hasOne('App\Models\StudentDetail');
-    }
-
-    public function schoolAdmin()
-    {
-        return $this->belongsTo('App\User', 'admin_id');
-    }
-
-    public function exams(){
-        return $this->hasMany('App\Models\Exam');
-    }
-
-    public function results(){
-        return $this->hasMany('App\Models\Result');
-    }
-
-    public function fees(){
-        return $this->hasMany('App\Models\Fee');
-    }
-
-    public function classRoom(){
-        return $this->belongsTo('App\Models\ClassRoom');
+//    public
+//    function studentDetail(){
+//        return $this->hasOne('App\Models\StudentDetail');
+//    }
+//
+//    public function schoolAdmin()
+//    {
+//        return $this->belongsTo('App\User', 'admin_id');
+//    }
+//
+//    public function exams(){
+//        return $this->hasMany('App\Models\Exam');
+//    }
+//
+//    public function fees(){
+//        return $this->hasMany('App\Models\Fee');
+//    }
+//
+//    public function classRoom(){
+//        return $this->belongsTo('App\Models\ClassRoom');
+//    }
+    public function articles(){
+        return $this->hasMany('App\Models\Article','admin_id');
     }
 
     public function profileButton(){

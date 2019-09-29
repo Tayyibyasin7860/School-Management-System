@@ -37,15 +37,20 @@ class SubjectCrudController extends CrudController
         $this->crud->setFromDb();
 
         $this->crud->removeColumn('admin_id');
+        $this->crud->removeField('admin_id');
 
         // add asterisk for fields that are required in SubjectRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+        $user_id = backpack_user()->id;
+        $this->crud->addClause('where','admin_id','=',$user_id);
     }
 
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $request->request->set('admin_id', backpack_user()->id);
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

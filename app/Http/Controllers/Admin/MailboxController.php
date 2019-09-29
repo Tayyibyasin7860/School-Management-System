@@ -1,82 +1,80 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Mail\AdminMail;
+use App\Models\StudentDetail;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\User;
+use App\Models\Fee;
+use PhpParser\Node\Expr\Array_;
 
-class MailboxController extends Controller
+class MailboxController extends CrudController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('compose_mail');
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('vendor/backpack/base/Mailbox');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function send(Request $request)
     {
-        //
+
+        dd(User::find(5)->studentDetail->classRoom->exam);
+        if(request()->category == 'fee_defaulters'){
+
+            $pending_fee = Fee::where('status','Pending')
+                ->whereHas('student', function($user){
+                    $user->where('admin_id', backpack_user()->id);
+                })
+                ->groupBy('user_id')
+                ->get();
+            $emails = [];
+            foreach ($pending_fee as $fee){
+                $emails [] =  $fee->student->email;
+            }
+        }else if($request->category =='all'){
+            $students = User::where('admin_id', backpack_user()->id)->find();
+            foreach ($students as $student){
+                $emails [] =  $student->email;
+            }
+        }else if(!empty($request->email)){
+            $emails [] = $request->email;
+        }
+
+        if(!empty($emails)){
+
+            foreach ($emails as $email){
+                $mail = new AdminMail();
+                $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from '.config('app.name');
+                Mail::to($email)->send($mail);
+                sleep(1);
+            }
+            $message = 'Email(s) has been sent successfully.';
+            return redirect('/admin/mailbox')->with('message',$message);
+
+        }else{
+            return redirect('/admin/mailbox')->withErrors(['email'=> 'Not email sent.']);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function studentEmail(User $student)
     {
-        //
+        return view('vendor/backpack/base/Mailbox',compact('student'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

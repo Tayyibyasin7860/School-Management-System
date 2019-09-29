@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Middleware\AdminCheck;
+
 // --------------------------
 // Custom Backpack Routes
 // --------------------------
@@ -7,19 +9,16 @@ use App\Http\Middleware\AdminCheck;
 // Routes you generate using Backpack\Generators will be placed here.
 
 Route::group([
-    'prefix'     => config('backpack.base.route_prefix', 'admin'),
+    'prefix' => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', 'AdminCheck', config('backpack.base.middleware_key', 'admin')],
-    'namespace'  => 'App\Http\Controllers\Admin',
+    'namespace' => 'App\Http\Controllers\Admin',
 ], function () {
-    //auth routes
-//    Route::auth();
-//    Route::post('logout','Auth/LoginController@logout')->name('logout');
 
     Route::get('dashboard', 'DashboardController@dashboard');
     // custom admin routes
     CRUD::resource('user', 'UserCrudController');
     CRUD::resource('student', 'StudentUserCrudController');
-    Route::group(['prefix' => 'student/{student_id}'], function() {
+    Route::group(['prefix' => 'student/{student_id}'], function () {
         CRUD::resource('profile', 'StudentCrudController');
 
     });
@@ -32,7 +31,6 @@ Route::group([
     CRUD::resource('category', 'CategoryCrudController');
     CRUD::resource('tag', 'TagCrudController');
 
-    Route::get('mailbox', 'MailboxController@index');
     CRUD::resource('exam', 'ExamCrudController');
     CRUD::resource('result', 'ResultCrudController');
 
@@ -42,4 +40,8 @@ Route::group([
     Route::get('/permission/generate', 'PermissionCrudController@generatePermissions');
     CRUD::resource('permission', 'PermissionCrudController');
 
+    Route::get('mailbox', 'MailboxController@create');
+    Route::post('mailbox', 'MailboxController@send');
+    Route::get('mailbox/{student}', 'MailboxController@studentEmail');
 });
+

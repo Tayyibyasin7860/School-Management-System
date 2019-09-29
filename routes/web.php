@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,6 +30,8 @@ Route::group(['middleware' => ['auth','StudentCheck']], function () {
     Route::get('/notice-board', 'HomeController@noticeBoard')->name('notice-board');
     Route::get('/exam', 'HomeController@exam')->name('exam');
     Route::get('/result', 'HomeController@result')->name('result');
+    $auth = auth()->user();
+    Route::get('/compose-mail', 'StudentMailController@create');
 
 });
 

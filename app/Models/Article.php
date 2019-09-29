@@ -65,7 +65,9 @@ class Article extends Model
     {
         return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
     }
-
+    public function schoolAdmin(){
+        return $this->belongsTo('App\User');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

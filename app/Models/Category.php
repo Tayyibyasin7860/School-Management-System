@@ -66,7 +66,6 @@ class Category extends Model
     {
         return $this->hasMany('Backpack\NewsCRUD\app\Models\Article');
     }
-
     /*
     |--------------------------------------------------------------------------
     | SCOPES

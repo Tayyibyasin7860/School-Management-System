@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -78,6 +78,9 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
         $this->guard()->login($user);
+
+        //assign defualt role of school admin to new registered admin
+        auth()->user()->assignRole('school_admin');
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -19,9 +20,11 @@ class StudentCrudController extends CrudController
     public function setup()
     {
 
-        $studentid = \Route::current()->parameter('student_id');
+        $student_id = \Route::current()->parameter('student_id');
+        $student_name = User::where('id',$student_id)->pluck('name')->first();
+
         // set a different route for the admin panel buttons
-        $this->crud->setRoute(config('backpack.base.route_prefix')."/student/".$studentid.'/profile');
+        $this->crud->setRoute(config('backpack.base.route_prefix')."/student/".$student_id.'/profile');
 
 
         // show only that admin users
@@ -37,7 +40,7 @@ class StudentCrudController extends CrudController
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
 
-        $this->crud->addClause('where', 'user_id', '=', $studentid);
+        $this->crud->addClause('where', 'user_id', '=', $student_id);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -107,15 +110,20 @@ class StudentCrudController extends CrudController
 
         $this->crud->addFields([
             [
-                'label' => 'Name',
-                'name' => 'user_id',
-                'type' => 'select',
-                'entity' => 'User',
-                'attribute' => 'name',
+                'label' => 'Student ID',
+                'name' => "user_id",
+                'type' => 'hidden',
+                'default' => $student_id,
             ],
-            [
-                'label' => 'photo',
-                'name' => 'photo'
+            [ // image
+                'label' => "Profile Image",
+                'name' => "photo",
+                'type' => 'image',
+                'upload' => true,
+                'crop' => true, // set to true to allow cropping, false to disable
+                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+                // 'disk' => 's3_bucket', // in case you need to show images from a different disk
+                // 'prefix' => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
             ],
             [
                 'label' => 'Class',
@@ -138,14 +146,6 @@ class StudentCrudController extends CrudController
                 'name' => 'date_of_birth',
                 'type' => 'date'
             ],
-//            [
-//                'label' => 'Email',
-//                'name' => 'user_id',
-//                'type' => 'select',
-//                'entity' => 'User',
-//                'attribute' => 'email'
-//
-//            ],
             [
                 'label' => 'Phone Number',
                 'name' => 'phone_number'

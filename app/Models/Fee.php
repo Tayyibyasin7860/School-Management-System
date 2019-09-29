@@ -34,8 +34,11 @@ class Fee extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function student(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    public function sendEmailButton(){
+        return '<a data-button-type="review" title="Send Email" href="'. url(config('backpack.base.route_prefix').'/mailbox/' . $this->id) .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Send Reminder</a>';
     }
     /*
     |--------------------------------------------------------------------------

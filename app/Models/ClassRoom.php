@@ -40,7 +40,7 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     }
     public function exam()
     {
-        return $this->hasOne('App\Models\Exam');
+        return $this->hasOne('App\Models\Exam','class_id');
     }
     public function results()
     {

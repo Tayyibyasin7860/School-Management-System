@@ -32,7 +32,7 @@ class FeeCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-
+        $this->crud->addButtonFromModelFunction('line', 'mailbox', 'sendEmailButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
         //$this->crud->setFromDb();
 

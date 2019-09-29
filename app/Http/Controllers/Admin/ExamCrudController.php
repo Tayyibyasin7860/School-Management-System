@@ -34,7 +34,11 @@ class ExamCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        //$this->crud->setFromDb();
+        $this->crud->setFromDb();
+
+        $this->crud->removeColumn('admin_id');
+        $this->crud->removeField('admin_id');
+
         $this->crud->addColumns([
             [
                 'name' => 'row_number',
@@ -84,13 +88,13 @@ class ExamCrudController extends CrudController
                 'entity' => 'User',
                 'attribute' => 'name'
             ],
-//            [
-//                'label' => 'Class',
-//                'name' => 'class_id',
-//                'type' => 'select',
-//                'entity' => 'ClassRoom',
-//                'attribute' => 'title'
-//            ],
+            [
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'ClassRoom',
+                'attribute' => 'title'
+            ],
             [
                 'label' => 'Date',
                 'name' => 'date',
@@ -101,11 +105,15 @@ class ExamCrudController extends CrudController
         // add asterisk for fields that are required in ExamRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+        $user_id = backpack_user()->id;
+        $this->crud->addClause('where','admin_id','=',$user_id);
     }
 
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $request->request->set('admin_id', backpack_user()->id);
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

@@ -36,67 +36,31 @@ class ClassCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
          $this->crud->setFromDb();
 
-//        $this->crud->addFields([
-//
-//            [
-//                'label'=> 'Title',
-//                'name' => 'title',
-//            ],
-//            [
-//                'label'=> 'Capacity',
-//                'name' => 'capacity',
-//            ],
-//            [
-//                'label'=> 'Teacher',
-//                'name' => 'teacher_id',
-//                'type' =>'select2',
-//                'entity'=> 'teacher',
-//                'attribute' => 'name',
-//            ],
-//            [
-//                'label'=> 'Admin',
-//                'name' => 'admin_id',
-//                'type' =>'select2',
-//                'entity'=> 'admin',
-//                'attribute' => 'name',
-//            ],
-//        ]);
-//        $this->crud->addColumns([
-//            [
-//                'label'=> 'ID',
-//                'name' => 'id',
-//            ],
-//            [
-//                'label'=> 'Title',
-//                'name' => 'title',
-//            ],
-//            [
-//                'label'=> 'Capacity',
-//                'name' => 'capacity',
-//            ],
-//            [ //this show teacher name
-//                'label'=> 'Teacher',
-////                'name' => 'teacher_id',
-////                'type' =>'select',
-////                'entity'=> 'teacher',
-////                'attribute' => 'name',
-//            ],
-//            [ //this shows user name
-//                'label'=> 'Admin',
-//                'name' => 'admin_id',
-//                'type' =>'select',
-//                'entity'=> 'admin', // the name of method in ClassRoomModel
-//                'attribute' => 'name', // name is the related model attribute, related model is User and name it user's attribute that we wanted to show
-//            ],
-//        ]);
+
+//         $this->crud->addColumn([
+//             [
+//                 'label' => 'Student Name',
+//                 'name'  => 'admin_id',
+//                 'type'  =>'select',
+//                 'entity'=> 'users',
+//                 'attribute' => 'id',
+//             ]
+//         ]);
+
+
+
         // add asterisk for fields that are required in ClassRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+        $user_id = backpack_user()->id;
+        $this->crud->addClause('where','admin_id','=',$user_id);
     }
 
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $request->request->set('admin_id', backpack_user()->id);
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
