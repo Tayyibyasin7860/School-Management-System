@@ -36,20 +36,11 @@ class StudentDetail extends Model
     */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
     public function classRoom()
     {
         return $this->belongsTo('App\Models\ClassRoom', 'class_id');
-    }
-    public function exams(){
-        return $this->hasMany('App\Models\Exam');
-    }
-    public function results(){
-        return $this->hasMany('App\Models\Result');
-    }
-    public function fees(){
-        return $this->hasMany('App\Models\Fee');
     }
     /*
     |--------------------------------------------------------------------------

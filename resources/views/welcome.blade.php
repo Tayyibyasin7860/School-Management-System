@@ -35,7 +35,7 @@
                     @if (Route::has('login'))
                         <div class="top-right links">
                             @auth
-                                <a class="navbar-brand" href="{{ url('/home') }}">Dashboard</a>
+                                <a class="navbar-brand" href="{{ url('/student') }}">Dashboard</a>
                             @else
                                 <a class="navbar-brand" href="{{ route('login') }}">Login</a>
                             @endauth
@@ -164,7 +164,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy;School Mangement Website</strong><br/> The all in one solution for your school
+                <p><strong>&copy;SMS</strong><br/> The all in one solution for your school
                     management problems</p>
             </div>
         </div>

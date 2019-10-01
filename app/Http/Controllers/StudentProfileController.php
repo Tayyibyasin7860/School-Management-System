@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use Hash;
 
-class StudentDetailsController extends Controller
+class StudentProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,6 @@ class StudentDetailsController extends Controller
     public function update(User $user)
     {
             request()->validate([
-                'email' => 'email|unique:users,email',
                 'phone_number' => 'numeric',
                 'password' => 'confirmed|min:8',
             ]);

@@ -1,4 +1,5 @@
 @extends('layouts.app2')
+@section('title','Student | Profile')
 
 @section('content')
             <h4><img src="{{ asset('images/icon/db1.png') }}" alt=""/> My Profile</h4>

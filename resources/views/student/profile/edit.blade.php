@@ -1,9 +1,11 @@
 @extends('layouts.app2')
+@section('title','Student | Edit Profile')
+
 @section('content')
     <h4>You may change following details</h4>
     <div class="justify-content-center">
     <div class="col-md-8">
-        <form method="post" action="/profile/{{ $user->id }}">
+        <form method="post" action="/student/profile/{{ $user->id }}">
             @method('put')
             @csrf
             <div class="form-group">

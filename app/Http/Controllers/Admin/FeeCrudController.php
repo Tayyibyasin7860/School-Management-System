@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\FeeRequest as StoreRequest;
 use App\Http\Requests\FeeRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use App\Models\role;
 
 /**
  * Class FeeCrudController
@@ -34,79 +35,83 @@ class FeeCrudController extends CrudController
         */
         $this->crud->addButtonFromModelFunction('line', 'mailbox', 'sendEmailButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
-        //$this->crud->setFromDb();
 
-        $this->crud->addColumns([
-            [
-                'name' => 'row_number',
-                'type' => 'row_number',
-                'label' => 'Sr. #',
-                'orderable' => false,
-            ],
-            [
-                'label'=> 'Title',
-                'name' => 'title',
-            ],
-            [
-                'label'=> 'Amount',
-                'name' => 'amount',
-            ],
-            [
-                'label'=> 'Student Name',
-                'name' => 'user_id',
-                'type' =>'select',
-                'entity'=> 'User',
-                'attribute' => 'name',
-            ],
-            [
-                'label'=> 'Due Date',
-                'name' => 'due_date'
-            ],
-            [
-                'label'=> 'Status',
-                'name' => 'status',
-            ],
 
-        ]);
-
-        $this->crud->addFields([
-            [
-                'label'=> 'Title',
-                'name' => 'title',
-            ],
-            [
-                'label'=> 'Amount',
-                'name' => 'amount',
-                'type' => 'number'
-            ],
-            [
-                'label'=> 'Student Name',
-                'name' => 'user_id',
-                'type' =>'select',
-                'entity'=> 'User',
-                'attribute' => 'name',
-            ],
-            [
-                'label' => 'Due Date',
-                'name' => 'due_date',
-                'type' => 'date'
-            ],
-            [
-                'label'=> 'Status',
-                'name' => 'status',
-                'type' => 'enum'
-            ],
-
-        ]);
-        $this->crud->addFilter([ // simple filter
-            'type' => 'simple',
-            'name' => 'status',
-            'label'=> 'Pending Fee Students'
-        ],
-            false,
-            function() { // if the filter is active
-                $this->crud->addClause('where', 'status', 'Pending');
-            } );
+        $this->crud->setFromDb();
+//        $students = $this->crud->with('students');
+//        $this->crud->addClause('role','school_admin');
+//        $this->crud->addColumns([
+//            [
+//                'name' => 'row_number',
+//                'type' => 'row_number',
+//                'label' => 'Sr. #',
+//                'orderable' => false,
+//            ],
+//            [
+//                'label'=> 'Title',
+//                'name' => 'title',
+//            ],
+//            [
+//                'label'=> 'Amount',
+//                'name' => 'amount',
+//            ],
+////            [
+////                'label'=> 'Student Name',
+////                'name' => 'user_id',
+////                'type' =>'select',
+////                'entity'=> 'User',
+////                'attribute' => 'name',
+//
+////            ],
+//            [
+//                'label'=> 'Due Date',
+//                'name' => 'due_date'
+//            ],
+//            [
+//                'label'=> 'Status',
+//                'name' => 'status',
+//            ],
+//
+//        ]);
+//
+//        $this->crud->addFields([
+//            [
+//                'label'=> 'Title',
+//                'name' => 'title',
+//            ],
+//            [
+//                'label'=> 'Amount',
+//                'name' => 'amount',
+//                'type' => 'number'
+//            ],
+////            [
+////                'label'=> 'Student Name',
+////                'name' => 'user_id',
+////                'type' =>'select',
+////                'entity'=> 'User',
+////                'attribute' => 'name',
+////            ],
+//            [
+//                'label' => 'Due Date',
+//                'name' => 'due_date',
+//                'type' => 'date'
+//            ],
+//            [
+//                'label'=> 'Status',
+//                'name' => 'status',
+//                'type' => 'enum'
+//            ],
+//
+//        ]);
+//        $this->crud->addFilter([ // simple filter
+//            'type' => 'simple',
+//            'name' => 'status',
+//            'label'=> 'Pending Fee Students'
+//        ],
+//            false,
+//            function() { // if the filter is active
+//                $this->crud->addClause('where', 'status', 'Pending');
+//            } );
         // add asterisk for fields that are required in FeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

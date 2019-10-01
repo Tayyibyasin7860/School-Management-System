@@ -1,5 +1,5 @@
 @extends('layouts.app2')
-@section('title', 'Student Results')
+@section('title','Student | Results')
 
 @section('content')
     <div class="con-title">

@@ -1,9 +1,10 @@
 @extends('layouts.app2')
+@section('title','Student | Notice Board')
 
 @section('content')
     <div class="ed-about-tit">
         <div class="con-title">
-            <h2>College <span> Events</span></h2>
+            <h2>School <span> Events</span></h2>
         </div>
         <div>
             <div class="ho-event pg-eve-main">

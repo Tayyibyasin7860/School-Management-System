@@ -19,13 +19,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth','StudentCheck']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::group([    'prefix' => 'student',
+                'middleware' => ['auth','StudentCheck']], function () {
+    Route::get('/', 'HomeController@index')->name('dashboard');
     Route::get('/fee', 'HomeController@fee')->name('fee');
-    Route::get('/profile', 'StudentDetailsController@index')->name('profile');
-    Route::get('/profile/{user}/edit', 'StudentDetailsController@edit');
-    Route::put('/profile/{user}', 'StudentDetailsController@update');
-    Route::patch('/update-photo/{user}', 'StudentDetailsController@updateImage');
+    Route::get('/profile', 'StudentProfileController@index')->name('profile');
+    Route::get('/profile/{user}/edit', 'StudentProfileController@edit');
+    Route::put('/profile/{user}', 'StudentProfileController@update')->name('edit-submit');
+    Route::patch('/update-photo/{user}', 'StudentProfileController@updateImage');
 
     Route::get('/notice-board', 'HomeController@noticeBoard')->name('notice-board');
     Route::get('/exam', 'HomeController@exam')->name('exam');

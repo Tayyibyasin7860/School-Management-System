@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Mail\AdminMail;
+use App\Models\Exam;
 use App\Models\StudentDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Http\Request;
@@ -22,14 +23,31 @@ class MailboxController extends CrudController
     public function send(Request $request)
     {
 
-        dd(User::find(5)->studentDetail->classRoom->exam);
-        if(request()->category == 'fee_defaulters'){
+//        $admin_students = User::find(backpack_user()->id)->students;
+//        foreach ($admin_students as $admin_student){
+//            $student_fees = $admin_student->fees;
+//            foreach($student_fees as $student_fee){
+//                    $fee_status = $student_fee->pivot->status;
+//                    if($fee_status = 'Pending'){
+//                        echo "pending";
+//                    }
+//            }
+//        }
+        $admin = backpack_user()->id;
+//        $fees = $admin->fees();
 
+        dd(Exam::find(1)->examSession()->where('admin_id',$admin)->pluck('admin_id'));
+//        $pending_fee = $fee->pivot;
+        foreach ($fees as $fee){
+            echo $fee . "<br>";
+        }
+        dd();
+        if(request()->category == 'fee_defaulters')
+        {
             $pending_fee = Fee::where('status','Pending')
-                ->whereHas('student', function($user){
+                ->whereHas('students', function($user){
                     $user->where('admin_id', backpack_user()->id);
                 })
-                ->groupBy('user_id')
                 ->get();
             $emails = [];
             foreach ($pending_fee as $fee){

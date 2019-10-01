@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -69,7 +69,7 @@ class LoginController extends Controller
     {
         $user = auth()->user();
         if($user->hasRole('student')){
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
 
         elseif ($user->hasRole('school_admin')){
@@ -91,6 +91,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ?: redirect('/login');
     }
 }

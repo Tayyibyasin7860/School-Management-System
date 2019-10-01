@@ -34,29 +34,21 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function users()
-    {
-        return $this->hasMany('App\User');
+
+    public function schoolAdmin(){
+        return $this->belongsTo('App\Models\User','admin_id');
     }
-    public function exam()
-    {
-        return $this->hasOne('App\Models\Exam','class_id');
+    public function studentDetails(){
+        return $this->hasMany('App\Models\studentDetail','class_id');
     }
-    public function results()
+    public function exams()
     {
-        return $this->hasMany('App\Models\Result');
+        return $this->hasMany('App\Models\Exam','class_id');
     }
-    public function fees()
-    {
-        return $this->hasMany('App\Models\Fee');
-    }
+
     public function subjects()
     {
-        return $this->hasMany('App\Models\Subject');
-    }
-    public function studentDetails()
-    {
-        return $this->hasMany('App\Models\StudentDetail');
+        return $this->belongsToMany('App\Models\Subject', 'class_subject');
     }
 
     /*

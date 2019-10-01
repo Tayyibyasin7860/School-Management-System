@@ -34,15 +34,12 @@ class Subject extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function classRoom()
+    public function classes()
     {
-        return $this->belongsTo('App\Models\classRoom');
+        return $this->belongsToMany('App\Models\ClassRoom', 'class_subject');
     }
     public function exams(){
         return $this->hasMany('App\Models\Exam');
-    }
-    public function results(){
-        return $this->hasMany('App\Models\Result');
     }
     /*
     |--------------------------------------------------------------------------

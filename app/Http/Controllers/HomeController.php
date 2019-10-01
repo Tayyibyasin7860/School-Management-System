@@ -31,21 +31,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-      // dd(auth()->user()->Student->id);
-        return view('home');
+      $user = auth()->user();
+        return view('student\index',compact('user'));
     }
 
     public function noticeBoard()
     {
         $user = auth()->user();
         $all_announcements = Article::paginate(5);
-        return view('notice-board', compact('all_announcements','user'));
+        return view('student.notice-board', compact('all_announcements','user'));
     }
     public function fee()
     {
         $user = auth()->user();
         $user_fees = $user->fees;
-        return view('fee',compact('user','user_fees'));
+        return view('student.fee',compact('user','user_fees'));
     }
     public function exam()
     {
@@ -58,7 +58,7 @@ class HomeController extends Controller
         //getting exams of current user,s class
         $user_exams = $exams->where('class_id', $class_id);
 
-        return view('exam', compact('user_exams','exams','user'));
+        return view('student.exam', compact('user_exams','exams','user'));
 
     }
     public function result()
@@ -68,7 +68,7 @@ class HomeController extends Controller
         $results = Result::all();
         $user_results = $results->where('user_id', $user_id);
 
-        return view('result', compact('user_results','user'));
+        return view('student.result', compact('user_results','user'));
     }
 
 

@@ -1,7 +1,9 @@
 @extends('layouts.app2')
+@section('title','Student | Exams')
 @section('content')
-        <h4><img src="images/icon/db5.png" alt=""> Exam Details</h4>
-        <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+    <div class="con-title">
+        <h2>My <span> Exams</span></h2>
+    </div>
         <div class="tour_head1 udb-time-line days">
             <ul>
                 @foreach($user_exams as $exam)

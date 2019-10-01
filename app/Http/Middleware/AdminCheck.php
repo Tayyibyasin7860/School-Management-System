@@ -19,11 +19,10 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-//        dd(auth()->user()->hasRole('school_admin'));
         if (auth()->user()->can('view admin panel')) {
             return $next($request);
         } else {
-            return redirect('/home');
+            return redirect('/student');
         }
     }
 }

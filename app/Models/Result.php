@@ -33,18 +33,9 @@ class Result extends Model
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
-    */
-    public function user(){
-        return $this->belongsTo('App\User');
-    }
-    public function classRoom(){
-        return $this->belongsTo('App\Models\ClassRoom');
-    }
+    the table of this mode(Result) is to be removed*/
     public function exam(){
         return $this->belongsTo('App\Models\Exam');
-    }
-    public function subject(){
-        return $this->belongsTo('App\Models\Subject');
     }
     /*
     |--------------------------------------------------------------------------
