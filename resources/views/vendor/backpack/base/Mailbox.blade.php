@@ -19,7 +19,6 @@
     <div class="col-md-6">
         <form id="contact-form" method="post" action="/admin/mailbox">
             @csrf
-            <div class="messages"></div>
             @if(session()->has('message'))
             <div class="alert alert-success">
                 <strong>Success: </strong>{{ session()->get('message') }}

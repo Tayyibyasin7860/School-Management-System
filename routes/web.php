@@ -32,7 +32,7 @@ Route::group([    'prefix' => 'student',
     Route::get('/exam', 'HomeController@exam')->name('exam');
     Route::get('/result', 'HomeController@result')->name('result');
     $auth = auth()->user();
-    Route::get('/compose-mail', 'StudentMailController@create');
+    Route::get('/feedback', 'StudentFeedbackController@create')->name('feedback');
 
 });
 

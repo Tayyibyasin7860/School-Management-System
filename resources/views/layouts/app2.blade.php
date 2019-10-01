@@ -25,14 +25,14 @@
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="{{ asset('css/style-mob.css') }}" rel="stylesheet"/>
 
-        <script>
-            // .add('pro-act');
-            // document.write(window.location.href);
+    <script>
+        // .add('pro-act');
+        // document.write(window.location.href);
 
 
-                var v = document.getElementById("profile");
-                v.classList += "pro-act";
-        </script>
+        var v = document.getElementById("profile");
+        v.classList += "pro-act";
+    </script>
 </head>
 
 <body>
@@ -41,13 +41,13 @@
     <div class="container">
         <div class="col-md-9 col-md-offset-3">
             <ul>
-                @if(Request::path() == 'dashboard')
-                <li><a href="{{ route('dashboard') }}" class="pro-act">My Dashboard</a></li>
+                @if(Request::path() == 'student')
+                    <li><a href="{{ route('dashboard') }}" class="pro-act">My Dashboard</a></li>
                 @else
                     <li><a href="{{ route('dashboard') }}">My Dashboard</a></li>
                 @endif
                 @if(Request::path() == 'student/profile')
-                <li><a href="{{ route('profile') }}" class="pro-act">Profile</a></li>
+                    <li><a href="{{ route('profile') }}" class="pro-act">Profile</a></li>
                 @else
                     <li><a href="{{ route('profile') }}">Profile</a></li>
                 @endif
@@ -71,6 +71,11 @@
                 @else
                     <li><a href="{{ route('notice-board') }}">Notice Board</a></li>
                 @endif
+                @if(Request::path() == 'student/feedback')
+                    <li><a href="{{ route('feedback') }}" class="pro-act">Feedback</a></li>
+                @else
+                    <li><a href="{{ route('feedback') }}">Feedback</a></li>
+                @endif
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -89,10 +94,11 @@
 <div class="stu-db">
     <div class="container pg-inn">
         <div class="col-md-3">
-            <div class="pro-user">
-                <img src="{{ asset('storage/' . $user->StudentDetail->photo) }}" alt="user" class="img-circle">
+            <div class="pro-user" style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ asset('storage/' . $user->StudentDetail->photo) }}); background-size: cover; width: 200px;height: 200px; ">
+{{--                <img src="{{ asset('storage/' . $user->StudentDetail->photo) }}" alt="user" class="img-circle" style="display: block; width: 100%; height: auto;">--}}
             </div>
-            <form action="student/update-photo/{{ $user->id }}" method="post" class="form" enctype="multipart/form-data">
+            <form action="/student/update-photo/{{ $user->id }}" method="post" class="form"
+                  enctype="multipart/form-data">
                 @method('patch')
                 @csrf
                 <input type="file" name="photo" class="form-control">

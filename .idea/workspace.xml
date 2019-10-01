@@ -2,35 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/ExamSession.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/student/feedback/feedback-form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentDetailsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Fee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Fee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentMailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentFeedbackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ExamSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ExamSession.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Result.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/StudentDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentDetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subject.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exam.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/exam.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/fee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/fee.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app2.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/notice-board.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/notice-board.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/result.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/result.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/feedback/compose-mail.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/student/profile/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/profile/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/student/profile/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/profile/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome2.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.txt" beforeDir="false" afterPath="$PROJECT_DIR$/route.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/Mailbox.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/Mailbox.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,6 +245,8 @@
       <workItem from="1569736357385" duration="25808000" />
       <workItem from="1569822915604" duration="29226000" />
       <workItem from="1569921895101" duration="15568000" />
+      <workItem from="1569953080481" duration="1473000" />
+      <workItem from="1569954615058" duration="17668000" />
     </task>
     <servers />
   </component>

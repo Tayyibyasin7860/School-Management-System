@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class StudentMailController extends Controller
+class StudentFeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class StudentMailController extends Controller
     public function create()
     {
         $user = auth()->user();
-        return view('student/feedback/compose-mail',compact('user'));
+        return view('student/feedback/feedback-form',compact('user'));
     }
 
     /**

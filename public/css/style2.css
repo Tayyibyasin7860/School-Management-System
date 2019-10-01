@@ -2255,6 +2255,7 @@
 }
  .pro-user{
      position:relative;
+     margin: auto;
      margin-top:-123px;
      box-shadow: 0px 5px 18px -11px rgba(150,150,150,0.8);
      border-bottom: 0px;

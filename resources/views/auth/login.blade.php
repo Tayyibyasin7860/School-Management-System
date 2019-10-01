@@ -33,8 +33,16 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    @if(Request::path() !== 'login')
                     <a class="navbar-brand" href="{{ route('login') }}">Login</a>
-                    <a class="navbar-brand" href="{{ url('/register') }}">Register</a>
+                    @else
+                    <a class="navbar-brand" href="http://127.0.0.1:8000/login" style="background-color: #1ab394;color: white;">Login</a>
+                    @endif
+                        @if(Request::path() !== 'register')
+                        <a class="navbar-brand" href="{{ url('/register') }}">Register</a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/register') }}" style="background-color: #1ab394; color: white;">Register</a>
+                    @endif
                 </ul>
             </div>
         </div>

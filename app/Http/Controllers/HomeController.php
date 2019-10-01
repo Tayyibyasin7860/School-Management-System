@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\ExamSession;
 use App\Models\Result;
 use Backpack\NewsCRUD\app\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\StudentDetail;
-use App\Models\User;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Hash;
 use function GuzzleHttp\Promise\all;
@@ -50,14 +51,14 @@ class HomeController extends Controller
     public function exam()
     {
         //getting currrent user
-        $user = auth()->user();
-        //getting class of current user
-        $class_id= $user->studentDetail->class_id;
-        //getting all exams
-        $exams = Exam::all();
-        //getting exams of current user,s class
-        $user_exams = $exams->where('class_id', $class_id);
-
+        $user_id = auth()->user()->id;
+        $user_admin_sessions = User::find(auth()->user()->id)->schoolAdmin->examSessions;
+//        $user_class_id = User::find(auth()->user()->id)->studentDetail->class->id;
+//        $exam_sessions = $user_admin->examSessions()->where('admin_id','2');
+//        foreach($user_admin_sessions as $user_admin_session){
+//            print_r($user_admin_session->exams());
+//        }
+        dd();
         return view('student.exam', compact('user_exams','exams','user'));
 
     }

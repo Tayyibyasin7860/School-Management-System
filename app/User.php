@@ -57,9 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\User', 'admin_id');
     }
-    //one admin(school) has many exams
-    public function exams(){
-        return $this->hasMany('App\Models\Exam','admin_id');
+    //one admin(school) has many exam sessions
+    public function examSessions(){
+        return $this->hasMany('App\Models\ExamSession','admin_id');
     }
     //one student has many exams
     public function examinations(){
@@ -83,6 +83,10 @@ class User extends Authenticatable
     public function classes(){
         return $this->hasMany('App\Models\ClassRoom','admin_id');
     }
+    //one admin has many classes
+//    public function class(){
+//        return $this->belongsTo('App\Models\ClassRoom','class_id');
+//    }
     //profile button
     public function profileButton(){
         return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';

@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" name="email" class="form-control"
-                       value="{{ old('email') ?? $user->email }}">
+                       value="{{ old('email') }}">
                 <small class="form-text text-muted text-danger">
                     {{ $errors->first('email') }}
                 </small>
@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="phone_number">Phone Number</label>
                 <input type="text" name="phone_number" class="form-control"
-                       value="{{ old('phone_number') ?? $student->phone_number }}">
+                       value="{{ old('phone_number') }}">
                 <small class="form-text text-muted text-danger">
                     {{ $errors->first('phone_number') }}
                 </small>
