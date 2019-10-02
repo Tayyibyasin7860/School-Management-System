@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeTypeCrudController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/FeeTypeRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/toBeAsked.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeCrudController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClassFeeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClassFeeRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ExamRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExamRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/FeeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExamSessionRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ResultRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ResultRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StudentRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClassFee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassFee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Fee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/FeeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/backpack/custom.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/backpack/custom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassSubject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassSubject.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -253,7 +239,7 @@
       <workItem from="1570000860167" duration="9699000" />
       <workItem from="1570014192394" duration="19046000" />
       <workItem from="1570043540606" duration="8014000" />
-      <workItem from="1570053711169" duration="3280000" />
+      <workItem from="1570053711169" duration="5963000" />
     </task>
     <servers />
   </component>

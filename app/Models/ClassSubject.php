@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
@@ -53,7 +54,9 @@ class ClassSubject extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
+    public function getClassRoomAttribute(){
+        dd($this->classRoom->id);
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

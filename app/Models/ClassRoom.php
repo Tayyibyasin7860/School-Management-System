@@ -50,8 +50,8 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     {
         return $this->belongsToMany('App\Models\Subject', 'class_subject');
     }
-    public function classRoom(){
-        return $this->hasMany('App\Models\ClassRoom','class_id');
+    public function students(){
+        return $this->hasMany('App\Models\User','class_id');
     }
     /*
     |--------------------------------------------------------------------------

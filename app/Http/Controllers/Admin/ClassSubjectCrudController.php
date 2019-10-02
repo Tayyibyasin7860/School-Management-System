@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -32,7 +33,6 @@ class ClassSubjectCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
         $this->crud->addColumns([
@@ -70,6 +70,8 @@ class ClassSubjectCrudController extends CrudController
         // add asterisk for fields that are required in ClassSubjectRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+        $this->crud->addClause('where','class_room',backpack_user()->id);
     }
 
     public function store(StoreRequest $request)
