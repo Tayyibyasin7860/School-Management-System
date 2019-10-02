@@ -37,3 +37,9 @@
         </ul>
     </li>
     @endcan
+
+<li><a href='{{ backpack_url('class-subject') }}'><i class='fa fa-tag'></i> <span>Class<=>Subject</span></a></li>
+
+<li><a href='{{ backpack_url('fee-receipt') }}'><i class='fa fa-tag'></i> <span>Fee Receipts</span></a></li>
+
+<li><a href='{{ backpack_url('class-fee') }}'><i class='fa fa-tag'></i> <span>Classes Fee</span></a></li>

@@ -43,5 +43,7 @@ Route::group([
     Route::get('mailbox', 'MailboxController@create');
     Route::post('mailbox', 'MailboxController@send');
     Route::get('mailbox/{student}', 'MailboxController@studentEmail');
+    CRUD::resource('class-subject', 'ClassSubjectCrudController');
+    CRUD::resource('fee-receipt', 'FeeReceiptCrudController');
+    CRUD::resource('class-fee', 'ClassFeeCrudController');
 });
-
