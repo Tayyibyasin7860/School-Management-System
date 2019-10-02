@@ -15,11 +15,11 @@ class ClassFee extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'class_fees';
+    protected $table = 'class_fee';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $guarded = [];
     // protected $hidden = [];
     // protected $dates = [];
 

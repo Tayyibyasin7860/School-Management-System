@@ -75,7 +75,10 @@ class StudentCrudController extends CrudController
             ],
             [
                 'label' => 'Class',
-                'name' => 'class_id'
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'class',
+                'attribute' => 'title'
             ],
             [
                 'label' => 'Father Name',
@@ -129,7 +132,7 @@ class StudentCrudController extends CrudController
                 'label' => 'Class',
                 'name' => 'class_id',
                 'type' => 'select',
-                'entity' => 'ClassRoom',
+                'entity' => 'class',
                 'attribute' => 'title'
             ],
             [

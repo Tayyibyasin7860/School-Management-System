@@ -57,6 +57,13 @@ class ResultCrudController extends CrudController
                 'attribute' => 'name'
             ],
             [
+                'label' => 'Subject',
+                'name' => 'exam_id',
+                'type' => 'select',
+                'entity' => 'exam.subject',
+                'attribute' => 'title'
+            ],
+            [
                 'label' => 'Total Marks',
                 'name' => 'total_marks',
             ],
@@ -72,11 +79,18 @@ class ResultCrudController extends CrudController
 //
         $this->crud->addFields([
             [
-                'name' => 'select_from_array',
-                'label' => "Select from array",
+                'name' => 'student_id',
+                'label' => "Student Name",
                 'type' => 'select_from_array',
                 'options' => User::getAdminStudents(),
                 'allows_null' => false,
+            ],
+            [
+                'name' => 'exam_id',
+                'label' => "Exam",
+                'type' => 'select',
+                'entity' => 'exam',
+                'attribute' => 'date',
             ],
             [
                 'label' => 'Total Marks',

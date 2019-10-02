@@ -5,12 +5,32 @@
 <li><a href='{{ backpack_url('school-admin') }}'><i class='fa fa-user'></i> <span>School Admin</span></a></li>
 @endcan
 <li><a href='{{ backpack_url('student') }}'><i class='fa fa-tag'></i> <span>Students</span></a></li>
-<li><a href='{{ backpack_url('subject') }}'><i class='fa fa-book'></i> <span>Subjects</span></a></li>
-<li><a href='{{ backpack_url('class') }}'><i class='fa fa-home'></i> <span>Classes</span></a></li>
-<li><a href='{{ backpack_url('exam') }}'><i class='fa fa-user'></i> <span>Exams</span></a></li>
-<li><a href='{{ backpack_url('result') }}'><i class='fa fa-graduation-cap'></i> <span>Results</span></a></li>
-<li><a href='{{ backpack_url('fee') }}'><i class='fa fa-user'></i> <span>Fee Management</span></a></li>
+<li class="treeview">
+    <a href="#"><i class="fa fa-newspaper-o"></i> <span>Classes and Subjects</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href='{{ backpack_url('class') }}'><i class='fa fa-home'></i> <span>Classes</span></a></li>
+        <li><a href='{{ backpack_url('subject') }}'><i class='fa fa-book'></i> <span>Subjects</span></a></li>
+        <li><a href='{{ backpack_url('class-subject') }}'><i class='fa fa-tag'></i> <span>Subjects in classes</span></a></li>
+    </ul>
+</li>
 
+
+<li class="treeview">
+    <a href="#"><i class="fa fa-newspaper-o"></i> <span>Exam Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href='{{ backpack_url('exam') }}'><i class='fa fa-user'></i> <span>Exams</span></a></li>
+        <li><a href='{{ backpack_url('exam-session') }}'><i class='fa fa-tag'></i> <span>Exam Sessions</span></a></li>
+    </ul>
+</li>
+<li><a href='{{ backpack_url('result') }}'><i class='fa fa-graduation-cap'></i> <span>Results</span></a></li>
+<li class="treeview">
+    <a href="#"><i class="fa fa-newspaper-o"></i> <span>Fee Management</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href='{{ backpack_url('fee-receipt') }}'><i class='fa fa-tag'></i> <span>Fee Receipts</span></a></li>
+        <li><a href='{{ backpack_url('class-fee') }}'><i class='fa fa-tag'></i> <span>Classes Fees</span></a></li>
+        <li><a href='{{ backpack_url('fee-type') }}'><i class='fa fa-tag'></i> <span>Fee Types</span></a></li>
+    </ul>
+</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-newspaper-o"></i> <span>Notice Board</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -38,8 +58,3 @@
     </li>
     @endcan
 
-<li><a href='{{ backpack_url('class-subject') }}'><i class='fa fa-tag'></i> <span>Class<=>Subject</span></a></li>
-
-<li><a href='{{ backpack_url('fee-receipt') }}'><i class='fa fa-tag'></i> <span>Fee Receipts</span></a></li>
-
-<li><a href='{{ backpack_url('class-fee') }}'><i class='fa fa-tag'></i> <span>Classes Fee</span></a></li>

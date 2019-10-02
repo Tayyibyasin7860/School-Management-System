@@ -34,8 +34,6 @@ Route::group([
     CRUD::resource('exam', 'ExamCrudController');
     CRUD::resource('result', 'ResultCrudController');
 
-    CRUD::resource('fee', 'FeeCrudController');
-
     CRUD::resource('role', 'RoleCrudController');
     Route::get('/permission/generate', 'PermissionCrudController@generatePermissions');
     CRUD::resource('permission', 'PermissionCrudController');
@@ -46,4 +44,6 @@ Route::group([
     CRUD::resource('class-subject', 'ClassSubjectCrudController');
     CRUD::resource('fee-receipt', 'FeeReceiptCrudController');
     CRUD::resource('class-fee', 'ClassFeeCrudController');
+    CRUD::resource('exam-session', 'ExamSessionCrudController');
+    CRUD::resource('fee-type', 'FeeTypeCrudController');
 });

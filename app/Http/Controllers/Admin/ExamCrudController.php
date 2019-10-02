@@ -61,6 +61,10 @@ class ExamCrudController extends CrudController
             'entity' => 'subject',
             'attribute' => 'title'
         ],
+        [
+            'label' => 'Date',
+            'name' => 'date',
+        ],
         ]);
         $this->crud->addFields([
             [
@@ -83,6 +87,11 @@ class ExamCrudController extends CrudController
                 'type' => 'select',
                 'entity' => 'subject',
                 'attribute' => 'title'
+            ],
+            [
+                'label' => 'Date',
+                'name' => 'date',
+                'type' => 'date'
             ],
         ]);
 

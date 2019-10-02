@@ -1,0 +1,3 @@
+image kesy lagani hai student ki admin crud se
+student k 2 profile create horhy hain jo k nhi hone chahye
+lougout hone k bad route per janay se can() function wala error
