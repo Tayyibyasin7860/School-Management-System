@@ -35,20 +35,16 @@ class Exam extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function students(){
-        return $this->belongsToMany('App\Models\User','student_exam','exam_id','student_id')
-                    ->withPivot('total_marks', 'obtained_marks','remarks');
-    }
     public function schoolAdmin(){
         return $this->belongsTo('App\User','admin_id');
+    }
+    public function students(){
+        return $this->belongsToMany('App\User','results','student_id','exam_id')
+            ->withPivot('total_marks', 'obtained_marks','remarks');
     }
     public function classRoom()
     {
         return $this->belongsTo('App\Models\ClassRoom','class_id');
-    }
-    public function result()
-    {
-        return $this->hasOne('App\Models\Result');
     }
     public function subject()
     {

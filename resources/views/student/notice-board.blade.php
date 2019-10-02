@@ -11,7 +11,7 @@
                 <ul>
                     @foreach($all_announcements as $announcement)
                         <li>
-                            <div class="s17-eve-time">
+
                                 <div class="ho-ev-date pg-eve-date">
                                     <span>{{ $announcement->date->format('d') }}</span><span>{{ $announcement->date->format('M') }}, 20{{ $announcement->date->format('y') }}</span>
                                 </div>
@@ -19,7 +19,7 @@
                                     <h4>{{ $announcement->title }}</h4>
                                     <p>{{ $announcement->content }}</p>
                                 </div>
-                            </div>
+
                         </li>
                     @endforeach
                 </ul>

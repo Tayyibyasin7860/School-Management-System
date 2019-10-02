@@ -61,12 +61,12 @@ class User extends Authenticatable
     public function examSessions(){
         return $this->hasMany('App\Models\ExamSession','admin_id');
     }
-    //one student has many exams
-    public function examinations(){
-        return $this->belongsToMany('App\Models\Exam','student_exam','student_id','exam_id')
+    //one student has many exams and belongsto many exams. students and exams both have joining table results.
+    public function results(){
+        return $this->belongsToMany('App\Models\Exam','results','student_id','exam_id')
                     ->withPivot('total_marks', 'obtained_marks','remarks');
     }
-    //one student belongsto many fees
+    //one student belongs to many fees
     public function fees(){
         return $this->belongsToMany('App\Models\Fee','student_fee','student_id','fee_id')
             ->withPivot('status');
@@ -90,5 +90,8 @@ class User extends Authenticatable
     //profile button
     public function profileButton(){
         return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+    }
+    public static function getAdminStudents(){
+        return User::where('admin_id',backpack_user()->id)->pluck('name','id')->toArray();
     }
 }

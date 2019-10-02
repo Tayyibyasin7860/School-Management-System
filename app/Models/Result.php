@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Support\Facades\App;
 
 class Result extends Model
 {
@@ -37,18 +39,28 @@ class Result extends Model
     public function exam(){
         return $this->belongsTo('App\Models\Exam','exam_id');
     }
+
+	public function student()
+    {
+        return $this->belongsTo('App\User','student_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
     |--------------------------------------------------------------------------
     */
-
+    public function getAdminStudents(){
+        return User::where('admin_id',backpack_user()->id);
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
+    public function getExamSessionAttribute()
+    {
+        return $this->exam->examSession->title;
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

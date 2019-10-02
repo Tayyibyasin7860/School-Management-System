@@ -39,7 +39,9 @@ class HomeController extends Controller
     public function noticeBoard()
     {
         $user = auth()->user();
-        $all_announcements = Article::paginate(5);
+        $user_admin = User::find(auth()->user()->id)->schoolAdmin->id;
+        $all_announcements = Article::where('admin_id',$user_admin)->paginate(5);
+//        $all_announcements = Article::paginate(5);
         return view('student.notice-board', compact('all_announcements','user'));
     }
     public function fee()
@@ -71,9 +73,7 @@ class HomeController extends Controller
     public function result()
     {
         $user = auth()->user();
-        $user_id= $user->id;
-        $results = Result::all();
-        $user_results = $results->where('user_id', $user_id);
+        $user_results = User::find(auth()->user()->id)->results;
 
         return view('student.result', compact('user_results','user'));
     }

@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ResultRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ResultRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Result.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/notice-board.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/notice-board.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student/result.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student/result.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -158,24 +165,24 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
+      <recent name="D:\xampp\htdocs\School_Management_System\app\Http\Controllers\Admin" />
+      <recent name="D:\xampp\htdocs\School Management System\resources\views\vendor\backpack\crud\fields" />
+      <recent name="D:\xampp\htdocs\School Management System\app\Models" />
+      <recent name="D:\xampp\htdocs\School Management System\app\Http\Requests" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xampp\htdocs\School_Management_System\resources\views\student" />
       <recent name="D:\xampp\htdocs\School_Management_System\resources\views" />
       <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
       <recent name="D:\xampp\htdocs\School Management System\resources\views\Student\profile" />
       <recent name="D:\xampp\htdocs\School Management System\app\Http\Controllers\Admin" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\xampp\htdocs\School Management System\resources\views\vendor\backpack\crud\fields" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Models" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Http\Requests" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Http\Controllers\Admin" />
-      <recent name="D:\xampp\htdocs\School Management System (new)\resources\views" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -233,7 +240,8 @@
       <workItem from="1569953080481" duration="1473000" />
       <workItem from="1569954615058" duration="17825000" />
       <workItem from="1570000860167" duration="9699000" />
-      <workItem from="1570014192394" duration="174000" />
+      <workItem from="1570014192394" duration="19046000" />
+      <workItem from="1570043540606" duration="1443000" />
     </task>
     <servers />
   </component>

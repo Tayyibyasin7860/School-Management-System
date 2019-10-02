@@ -8,10 +8,10 @@
     <table class="table text-capitalize">
         <thead>
         <th>
-            <b>Result title</b>
+            <b>Exam Session</b>
         </th>
         <th>
-            <b>Subject title</b>
+            <b>Subject</b>
         </th>
         <th>
             <b>Total Marks</b>
@@ -27,19 +27,19 @@
         @foreach($user_results as $result)
             <tr>
                 <td>
-                    {{ $result->Exam->title }}
+                    {{ $result->examSession->title . " " . $result->examSession->year }}
                 </td>
                 <td>
-                    {{ $result->Subject->title }}
+                    {{ $result->subject->title }}
                 </td>
                 <td>
-                    {{ $result->total_marks }}
+                    {{ $result->pivot->total_marks }}
                 </td>
                 <td>
-                    {{ $result->obtained_marks }}
+                    {{ $result->pivot->obtained_marks }}
                 </td>
                 <td>
-                    {{ $result->remarks }}
+                    {{ $result->pivot->remarks }}
                 </td>
             </tr>
         @endforeach

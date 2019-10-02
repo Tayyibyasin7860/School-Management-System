@@ -26,7 +26,10 @@ class ResultRequest extends FormRequest
     public function rules()
     {
         return [
-             'exam_id' => 'required'
+            'select_from_array' => 'required',
+            'total_marks' => 'required',
+            'obtained_marks' => 'required',
+            'remarks' => 'required'
         ];
     }
 

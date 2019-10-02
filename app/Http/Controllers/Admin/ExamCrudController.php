@@ -36,71 +36,55 @@ class ExamCrudController extends CrudController
 //            $query->where('admin_id', '=', backpack_user()->id);
 //        }]);
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+//        $this->crud->setFromDb();
 
 
-//        $this->crud->addColumns([
-//            [
-//                'name' => 'row_number',
-//                'type' => 'row_number',
-//                'label' => 'Sr. #',
-//                'orderable' => false,
-//            ],
-//            [
-//                'label' => 'Title',
-//                'name' => 'title',
-//            ],
-//            [
-//                'label' => 'Admin',
-//                'name' => 'exam_session_id',
-//                'type' => 'select',
-//                'entity' => 'examSession',
-//                'attribute' => 'admin_id'
-//            ],
-//            [
-//                'label' => 'Date',
-//                'name' => 'date'
-//            ],
-//            [
-//                'label' => 'Class',
-//                'name' => 'class_id',
-//                'type' => 'select',
-//                'entity' => 'ClassRoom',
-//                'attribute' => 'title'
-//            ],
-//        ]);
-//        $this->crud->addFields([
-//            [
-//                'label' => 'Title',
-//                'name' => 'title'
-//            ],
-//            [
-//                'label' => 'Subject',
-//                'name' => 'subject_id',
-//                'type' => 'select',
-//                'entity' => 'Subject',
-//                'attribute' => 'title'
-//            ],
-////            [
-////                'label' => 'Student Name (optional)',
-////                'name' => 'user_id',
-////                'type' => 'select',
-////                'entity' => 'User',
-////                'attribute' => 'name'
-////            ],
-//            [
-//                'label' => 'Class',
-//                'name' => 'class_id',
-//                'type' => 'select',
-//                'entity' => 'ClassRoom',
-//                'attribute' => 'title'
-//            ],
-//            [
-//                'label' => 'Date',
-//                'name' => 'date',
-//                'type' => 'date'
-//            ],
-//        ]);
+        $this->crud->addColumns([
+        [
+            'label' => 'Exam Session',
+            'name' => 'exam_session_id',
+            'type' => 'select',
+            'entity' => 'examSession',
+            'attribute' => 'title'
+        ],
+        [
+            'label' => 'Class',
+            'name' => 'class_id',
+            'type' => 'select',
+            'entity' => 'classRoom',
+            'attribute' => 'title'
+        ],
+        [
+            'label' => 'Subject',
+            'name' => 'subject_id',
+            'type' => 'select',
+            'entity' => 'subject',
+            'attribute' => 'title'
+        ],
+        ]);
+        $this->crud->addFields([
+            [
+                'label' => 'Exam Session',
+                'name' => 'exam_session_id',
+                'type' => 'select',
+                'entity' => 'examSession',
+                'attribute' => 'title'
+            ],
+            [
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'classRoom',
+                'attribute' => 'title'
+            ],
+            [
+                'label' => 'Subject',
+                'name' => 'subject_id',
+                'type' => 'select',
+                'entity' => 'subject',
+                'attribute' => 'title'
+            ],
+        ]);
 
         // add asterisk for fields that are required in ExamRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
