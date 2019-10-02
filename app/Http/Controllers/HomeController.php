@@ -51,15 +51,21 @@ class HomeController extends Controller
     public function exam()
     {
         //getting currrent user
-        $user_id = auth()->user()->id;
+        $user = auth()->user();
         $user_admin_sessions = User::find(auth()->user()->id)->schoolAdmin->examSessions;
-//        $user_class_id = User::find(auth()->user()->id)->studentDetail->class->id;
+        $user_class_id = User::find(auth()->user()->id)->studentDetail->class->id;
+        $exams = [];
+        foreach($user_admin_sessions as $user_admin_session){
+            $user_admin_exams = $user_admin_session->exams->where('class_id',$user_class_id);
+            foreach ($user_admin_exams as $exam){
+                $exams [] = $exam;
+            }
+        }
 //        $exam_sessions = $user_admin->examSessions()->where('admin_id','2');
 //        foreach($user_admin_sessions as $user_admin_session){
 //            print_r($user_admin_session->exams());
 //        }
-        dd();
-        return view('student.exam', compact('user_exams','exams','user'));
+        return view('student.exam', compact('exams','user'));
 
     }
     public function result()

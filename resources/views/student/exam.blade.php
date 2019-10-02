@@ -4,32 +4,46 @@
     <div class="con-title">
         <h2>My <span> Exams</span></h2>
     </div>
-        <div class="tour_head1 udb-time-line days">
-            <ul>
-                @foreach($user_exams as $exam)
-                <li class="l-info-pack-plac"> <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <div class="sdb-cl-tim">
-                        <div class="sdb-cl-day">
-                            <h5>{{ $exam->title }}</h5>
-                        </div>
-                        <div class="sdb-cl-class">
-                            <ul>
-                                <li>
-                                    <div class="sdb-cl-class-tim tooltipped" data-position="top" data-delay="50" data-tooltip="Exam timing" data-tooltip-id="5cca40ab-3e33-aaeb-dbee-ac092b8c0103">
-                                        <span>Date: </span>
-                                        <span>{{ $exam->date }}</span>
-                                    </div>
-                                    <div class="sdb-cl-class-name tooltipped" data-position="top" data-delay="50" data-tooltip="Exam name and status" data-tooltip-id="e427702a-1bc1-b3de-0ff4-29cbf030a936">
-                                        <h5>{{ $exam->subject->title }}</h5>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="tour_head1 udb-time-line days">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            Sr.#
+                        </th>
+                        <th>
+                            Exam Session
+                        </th>
+                        <th>
+                            Subject
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $rowNumber=1 ?>
+                    @foreach($exams as $exam)
+                    <tr>
+                        <th scope="row">
+                            {{ $rowNumber++ }}
+                        </th>
+                        <td>
+                            {{ $exam->examSession->title . " " . $exam->examSession->year }}
+                        </td>
+                        <td>
+                            {{ $exam->subject->title }}
+                        </td>
+                        <td>
+                            {{ $exam->date }}
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+    </div>
 @endsection
 
 
