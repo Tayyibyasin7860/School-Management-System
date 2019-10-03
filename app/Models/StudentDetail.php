@@ -36,7 +36,7 @@ class StudentDetail extends Model
     */
     public function user()
     {
-        return $this->belongsTo('App\User','user_id');
+        return $this->belongsTo('App\User','student_id');
     }
     public function class()
     {

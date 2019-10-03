@@ -12,6 +12,7 @@
         "backpack/crud": "^3.6",
         "backpack/newscrud": "^2.1",
         "fideloper/proxy": "^4.0",
+        "illuminate/support": "^6.1",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-permission": "^3.0"

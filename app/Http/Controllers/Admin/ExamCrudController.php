@@ -42,36 +42,37 @@ class ExamCrudController extends CrudController
 //        $this->crud->setFromDb();
 
 
-    $this->crud->addColumns([
-        [
-            'label' => 'Admin',
-            'name' => 'admin_id',
-        ],
-        [
-            'label' => 'Exam Session',
-            'name' => 'exam_session_id',
-            'type' => 'select',
-            'entity' => 'examSession',
-            'attribute' => 'title'
-        ],
-        [
-            'label' => 'Class',
-            'name' => 'class_id',
-            'type' => 'select',
-            'entity' => 'classRoom',
-            'attribute' => 'title'
-        ],
-        [
-            'label' => 'Subject',
-            'name' => 'subject_id',
-            'type' => 'select',
-            'entity' => 'subject',
-            'attribute' => 'title'
-        ],
-        [
-            'label' => 'Date',
-            'name' => 'date',
-        ],
+        $this->crud->addColumns([
+            [
+                'label' => 'Admin',
+                'name' => 'admin_id',
+                'type' => 'select2'
+            ],
+            [
+                'label' => 'Exam Session',
+                'name' => 'exam_session_id',
+                'type' => 'select',
+                'entity' => 'examSession',
+                'attribute' => 'title'
+            ],
+            [
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'classRoom',
+                'attribute' => 'title'
+            ],
+            [
+                'label' => 'Subject',
+                'name' => 'subject_id',
+                'type' => 'select',
+                'entity' => 'subject',
+                'attribute' => 'title'
+            ],
+            [
+                'label' => 'Date',
+                'name' => 'date',
+            ],
         ]);
         $this->crud->addFields([
             [
@@ -109,7 +110,7 @@ class ExamCrudController extends CrudController
 //        $user_id = backpack_user()->id;
 //        $this->crud->query = $this->crud->query->with('examSession');
 //        }]);
-//        $this->crud->addClause('where','admin_id',backpack_user()->id);
+//        $this->crud->addClause('where', 'admin_id', backpack_user()->id);
     }
 
     public function store(StoreRequest $request)

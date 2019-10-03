@@ -40,8 +40,8 @@ class ClassFee extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */public function fees(){
-//        return $this->hasMany('App\Models\FeeType','fee_type_id');
-//    }
+        return $this->hasMany('App\Models\FeeType','fee_type_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

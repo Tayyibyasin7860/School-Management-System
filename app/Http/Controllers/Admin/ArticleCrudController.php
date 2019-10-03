@@ -102,6 +102,11 @@ class ArticleCrudController extends CrudController
                             ]);
 
         $this->crud->enableAjaxTable();
+
+    }
+    public function setup()
+    {
+        $this->crud->addClause('where','admin_id','=',backpack_user()->id);
     }
 
     public function store(StoreRequest $request)

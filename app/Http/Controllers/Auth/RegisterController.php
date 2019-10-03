@@ -81,7 +81,7 @@ class RegisterController extends Controller
 
         //assign defualt role of school admin to new registered admin
         auth()->user()->assignRole('school_admin');
-        $user = User::find(auth()->user()->id);
+        $user->setupData();
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

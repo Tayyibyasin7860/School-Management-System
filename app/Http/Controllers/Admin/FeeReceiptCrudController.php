@@ -26,7 +26,7 @@ class FeeReceiptCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\FeeReceipt');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/fee-receipt');
-        $this->crud->setEntityNameStrings('Fee Receipt(s)', 'fee_receipts');
+        $this->crud->setEntityNameStrings('Fee Receipt', 'fee receipts');
 
         /*
         |--------------------------------------------------------------------------
@@ -125,8 +125,9 @@ class FeeReceiptCrudController extends CrudController
                 [
                     'label' => 'Submission Date',
                     'name' => 'submission_date',
-                    'type' => 'datetime',
-                    'allows_null' => true
+                    'type' => 'date_picker',
+                    'allows_null' => true,
+                    'default'=>true
                 ],
             ]);
         // add asterisk for fields that are required in FeeReceiptRequest

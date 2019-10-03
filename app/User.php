@@ -45,7 +45,7 @@ class User extends Authenticatable
     protected $guard_name = 'web';
     //one student has one student detail
     public function studentDetail(){
-        return $this->hasOne('App\Models\StudentDetail');
+        return $this->hasOne('App\Models\StudentDetail', 'student_id');
     }
     //one student at most belongs to one admin
     public function schoolAdmin()
@@ -89,18 +89,24 @@ class User extends Authenticatable
 //    }
     //profile button
     public function profileButton(){
-        return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+        if($this->studentDetail){
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/'.$this->studentDetail->id.'/edit') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+        }else{
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+        }
     }
     public static function getAdminStudents(){
         return User::where('admin_id',backpack_user()->id)->pluck('name','id')->toArray();
     }
 
-    public function setupData($admin_id){
-        for($i=1;$i<=10;$i++){
+    public function setupData(){
+        $classes  = ['Play Group', 'Prep', 'Nursary', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
+        foreach ($classes as $class){
+
             Models\ClassRoom::create([
-                'title' => $i,
+                'title' => $class,
                 'capacity' => 40,
-                'admin_id' => $admin_id
+                'admin_id' => $this->id
             ]);
         }
 

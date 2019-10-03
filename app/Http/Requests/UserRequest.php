@@ -25,11 +25,16 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:5|max:255',
-            'email'=>'required|email|unique:users,email',
-            'password' => 'required|confirmed'
+        $rules = [
+            'name'=>'required',
+            'email' => 'required|email|unique:users,email,'.$this->request->get('id'),
+
         ];
+
+        if(!$this->request->get('id') || \Illuminate\Http\Request::get('password'))
+            $rules['password'] = 'required|confirmed';
+
+        return $rules;
     }
 
     /**

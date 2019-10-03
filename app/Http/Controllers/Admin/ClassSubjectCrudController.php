@@ -39,7 +39,7 @@ class ClassSubjectCrudController extends CrudController
             [
                 'label' => 'Class',
                 'name' => 'class_id',
-                'type' => 'select2',
+                'type' => 'select',
                 'entity' => 'classRoom',
                 'attribute' => 'title'
             ],

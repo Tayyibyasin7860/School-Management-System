@@ -34,18 +34,23 @@ class ClassCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-         $this->crud->setFromDb();
+         //$this->crud->setFromDb();
 
 
-//         $this->crud->addColumn([
-//             [
-//                 'label' => 'Student Name',
-//                 'name'  => 'admin_id',
-//                 'type'  =>'select',
-//                 'entity'=> 'users',
-//                 'attribute' => 'id',
-//             ]
-//         ]);
+         $this->crud->addColumns([
+             [
+                 'label' => 'Name',
+                 'name'  => 'title',
+             ],
+             [
+                 'label' => 'Capacity',
+                 'name'  => 'capacity',
+             ],
+             [
+                 'label' => 'Available Seats',
+                 'name'  => 'available_seats',
+             ]
+         ]);
 
 
 

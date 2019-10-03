@@ -39,10 +39,6 @@ class Exam extends Model
         return $this->belongsToMany('App\User','results','student_id','exam_id')
             ->withPivot('total_marks', 'obtained_marks','remarks');
     }
-    public function classRoom()
-    {
-        return $this->belongsTo('App\Models\ClassRoom','class_id');
-    }
     public function subject()
     {
         return $this->belongsTo('App\Models\Subject');
@@ -50,6 +46,10 @@ class Exam extends Model
     public function examSession(){
         return $this->belongsTo('App\Models\ExamSession','exam_session_id');
     }
+    public function classRoom(){
+        return $this->belongsTo('App\Models\ClassRoom','class_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

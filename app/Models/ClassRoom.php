@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class ClassRoom extends Model //but this change is only inside code/behind the scene, for labels we still use class word
+class ClassRoom extends Model
 {
     use CrudTrait;
 
@@ -19,7 +19,7 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['title', 'capacity'];
+    protected $fillable = ['title', 'capacity','admin_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -38,7 +38,7 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     public function schoolAdmin(){
         return $this->belongsTo('App\Models\User','admin_id');
     }
-    public function studentDetails(){
+    public function students(){
         return $this->hasMany('App\Models\studentDetail','class_id');
     }
     public function exams()
@@ -50,9 +50,7 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     {
         return $this->belongsToMany('App\Models\Subject', 'class_subject');
     }
-    public function students(){
-        return $this->hasMany('App\Models\User','class_id');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -64,6 +62,10 @@ class ClassRoom extends Model //but this change is only inside code/behind the s
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+
+    public function getAvailableSeatsAttribute(){
+        return $this->capacity - $this->students()->count();
+    }
 
     /*
     |--------------------------------------------------------------------------

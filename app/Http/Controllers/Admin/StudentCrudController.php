@@ -40,7 +40,7 @@ class StudentCrudController extends CrudController
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
 
-        $this->crud->addClause('where', 'user_id', '=', $student_id);
+        $this->crud->addClause('where', 'student_id', '=', $student_id);
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -53,7 +53,7 @@ class StudentCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'label' => 'Student ID',
-                'name' => 'user_id',
+                'name' => 'student_id',
                 'type' => 'number',
                 'entity' => 'User',
                 'attribute' => 'id'
@@ -114,7 +114,7 @@ class StudentCrudController extends CrudController
         $this->crud->addFields([
             [
                 'label' => 'Student ID',
-                'name' => "user_id",
+                'name' => "student_id",
                 'type' => 'hidden',
                 'default' => $student_id,
             ],
