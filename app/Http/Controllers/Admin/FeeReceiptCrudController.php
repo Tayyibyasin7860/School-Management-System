@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\FeeReceiptRequest as StoreRequest;
 use App\Http\Requests\FeeReceiptRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use App\User;
 
 /**
  * Class FeeReceiptCrudController
@@ -25,7 +26,7 @@ class FeeReceiptCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\FeeReceipt');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/fee-receipt');
-        $this->crud->setEntityNameStrings('feereceipt', 'fee_receipts');
+        $this->crud->setEntityNameStrings('Fee Receipt(s)', 'fee_receipts');
 
         /*
         |--------------------------------------------------------------------------
@@ -33,9 +34,101 @@ class FeeReceiptCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+        $userAdminStudents = User::getAdminStudents();
+        $userAdminStudentsWithAllStudents [] = 'All Students';
+        foreach ($userAdminStudents as $userAdminStudent){
+            $userAdminStudentsWithAllStudents [] = $userAdminStudent;
+        }
+//        $userAdminStudentsWithAllStudents [] = User::getAdminStudents();
+//        dd($userAdminStudentsWithAllStudents);
 
+        // TODO: remove setFromDb() and manually define Fields and Columns
+//        $this->crud->setFromDb();
+            $this->crud->addColumns([
+                [
+                    'label' => 'Student Name',
+                    'name' => 'student_id',
+                    'type' => 'select',
+                     'entity' => 'student',
+                    'attribute' => 'name'
+                ],
+                [
+                    'label' => 'Fee Type',
+                    'name' => 'fee_type_id',
+                    'type' => 'select',
+                    'entity' => 'feeType',
+                    'attribute' => 'type'
+                ],
+                [
+                    'label' => 'Amount',
+                    'name' => 'amount',
+                ],
+                [
+                    'label' => 'Amount',
+                    'name' => 'amount',
+                ],
+                [
+                    'label' => 'Submitted Amount',
+                    'name' => 'submitted_amount',
+                ],
+                [
+                    'label' => 'Due Date',
+                    'name' => 'due_date',
+                    'type' => 'date'
+                ],
+                [
+                    'label' => 'Status',
+                    'name' => 'status',
+                ],
+                [
+                    'label' => 'Submission Date',
+                    'name' => 'submission_date',
+                ],
+            ]);
+            $this->crud->addFields([
+                [
+                    'label' => 'Fee Type',
+                    'name' => 'fee_type_id',
+                    'type' => 'select',
+                    'entity' => 'feeType',
+                    'attribute' => 'type'
+                ],
+                [
+                    'name' => 'student_id',
+                    'label' => "Student Name",
+                    'type' => 'select_from_array',
+                    'options' => $userAdminStudents,
+                    'allows_null' => false,
+                ],
+                [
+                    'label' => 'Amount',
+                    'name' => 'amount',
+                ],
+                [
+                    'label' => 'Amount',
+                    'name' => 'amount',
+                ],
+                [
+                    'label' => 'Submitted Amount',
+                    'name' => 'submitted_amount',
+                ],
+                [
+                    'label' => 'Due Date',
+                    'name' => 'due_date',
+                    'type' => 'date'
+                ],
+                [
+                    'label' => 'Status',
+                    'name' => 'status',
+                    'type' => 'enum'
+                ],
+                [
+                    'label' => 'Submission Date',
+                    'name' => 'submission_date',
+                    'type' => 'datetime',
+                    'allows_null' => true
+                ],
+            ]);
         // add asterisk for fields that are required in FeeReceiptRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

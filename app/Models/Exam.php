@@ -35,9 +35,6 @@ class Exam extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function schoolAdmin(){
-        return $this->belongsTo('App\User','admin_id');
-    }
     public function students(){
         return $this->belongsToMany('App\User','results','student_id','exam_id')
             ->withPivot('total_marks', 'obtained_marks','remarks');
@@ -64,7 +61,9 @@ class Exam extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
+    public function getAdminIdAttribute(){
+        return $this->examSession->schoolAdmin->id;
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

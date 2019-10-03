@@ -15,7 +15,7 @@ class ClassFee extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'class_fee';
+    protected $table = 'class_fees';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
@@ -34,12 +34,14 @@ class ClassFee extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+//
     /*
     |--------------------------------------------------------------------------
     | SCOPES
     |--------------------------------------------------------------------------
-    */
+    */public function fees(){
+//        return $this->hasMany('App\Models\FeeType','fee_type_id');
+//    }
 
     /*
     |--------------------------------------------------------------------------

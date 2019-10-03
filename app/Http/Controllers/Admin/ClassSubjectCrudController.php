@@ -39,8 +39,8 @@ class ClassSubjectCrudController extends CrudController
             [
                 'label' => 'Class',
                 'name' => 'class_id',
-                'type' => 'select',
-                'entity' => 'ClassRoom',
+                'type' => 'select2',
+                'entity' => 'classRoom',
                 'attribute' => 'title'
             ],
             [
@@ -51,27 +51,27 @@ class ClassSubjectCrudController extends CrudController
                 'attribute' => 'title'
             ]
         ]);
-        $this->crud->addFields([
-            [
-                'label' => 'Class',
-                'name' => 'class_id',
-                'type' => 'select',
-                'entity' => 'ClassRoom',
-                'attribute' => 'title'
-            ],
-            [
-                'label' => 'Subject',
-                'name' => 'subject_id',
-                'type' => 'select',
-                'entity' => 'Subject',
-                'attribute' => 'title'
-            ]
-        ]);
+//        $this->crud->addFields([
+//            [
+//                'label' => 'Class',
+//                'name' => 'class_id',
+//                'type' => 'select',
+//                'entity' => 'ClassRoom',
+//                'attribute' => 'title'
+//            ],
+//            [
+//                'label' => 'Subject',
+//                'name' => 'subject_id',
+//                'type' => 'select',
+//                'entity' => 'Subject',
+//                'attribute' => 'title'
+//            ]
+//        ]);
         // add asterisk for fields that are required in ClassSubjectRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        $this->crud->addClause('where','class_room',backpack_user()->id);
+//        $this->crud->addClause('where','class_room',backpack_user()->id);
     }
 
     public function store(StoreRequest $request)

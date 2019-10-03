@@ -34,7 +34,12 @@ class FeeReceipt extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function student(){
+        return $this->belongsTo('App\User','student_id');
+    }
+    public function feeType(){
+        return $this->belongsTo('App\Models\FeeType','fee_type_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

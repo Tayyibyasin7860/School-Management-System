@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class ClassSubject extends Model
+class Feedback extends Model
 {
     use CrudTrait;
 
@@ -16,13 +15,11 @@ class ClassSubject extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'class_subjects';
+    protected $table = 'feedbacks';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $guarded = [
-
-    ];
+    protected $guarded = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -37,12 +34,7 @@ class ClassSubject extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function classRoom(){
-        return $this->belongsTo('App\Models\ClassRoom','class_id');
-    }
-    public function subject(){
-        return $this->belongsTo('App\Models\Subject','subject_id');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -54,9 +46,7 @@ class ClassSubject extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function getClassRoomAttribute(){
-        dd($this->classRoom->id);
-    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

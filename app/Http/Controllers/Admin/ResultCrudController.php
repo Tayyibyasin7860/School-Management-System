@@ -38,7 +38,14 @@ class ResultCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
+        $this->crud->setColumns([
+            [
+                'label' => 'admin',
+                'name' => 'admin_id'
+            ]
+        ]);
         $this->crud->addColumns([
+
             [
                 'name' => 'row_number',
                 'type' => 'row_number',
@@ -112,10 +119,14 @@ class ResultCrudController extends CrudController
         // add asterisk for fields that are required in ResultRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+//                $this->crud->addClause('where','admin_id',backpack_user()->id);
     }
 
     public function store(StoreRequest $request)
     {
+        $request->request->set('admin_id', backpack_user()->id);
+
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here

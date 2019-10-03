@@ -46,4 +46,5 @@ Route::group([
     CRUD::resource('class-fee', 'ClassFeeCrudController');
     CRUD::resource('exam-session', 'ExamSessionCrudController');
     CRUD::resource('fee-type', 'FeeTypeCrudController');
+    CRUD::resource('feedback', 'FeedbackCrudController');
 });

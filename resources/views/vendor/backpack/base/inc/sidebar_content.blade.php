@@ -40,6 +40,7 @@
     </ul>
 </li>
 <li><a href='{{ backpack_url('mailbox') }}'><i class='fa fa-user'></i> <span>Mailbox</span></a></li>
+<li><a href='{{ backpack_url('feedback') }}'><i class='fa fa-user'></i> <span>Student Feedback</span></a></li>
 @endcan
     @can('view roles and permissions')
     <li class="treeview">

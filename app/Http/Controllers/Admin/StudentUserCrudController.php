@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\StudentDetail;
+use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -32,6 +33,9 @@ class StudentUserCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
+//        $user = User::find(2);
+//        $user_id = User::find(2)->id;
+//        $user->setupData($user_id);
         $this->crud->addButtonFromModelFunction('line', 'profile', 'profileButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();

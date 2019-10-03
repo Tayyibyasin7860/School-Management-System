@@ -46,12 +46,16 @@ class Result extends Model
     }
     /*
     |--------------------------------------------------------------------------
-    | SCOPES
+    | Helper functions
     |--------------------------------------------------------------------------
     */
     public function getAdminStudents(){
         return User::where('admin_id',backpack_user()->id);
     }
+    public function getAdminIdAttribute(){
+        return $this->exam->examSession->schoolAdmin->id;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESORS

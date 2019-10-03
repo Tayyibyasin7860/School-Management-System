@@ -94,4 +94,15 @@ class User extends Authenticatable
     public static function getAdminStudents(){
         return User::where('admin_id',backpack_user()->id)->pluck('name','id')->toArray();
     }
+
+    public function setupData($admin_id){
+        for($i=1;$i<=10;$i++){
+            Models\ClassRoom::create([
+                'title' => $i,
+                'capacity' => 40,
+                'admin_id' => $admin_id
+            ]);
+        }
+
+    }
 }

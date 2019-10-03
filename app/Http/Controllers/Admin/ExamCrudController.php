@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Exam;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -35,11 +36,17 @@ class ExamCrudController extends CrudController
 //        $this->crud->query = $this->crud->query->with(['examSession' => function ($query) {
 //            $query->where('admin_id', '=', backpack_user()->id);
 //        }]);
+        $exam = Exam::find(1);
+        $exam->getAdminIdAttribute();
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
 
-        $this->crud->addColumns([
+    $this->crud->addColumns([
+        [
+            'label' => 'Admin',
+            'name' => 'admin_id',
+        ],
         [
             'label' => 'Exam Session',
             'name' => 'exam_session_id',
@@ -107,6 +114,7 @@ class ExamCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $request->request->set('admin_id', backpack_user()->id);
         // your additional operations before save here
 //        $request->request->set('admin_id', backpack_user()->id);
         $redirect_location = parent::storeCrud($request);

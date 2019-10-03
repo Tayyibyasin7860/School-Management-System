@@ -11,8 +11,8 @@ class ExamSession extends Model
     protected $table = 'exam_sessions';
 
     //one exam session belongs to one admin
-    public function examSessions(){
-        return $this->belongsTo('App\Models\User','admin_id');
+    public function schoolAdmin(){
+        return $this->belongsTo('App\User','admin_id');
     }
     //relations
     public function exams(){

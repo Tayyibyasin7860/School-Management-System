@@ -35,7 +35,14 @@ class ClassFeeCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
-
+//        $this->crud->addColumns([
+//            [
+//                'label' => 'Class',
+//                'name' => 'class_id',
+//                'entity' => 'fees',
+//                'attribute' => 'type'
+//            ],
+//        ]);
         // add asterisk for fields that are required in ClassFeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
