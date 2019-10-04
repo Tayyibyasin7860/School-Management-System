@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ClassRoom;
+use App\Models\FeeReceipt;
+use App\Models\FeeType;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -9,6 +12,7 @@ use App\Http\Requests\FeeReceiptRequest as StoreRequest;
 use App\Http\Requests\FeeReceiptRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 use App\User;
+use http\Env\Request;
 
 /**
  * Class FeeReceiptCrudController
@@ -154,10 +158,53 @@ class FeeReceiptCrudController extends CrudController
     }
 
     public function generateReceiptForm(){
-        return view('vendor/backpack/base/generateReceipts');
+
+        $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
+        $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
+        return view('vendor/backpack/base/generateReceipts',compact('classRooms','feeTypes'));
     }
 
     public function generateReceipt(){
-        return 'create form view';
+                    request()->validate([
+                    'fee_type' => 'required',
+                    'class' => 'required',
+                    'amount' => 'required|numeric',
+                    'due_date' => 'required|date',
+                    'status' => 'required',
+                    ]);
+            if(request()->filled('submitted_amount') || request()->filled('submitted_amount')){
+                request()->validate([
+                    'submitted_amount' => 'required|numeric',
+                    'submission_date' => 'required|date',
+                ]);
+            }
+        $student_ids = ClassRoom::find(request()->class)->students()->pluck('student_id');
+            $student_count=0;
+        foreach($student_ids as $student_id){
+            $student_count++;
+            FeeReceipt::create([
+                'student_id' => $student_id,
+                'fee_type_id' => request()->fee_type,
+                'amount' => request()->amount,
+                'submitted_amount' => request()->submitted_amount,
+                'due_date' => request()->due_date,
+                'submission_date' => request()->submission_date,
+                'status' => request()->status,
+            ]);
+        }
+        if($student_count>0){
+             $message = 'All receipts are generated successfuly.';
+        }
+        else{
+            $message = 'No receipts were generated because this class has no students';
+        }
+        $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
+        $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
+        return redirect('admin/fee-receipt/generate')->with([
+            'message' => $message,
+            'classRooms' => $classRooms,
+            'feeTypes' => $feeTypes,
+            'student_count' => $student_count
+        ]);
     }
 }

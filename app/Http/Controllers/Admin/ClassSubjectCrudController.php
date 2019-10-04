@@ -41,6 +41,7 @@ class ClassSubjectCrudController extends ClassSubjectBaseCrudController
 
     public function store(StoreRequest $request)
     {
+
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here

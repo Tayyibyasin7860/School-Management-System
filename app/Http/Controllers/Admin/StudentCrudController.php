@@ -119,7 +119,7 @@ class StudentCrudController extends CrudController
             ],
             [ // image
                 'label' => "Profile Image",
-                'name' => "photo1",
+                'name' => "photo",
                 'type' => 'image',
                 'upload' => true,
                 'crop' => true,

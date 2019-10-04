@@ -26,7 +26,11 @@ class FeeReceiptRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'student_id' => 'required',
+             'fee_type_id' => 'required',
+             'amount' => 'required',
+             'due_date' => 'required',
+             'status' => 'required',
         ];
     }
 

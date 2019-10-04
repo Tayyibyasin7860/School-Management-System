@@ -41,6 +41,10 @@ class ClassRoom extends Model
     public function students(){
         return $this->hasMany('App\Models\studentDetail','class_id');
     }
+    public function studentsAccount(){
+        return $this->hasMany('App\User');
+    }
+
     public function exams()
     {
         return $this->hasMany('App\Models\Exam','class_id');

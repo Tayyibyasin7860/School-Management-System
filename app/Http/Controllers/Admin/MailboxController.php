@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Mail\AdminMail;
 use App\Models\Exam;
+use App\Models\FeeType;
 use App\Models\StudentDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Http\Request;
@@ -32,29 +33,30 @@ class MailboxController extends CrudController
 //                        echo "pending";
 //                    }
 //            }
+////        }
+//        $admin = backpack_user()->id;
+////        $fees = $admin->fees();
+//
+//        dd(Exam::find(1)->examSession()->where('admin_id',$admin)->pluck('admin_id'));
+////        $pending_fee = $fee->pivot;
+//        foreach ($fees as $fee){
+//            echo $fee . "<br>";
 //        }
-        $admin = backpack_user()->id;
-//        $fees = $admin->fees();
-
-        dd(Exam::find(1)->examSession()->where('admin_id',$admin)->pluck('admin_id'));
-//        $pending_fee = $fee->pivot;
-        foreach ($fees as $fee){
-            echo $fee . "<br>";
-        }
-        dd();
+//        dd();
         if(request()->category == 'fee_defaulters')
         {
-            $pending_fee = Fee::where('status','Pending')
+            $pending_fee = FeeType::where('status','Pending')
                 ->whereHas('students', function($user){
                     $user->where('admin_id', backpack_user()->id);
                 })
                 ->get();
+            dd($pending_fee);
             $emails = [];
             foreach ($pending_fee as $fee){
                 $emails [] =  $fee->student->email;
             }
         }else if($request->category =='all'){
-            $students = User::where('admin_id', backpack_user()->id)->find();
+            $students = User::where('admin_id', backpack_user()->id)->get();
             foreach ($students as $student){
                 $emails [] =  $student->email;
             }
@@ -68,13 +70,13 @@ class MailboxController extends CrudController
                 $mail = new AdminMail();
                 $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from '.config('app.name');
                 Mail::to($email)->send($mail);
-                sleep(1);
+//                sleep(1);
             }
             $message = 'Email(s) has been sent successfully.';
             return redirect('/admin/mailbox')->with('message',$message);
 
         }else{
-            return redirect('/admin/mailbox')->withErrors(['email'=> 'Not email sent.']);
+            return redirect('/admin/mailbox')->withErrors(['email'=> 'No email sent.']);
         }
     }
 

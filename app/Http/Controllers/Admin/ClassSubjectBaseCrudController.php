@@ -49,18 +49,11 @@ class ClassSubjectBaseCrudController extends CrudController
                 'entity' => 'subject',
                 'attribute' => 'title'
             ],
-            [
-                'label' => 'Class',
-                'name' => 'class_id',
-                'type' => 'select',
-                'entity' => 'classRoom',
-                'attribute' => 'title'
-            ],
+
         ]);
         $this->crud->addFields([
             [
                 'name' => 'class_id',
-                'label' => "Class",
                 'type' => 'select_from_array',
                 'options' => ClassRoom::getAdminClasses(),
                 'allows_null' => false,
