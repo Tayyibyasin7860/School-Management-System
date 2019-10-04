@@ -36,18 +36,15 @@ class Subject extends Model
     */
     public function classes()
     {
-        return $this->belongsToMany('App\Models\ClassRoom', 'class_subject');
+        return $this->belongsToMany('App\Models\ClassRoom', 'class_subjects');
     }
     public function exams(){
         return $this->hasMany('App\Models\Exam');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
+    public static function getAdminSubjects(){
+        return Subject::where('admin_id',backpack_user()->id)->pluck('title','id')->toArray();
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESORS

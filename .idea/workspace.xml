@@ -3,24 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClassFee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassFee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClassSubjectRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClassSubjectRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ExamSessionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExamSessionRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassSubject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassSubject.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ExamSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ExamSession.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/FeeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/FeeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Feedback.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Feedback.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Result.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/StudentDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentDetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subject.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.txt" beforeDir="false" afterPath="$PROJECT_DIR$/route.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -256,7 +257,8 @@
       <workItem from="1570043540606" duration="8014000" />
       <workItem from="1570053711169" duration="6654000" />
       <workItem from="1570086860386" duration="15461000" />
-      <workItem from="1570110370858" duration="13624000" />
+      <workItem from="1570110370858" duration="13901000" />
+      <workItem from="1570164472312" duration="16992000" />
     </task>
     <servers />
   </component>

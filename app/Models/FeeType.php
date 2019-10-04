@@ -34,6 +34,16 @@ class FeeType extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function schoolAdmin(){
+        return $this->belongsTo('App\User','admin_id');
+    }
+    public function feeReceipts(){
+        return $this->hasMany('App\Models\FeeType','fee_type_id');
+    }
+    public function students(){
+        return $this->belongsToMany('App\User','fee_receipts','fee_type_id','student_id')
+            ->withPivot('amount','submitted_amount','due_date','submission_date','status');
+    }
 
     /*
     |--------------------------------------------------------------------------

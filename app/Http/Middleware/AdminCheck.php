@@ -19,10 +19,16 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->can('view admin panel')) {
-            return $next($request);
-        } else {
-            return redirect('/student');
+        if(Auth::check()){
+            if (auth()->user()->can('view admin panel')) {
+                return $next($request);
+            } else {
+                return redirect('/student');
+            }
         }
+        else{
+            return redirect('login');
+        }
+
     }
 }

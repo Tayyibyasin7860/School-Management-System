@@ -48,15 +48,14 @@ class ClassRoom extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Models\Subject', 'class_subject');
+        return $this->belongsToMany('App\Models\Subject', 'class_subjects');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
 
+
+    public static function getAdminClasses(){
+        return ClassRoom::where('admin_id',backpack_user()->id)->pluck('title','id')->toArray();
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESORS

@@ -33,21 +33,18 @@ class ExamCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-//        $this->crud->query = $this->crud->query->with(['examSession' => function ($query) {
-//            $query->where('admin_id', '=', backpack_user()->id);
-//        }]);
-        $exam = Exam::find(1);
-        $exam->getAdminIdAttribute();
+        $this->crud->query = $this->crud->query->with(['examSession' => function ($query) {
+            $query->where('admin_id', '=', backpack_user()->id);
+        }]);
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
 
         $this->crud->addColumns([
-            [
-                'label' => 'Admin',
-                'name' => 'admin_id',
-                'type' => 'select2'
-            ],
+//            [
+//                'label' => 'Exam session',
+//                'name' => 'exam_session_id'
+//            ],
             [
                 'label' => 'Exam Session',
                 'name' => 'exam_session_id',

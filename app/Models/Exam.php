@@ -64,6 +64,9 @@ class Exam extends Model
     public function getAdminIdAttribute(){
         return $this->examSession->schoolAdmin->id;
     }
+//    public function getExamSessionIdAttribute(){
+//        return $this->examSession()->where('admin_id',backpack()->user()->id);
+//    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

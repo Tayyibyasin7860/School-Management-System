@@ -51,7 +51,16 @@ class ClassCrudController extends CrudController
                  'name'  => 'available_seats',
              ]
          ]);
-
+        $this->crud->addFields([
+            [
+                'label' => 'Name',
+                'name'  => 'title',
+            ],
+            [
+                'label' => 'Capacity',
+                'name'  => 'capacity',
+            ],
+        ]);
 
 
         // add asterisk for fields that are required in ClassRequest

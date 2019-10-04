@@ -38,7 +38,7 @@ class ClassSubject extends Model
     |--------------------------------------------------------------------------
     */
     public function classRoom(){
-        return $this->belongsTo('App\Models\ClassRoom','class_id');
+        return $this->belongsTo('App\Models\ClassRoom');
     }
     public function subject(){
         return $this->belongsTo('App\Models\Subject','subject_id');
@@ -55,7 +55,7 @@ class ClassSubject extends Model
     |--------------------------------------------------------------------------
     */
     public function getClassRoomAttribute(){
-        dd($this->classRoom->id);
+//        dd($this->classRoom->id);
     }
     /*
     |--------------------------------------------------------------------------

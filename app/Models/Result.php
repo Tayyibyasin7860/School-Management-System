@@ -35,7 +35,7 @@ class Result extends Model
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
-    the table of this mode(Result) is to be removed*/
+    */
     public function exam(){
         return $this->belongsTo('App\Models\Exam','exam_id');
     }

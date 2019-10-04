@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\ClassRoom;
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,18 +63,18 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ExamSession','admin_id');
     }
     //one student has many exams and belongsto many exams. students and exams both have joining table results.
-    public function results(){
+    public function exams(){
         return $this->belongsToMany('App\Models\Exam','results','student_id','exam_id')
                     ->withPivot('total_marks', 'obtained_marks','remarks');
     }
     //one student belongs to many fees
-    public function fees(){
-        return $this->belongsToMany('App\Models\Fee','student_fee','student_id','fee_id')
-            ->withPivot('status');
+    public function feeTypes(){
+        return $this->belongsToMany('App\Models\FeeTypes','fee_receipts','fee_type_id','student_id')
+            ->withPivot('amount','submitted_amount','due_date','submission_date','status');
     }
     //one admin has many fees
-    public function feeStructures(){
-        return $this->hasMany('App\Models\Fee','admin_id');
+    public function adminFeeTypes(){
+        return $this->hasMany('App\Models\FeeType','admin_id');
     }
     //one admin has many articles
     public function articles(){
@@ -83,16 +84,21 @@ class User extends Authenticatable
     public function classes(){
         return $this->hasMany('App\Models\ClassRoom','admin_id');
     }
-    //one admin has many classes
-//    public function class(){
-//        return $this->belongsTo('App\Models\ClassRoom','class_id');
-//    }
+    //one admin has many feedbacks
+    public function studentFeedbacks(){
+        return $this->hasMany('App\Models\Feedback','admin_id');
+    }
+    //one student has many feedbacks
+    public function feedbacks(){
+        return $this->hasMany('App\Models\Feedback','student_id');
+    }
     //profile button
     public function profileButton(){
         if($this->studentDetail){
             return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/'.$this->studentDetail->id.'/edit') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
         }else{
-            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+        //'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'
         }
     }
     public static function getAdminStudents(){

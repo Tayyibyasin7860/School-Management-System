@@ -14,7 +14,7 @@ use Backpack\CRUD\CrudPanel;
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class UserCrudController extends CrudController
+class UserCrudController extends CrudControllerd
 {
     public function setup()
     {
@@ -33,7 +33,7 @@ class UserCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         // TODO: remove setFromDb() and manually define Fields and Columns
-        //$this->crud->setFromDb();
+//        $this->crud->setFromDb();
 
 
 

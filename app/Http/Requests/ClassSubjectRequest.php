@@ -26,7 +26,9 @@ class ClassSubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'class_id' => 'required',
+            'subject_id' => 'required',
+
         ];
     }
 

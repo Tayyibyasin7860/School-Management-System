@@ -34,6 +34,12 @@ class Feedback extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function schoolAdmin(){
+        return $this->belongsTo('App\User','admin_id');
+    }
+    public function student(){
+        return $this->belongsTo('App\User','student_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ClassRoom;
+use App\Models\ClassSubject;
+use App\Models\Subject;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -28,6 +31,9 @@ class ClassSubjectCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/class-subject');
         $this->crud->setEntityNameStrings('subject corrsponding to class', 'subjects in a class');
 
+//        $classSubject = ClassSubject::find(1)->classRoom;
+//        dd($classSubject);
+
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -37,36 +43,43 @@ class ClassSubjectCrudController extends CrudController
 //        $this->crud->setFromDb();
         $this->crud->addColumns([
             [
+                'label' => 'Subject',
+                'name' => 'subject_id',
+                'type' => 'select',
+                'entity' => 'subject',
+                'attribute' => 'title'
+            ],
+            [
                 'label' => 'Class',
                 'name' => 'class_id',
                 'type' => 'select',
                 'entity' => 'classRoom',
                 'attribute' => 'title'
             ],
-            [
-                'label' => 'Subject',
-                'name' => 'subject_id',
-                'type' => 'select',
-                'entity' => 'Subject',
-                'attribute' => 'title'
-            ]
         ]);
-//        $this->crud->addFields([
-//            [
-//                'label' => 'Class',
-//                'name' => 'class_id',
-//                'type' => 'select',
-//                'entity' => 'ClassRoom',
-//                'attribute' => 'title'
-//            ],
-//            [
-//                'label' => 'Subject',
-//                'name' => 'subject_id',
-//                'type' => 'select',
-//                'entity' => 'Subject',
-//                'attribute' => 'title'
-//            ]
-//        ]);
+        $this->crud->addFields([
+            [
+                'name' => 'class_id',
+                'label' => "Class",
+                'type' => 'select_from_array',
+                'options' => ClassRoom::getAdminClasses(),
+                'allows_null' => false,
+            ],
+            [
+                'name' => 'subject_id',
+                'label' => "Subject",
+                'type' => 'select_from_array',
+                'options' => Subject::getAdminSubjects(),
+                'allows_null' => false,
+            ],
+////            [
+////                'label' => 'Subject',
+////                'name' => 'subject_id',
+////                'type' => 'select',
+////                'entity' => 'Subject',
+////                'attribute' => 'title'
+////            ]
+        ]);
         // add asterisk for fields that are required in ClassSubjectRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

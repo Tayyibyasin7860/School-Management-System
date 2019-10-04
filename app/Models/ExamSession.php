@@ -10,6 +10,8 @@ class ExamSession extends Model
     use CrudTrait;
     protected $table = 'exam_sessions';
 
+    protected $fillable = ['title','year','admin_id'];
+
     //one exam session belongs to one admin
     public function schoolAdmin(){
         return $this->belongsTo('App\User','admin_id');

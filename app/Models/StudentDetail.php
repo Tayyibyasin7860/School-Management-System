@@ -16,12 +16,8 @@ class StudentDetail extends Model
     */
 
     protected $table = 'student_details';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
-    // protected $guarded = ['id'];
+
     protected $guarded = [];
-    // protected $hidden = [];
-    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------
