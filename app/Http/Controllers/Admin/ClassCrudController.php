@@ -26,7 +26,7 @@ class ClassCrudController extends CrudController
         $this->crud->setModel('App\Models\ClassRoom');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/class');
         $this->crud->setEntityNameStrings('class', 'classes');
-
+        $this->crud->addButtonFromModelFunction('line', 'profile', 'subjectsButton', 'end');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration

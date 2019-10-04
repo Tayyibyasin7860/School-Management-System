@@ -48,7 +48,7 @@ class ClassRoom extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Models\Subject', 'class_subjects');
+        return $this->belongsToMany('App\Models\Subject', 'class_subjects', 'class_id');
     }
 
 
@@ -71,4 +71,14 @@ class ClassRoom extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+    //profile button
+    public function subjectsButton(){
+        if($this->subjects){
+            return '<a data-button-type="review" title="Subjects" href="'. url(config('backpack.base.route_prefix').'/class/'. $this->id.'/subject/') .'" class="btn btn-xs btn-default"><i class="fa fa-book"></i> Subjects</a>';
+        }else{
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+            //'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'
+        }
+    }
 }

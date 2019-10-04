@@ -2,89 +2,41 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\ClassRoom;
-use App\Models\ClassSubject;
-use App\Models\Subject;
-use App\User;
+use App\Http\Controllers\Admin\ClassSubjectBaseCrudController;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
+
 use App\Http\Requests\ClassSubjectRequest as StoreRequest;
 use App\Http\Requests\ClassSubjectRequest as UpdateRequest;
-use Backpack\CRUD\CrudPanel;
-
 /**
- * Class ClassSubjectCrudController
+ * Class WebsitePageCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class ClassSubjectCrudController extends CrudController
+class ClassSubjectCrudController extends ClassSubjectBaseCrudController
 {
     public function setup()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | CrudPanel Basic Information
-        |--------------------------------------------------------------------------
-        */
-        $this->crud->setModel('App\Models\ClassSubject');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/class-subject');
-        $this->crud->setEntityNameStrings('subject corrsponding to class', 'subjects in a class');
+        parent::setup();
 
-//        $classSubject = ClassSubject::find(1)->classRoom;
-//        dd($classSubject);
+        /**/
+        $class_id = \Route::current()->parameter('class_id');
 
-        /*
-        |--------------------------------------------------------------------------
-        | CrudPanel Configuration
-        |--------------------------------------------------------------------------
-        */
-        // TODO: remove setFromDb() and manually define Fields and Columns
-//        $this->crud->setFromDb();
-        $this->crud->addColumns([
-            [
-                'label' => 'Subject',
-                'name' => 'subject_id',
-                'type' => 'select',
-                'entity' => 'subject',
-                'attribute' => 'title'
-            ],
-            [
-                'label' => 'Class',
-                'name' => 'class_id',
-                'type' => 'select',
-                'entity' => 'classRoom',
-                'attribute' => 'title'
-            ],
-        ]);
-        $this->crud->addFields([
-            [
-                'name' => 'class_id',
-                'label' => "Class",
-                'type' => 'select_from_array',
-                'options' => ClassRoom::getAdminClasses(),
-                'allows_null' => false,
-            ],
-            [
-                'name' => 'subject_id',
-                'label' => "Subject",
-                'type' => 'select_from_array',
-                'options' => Subject::getAdminSubjects(),
-                'allows_null' => false,
-            ],
-////            [
-////                'label' => 'Subject',
-////                'name' => 'subject_id',
-////                'type' => 'select',
-////                'entity' => 'Subject',
-////                'attribute' => 'title'
-////            ]
-        ]);
-        // add asterisk for fields that are required in ClassSubjectRequest
-        $this->crud->setRequiredFields(StoreRequest::class, 'create');
-        $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+        // set a different route for the admin panel buttons
+        $this->crud->setRoute(config('backpack.base.route_prefix')."/class/".$class_id.'/subject');
 
-//        $this->crud->addClause('where','class_room',backpack_user()->id);
+        $class = \App\Models\ClassRoom::find($class_id);
+
+        $this->crud->setEntityNameStrings('Subject of class '.$class->title, 'Subjects of class '.$class->title);
+
+        // show only that admin users
+        $this->crud->addClause('where', 'class_id', '=', $class_id);
+
+//        $this->crud->addButtonFromModelFunction('line', 'blocks', 'blocksButton', 'end');
+        $this->crud->removeColumn('website_id');
+
+
     }
 
     public function store(StoreRequest $request)

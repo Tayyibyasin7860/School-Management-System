@@ -13,6 +13,10 @@ class CategoryCrudController extends CrudController
     {
         parent::__construct();
 
+
+    }
+    public function setup()
+    {
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
@@ -33,44 +37,51 @@ class CategoryCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-                                'name' => 'name',
-                                'label' => 'Name',
-                            ]);
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
         $this->crud->addColumn([
-                                'name' => 'slug',
-                                'label' => 'Slug',
-                            ]);
+            'name' => 'slug',
+            'label' => 'Slug',
+        ]);
         $this->crud->addColumn([
-                                'label' => 'Parent',
-                                'type' => 'select',
-                                'name' => 'parent_id',
-                                'entity' => 'parent',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
+            'label' => 'Parent',
+            'type' => 'select',
+            'name' => 'parent_id',
+            'entity' => 'parent',
+            'attribute' => 'name',
+            'model' => "Backpack\NewsCRUD\app\Models\Category",
+        ]);
 
         // ------ CRUD FIELDS
         $this->crud->addField([
-                                'name' => 'name',
-                                'label' => 'Name',
-                            ]);
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
         $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Will be automatically generated from your name, if left empty.',
-                                // 'disabled' => 'disabled'
-                            ]);
+            'name' => 'slug',
+            'label' => 'Slug (URL)',
+            'type' => 'text',
+            'hint' => 'Will be automatically generated from your name, if left empty.',
+            // 'disabled' => 'disabled'
+        ]);
         $this->crud->addField([
-                                'label' => 'Parent',
-                                'type' => 'select',
-                                'name' => 'parent_id',
-                                'entity' => 'parent',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
-    }
+            'label' => 'Parent',
+            'type' => 'select',
+            'name' => 'parent_id',
+            'entity' => 'parent',
+            'attribute' => 'name',
+            'model' => "Backpack\NewsCRUD\app\Models\Category",
+        ]);
+        $this->crud->addField([    // CHECKBOX
+            'name' => 'admin_id',
+            'label' => 'Admin ID',
+            'type' => 'hidden',
+            'value'=> backpack_user()->id
+        ]);
+        $this->crud->addClause('where','admin_id','=',backpack_user()->id);
 
+    }
     public function store(StoreRequest $request)
     {
         return parent::storeCrud();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\NewsCRUD\app\Models;
+namespace App\Models;
 
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +22,7 @@ class Category extends Model
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'slug', 'parent_id'];
+    protected $fillable = ['name', 'slug', 'parent_id','admin_id'];
     // protected $hidden = [];
     // protected $dates = [];
 

@@ -2,26 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectBaseCrudController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/generateReceipts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassSubjectCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminCheck.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClassSubjectRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClassSubjectRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ExamSessionRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ExamSessionRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ClassSubject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassSubject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ExamSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ExamSession.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/FeeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/FeeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Feedback.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Feedback.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/StudentDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StudentDetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tag.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/backpack/custom.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/backpack/custom.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -178,24 +177,24 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/storage/uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor/backpack/base" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\student" />
-      <recent name="D:\xampp\htdocs\School_Management_System\resources\views" />
-      <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
-      <recent name="D:\xampp\htdocs\School Management System\resources\views\Student\profile" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Http\Controllers\Admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\vendor\backpack\base" />
+      <recent name="D:\xampp\htdocs\School_Management_System\app\Http\Controllers\Admin" />
       <recent name="D:\xampp\htdocs\School_Management_System\public\storage\uploads" />
       <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
-      <recent name="D:\xampp\htdocs\School_Management_System\app\Http\Controllers\Admin" />
       <recent name="D:\xampp\htdocs\School Management System\resources\views\vendor\backpack\crud\fields" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\student" />
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views" />
+      <recent name="D:\xampp\htdocs\School Management System\resources\views\Student\profile" />
+      <recent name="D:\xampp\htdocs\School Management System\app\Http\Controllers\Admin" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -258,7 +257,8 @@
       <workItem from="1570053711169" duration="6654000" />
       <workItem from="1570086860386" duration="15461000" />
       <workItem from="1570110370858" duration="13901000" />
-      <workItem from="1570164472312" duration="16992000" />
+      <workItem from="1570164472312" duration="25562000" />
+      <workItem from="1570206577367" duration="132000" />
     </task>
     <servers />
   </component>

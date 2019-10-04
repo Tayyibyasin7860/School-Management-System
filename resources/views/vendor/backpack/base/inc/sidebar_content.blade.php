@@ -10,7 +10,6 @@
     <ul class="treeview-menu">
         <li><a href='{{ backpack_url('class') }}'><i class='fa fa-home'></i> <span>Classes</span></a></li>
         <li><a href='{{ backpack_url('subject') }}'><i class='fa fa-book'></i> <span>Subjects</span></a></li>
-        <li><a href='{{ backpack_url('class-subject') }}'><i class='fa fa-tag'></i> <span>Subjects in classes</span></a></li>
     </ul>
 </li>
 
@@ -29,6 +28,7 @@
         <li><a href='{{ backpack_url('fee-receipt') }}'><i class='fa fa-tag'></i> <span>Fee Receipts</span></a></li>
         <li><a href='{{ backpack_url('class-fee') }}'><i class='fa fa-tag'></i> <span>Classes Fees</span></a></li>
         <li><a href='{{ backpack_url('fee-type') }}'><i class='fa fa-tag'></i> <span>Fee Types</span></a></li>
+        <li><a href='{{ backpack_url('fee-receipt/generate') }}'><i class='fa fa-dollar'></i> <span>Generate Receipts</span></a></li>
     </ul>
 </li>
 <li class="treeview">

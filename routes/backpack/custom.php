@@ -22,9 +22,15 @@ Route::group([
         CRUD::resource('profile', 'StudentCrudController');
 
     });
+    CRUD::resource('class-subject', 'ClassSubjectBaseCrudController');
+
+    CRUD::resource('class', 'ClassCrudController');
+    Route::group(['prefix' => 'class/{class_id}'], function () {
+        CRUD::resource('subject', 'ClassSubjectCrudController');
+    });
+
     CRUD::resource('school-admin', 'SchoolAdminUserCrudController');
     CRUD::resource('subject', 'SubjectCrudController');
-    CRUD::resource('class', 'ClassCrudController');
 
     // Backpack\NewsCRUD
     CRUD::resource('article', 'ArticleCrudController');
@@ -41,7 +47,8 @@ Route::group([
     Route::get('mailbox', 'MailboxController@create');
     Route::post('mailbox', 'MailboxController@send');
     Route::get('mailbox/{student}', 'MailboxController@studentEmail');
-    CRUD::resource('class-subject', 'ClassSubjectCrudController');
+    Route::get('fee-receipt/generate', 'FeeReceiptCrudController@generateReceiptForm');
+    Route::post('fee-receipt/generate', 'FeeReceiptCrudController@generateReceipt');
     CRUD::resource('fee-receipt', 'FeeReceiptCrudController');
     CRUD::resource('class-fee', 'ClassFeeCrudController');
     CRUD::resource('exam-session', 'ExamSessionCrudController');

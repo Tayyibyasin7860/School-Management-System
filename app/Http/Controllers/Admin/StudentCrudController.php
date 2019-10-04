@@ -39,7 +39,6 @@ class StudentCrudController extends CrudController
         $this->crud->setModel('App\Models\StudentDetail');
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
-
         $this->crud->addClause('where', 'student_id', '=', $student_id);
         /*
         |--------------------------------------------------------------------------
@@ -61,7 +60,7 @@ class StudentCrudController extends CrudController
             [
                 'label' => 'photo',
                 'name' => 'photo',
-                'type' => 'image',
+                'type' => 'browse',
                 'prefix' => 'storage/',
                 'height' => '40px',
                 'width' => '40px'
@@ -120,7 +119,7 @@ class StudentCrudController extends CrudController
             ],
             [ // image
                 'label' => "Profile Image",
-                'name' => "photo",
+                'name' => "photo1",
                 'type' => 'image',
                 'upload' => true,
                 'crop' => true,

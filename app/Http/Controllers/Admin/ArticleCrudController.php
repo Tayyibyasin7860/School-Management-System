@@ -13,15 +13,20 @@ class ArticleCrudController extends CrudController
     {
         parent::__construct();
 
+
+
+    }
+    public function setup()
+    {
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel("Backpack\NewsCRUD\app\Models\Article");
+
+        $this->crud->setModel("App\Models\Article");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/article');
         $this->crud->setEntityNameStrings('Announcement or News', 'Notice Board');
-
         /*
         |--------------------------------------------------------------------------
         | COLUMNS AND FIELDS
@@ -30,87 +35,95 @@ class ArticleCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                            ]);
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+        ]);
         $this->crud->addColumn([
-                                'name' => 'title',
-                                'label' => 'Title',
-                            ]);
+            'name' => 'title',
+            'label' => 'Title',
+        ]);
         $this->crud->addColumn([
-                                'label' => 'Category',
-                                'type' => 'select',
-                                'name' => 'category_id',
-                                'entity' => 'category',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
+            'label' => 'Category',
+            'type' => 'select',
+            'name' => 'category_id',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => "Backpack\NewsCRUD\app\Models\Category",
+        ]);
 
         // ------ CRUD FIELDS
         $this->crud->addField([    // TEXT
-                                'name' => 'title',
-                                'label' => 'Title',
-                                'type' => 'text',
-                                'placeholder' => 'Your title here',
-                            ]);
+            'name' => 'title',
+            'label' => 'Title',
+            'type' => 'text',
+            'placeholder' => 'Your title here',
+        ]);
 
         $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                                'value' => date('Y-m-d'),
-                            ], 'create');
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+            'value' => date('Y-m-d'),
+        ], 'create');
         $this->crud->addField([    // TEXT
-                                'name' => 'date',
-                                'label' => 'Date',
-                                'type' => 'date',
-                            ], 'update');
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+        ], 'update');
 
         $this->crud->addField([    // WYSIWYG
-                                'name' => 'content',
-                                'label' => 'Content',
-                                'type' => 'ckeditor',
-                                'placeholder' => 'Your textarea text here',
-                            ]);
+            'name' => 'content',
+            'label' => 'Content',
+            'type' => 'ckeditor',
+            'placeholder' => 'Your textarea text here',
+        ]);
         $this->crud->addField([    // SELECT
-                                'label' => 'Category',
-                                'type' => 'select2',
-                                'name' => 'category_id',
-                                'entity' => 'category',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
+            'label' => 'Category',
+            'type' => 'select2',
+            'name' => 'category_id',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => "Backpack\NewsCRUD\app\Models\Category",
+        ]);
         $this->crud->addField([       // Select2Multiple = n-n relationship (with pivot table)
-                                'label' => 'Tags',
-                                'type' => 'select2_multiple',
-                                'name' => 'tags', // the method that defines the relationship in your Model
-                                'entity' => 'tags', // the method that defines the relationship in your Model
-                                'attribute' => 'name', // foreign key attribute that is shown to user
-                                'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
-                                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
-                            ]);
+            'label' => 'Tags',
+            'type' => 'select2_multiple',
+            'name' => 'tags', // the method that defines the relationship in your Model
+            'entity' => 'tags', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => "Backpack\NewsCRUD\app\Models\Tag", // foreign key model
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+        ]);
         $this->crud->addField([    // ENUM
-                                'name' => 'status',
-                                'label' => 'Status',
-                                'type' => 'enum',
-                            ]);
+            'name' => 'status',
+            'label' => 'Status',
+            'type' => 'enum',
+        ]);
         $this->crud->addField([    // CHECKBOX
-                                'name' => 'featured',
-                                'label' => 'Featured item',
-                                'type' => 'checkbox',
-                            ]);
+            'name' => 'featured',
+            'label' => 'Featured item',
+            'type' => 'checkbox',
+        ]);
+
+        $this->crud->addField([    // CHECKBOX
+            'name' => 'admin_id',
+            'label' => 'Admin ID',
+            'type' => 'hidden',
+            'value'=> backpack_user()->id
+        ]);
 
         $this->crud->enableAjaxTable();
 
-    }
-    public function setup()
-    {
         $this->crud->addClause('where','admin_id','=',backpack_user()->id);
     }
 
     public function store(StoreRequest $request)
     {
+//        $request->request->set('admin_id', backpack_user()->id);
+//        dd($request->request);
+
+
         return parent::storeCrud();
     }
 

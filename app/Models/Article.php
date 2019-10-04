@@ -1,6 +1,6 @@
 <?php
 
-namespace Backpack\NewsCRUD\app\Models;
+namespace App\Models;
 
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +22,7 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date'];
+    protected $fillable = ['slug', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date','admin_id'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [

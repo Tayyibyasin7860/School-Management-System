@@ -152,4 +152,12 @@ class FeeReceiptCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
     }
+
+    public function generateReceiptForm(){
+        return view('vendor/backpack/base/generateReceipts');
+    }
+
+    public function generateReceipt(){
+        return 'create form view';
+    }
 }
