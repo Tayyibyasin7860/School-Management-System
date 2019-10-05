@@ -33,8 +33,10 @@
                                 <option value="one">Chosen recipient</option>
                                 <option value="fee_defaulters">Fee defaulters</option>
                                 <option value="all">All Students</option>
-
                             </select>
+                        </div>
+                        <div class="text-danger">
+                            {{ $errors->first('category') }}
                         </div>
                     </div>
                 </div>
@@ -45,7 +47,9 @@
                             <label for="form_email">Email</label>
                             <div id="help"></div>
                             <input id="form_email" type="email" name="email" class="form-control" value="{{ $student->email ?? '' }}" data-error="Valid email is required.">
-
+                        </div>
+                        <div class="text-danger">
+                            {{ $errors->first('email') }}
                         </div>
                     </div>
                 </div>
@@ -55,6 +59,9 @@
                             <label for="form_message">Message *</label>
                             <textarea id="form_message" name="message" class="form-control" placeholder="Email content here" rows="4" data-error="Please, leave us a message."></textarea>
                             <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="text-danger">
+                            {{ $errors->first('message') }}
                         </div>
                     </div>
                     <div class="col-md-12">

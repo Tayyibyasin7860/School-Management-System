@@ -40,6 +40,8 @@ class StudentCrudController extends CrudController
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
         $this->crud->setEntityNameStrings('profile', 'profiles');
         $this->crud->addClause('where', 'student_id', '=', $student_id);
+
+        $this->crud->removeButton('create');
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
@@ -60,7 +62,7 @@ class StudentCrudController extends CrudController
             [
                 'label' => 'photo',
                 'name' => 'photo',
-                'type' => 'browse',
+                'type' => 'image',
                 'prefix' => 'storage/',
                 'height' => '40px',
                 'width' => '40px'
@@ -120,7 +122,8 @@ class StudentCrudController extends CrudController
             [ // image
                 'label' => "Profile Image",
                 'name' => "photo",
-                'type' => 'image',
+                'type' => 'upload',
+                'prefix' => 'uploads/',
                 'upload' => true,
                 'crop' => true,
                 'aspect_ratio' => 1
@@ -163,6 +166,7 @@ class StudentCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -172,6 +176,7 @@ class StudentCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+//        $request->request->set('photo',request()->photo->store('uploads', 'public'));
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

@@ -55,25 +55,26 @@ class StudentDetail extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function setThumbnailImageAttribute($value) {
+    public function setPhotoAttribute($value) {
+// use Intervention image or whatever you want to process that image
 
         $image=$value;
-        $input['thumbnail_image'] = $image->getClientOriginalName();
+        $input['photo'] = time().'.'.$image->getClientOriginalExtension();
         $img = \Image::make($image->getRealPath());
 
-        $destinationPath = public_path('/uploads/thumbnailImages');
+        $destinationPath = "D:/xampp/htdocs/School_Management_System/storage/app/public/uploads";
         $img->resize(750, 450, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['thumbnail_image']);
+        })->save($destinationPath.'/'.$input['photo']);
 
-        $destinationPath = public_path('storage/uploads/thumbnailImages');
+        $destinationPath = $destinationPath.'/'.$input['photo'];
 
         $img->resize(100, 100, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['thumbnail_image']);
+        })->save($destinationPath);
 
-        $image->move($destinationPath, $input['thumbnail_image']);
-        $this->attributes['thumbnail_image'] = $input['thumbnail_image'];
+// $image->move($destinationPath, $input['imagename']); // for no resize
+        $this->attributes['photo'] = strtolower($input['photo']);
 
     }
 }

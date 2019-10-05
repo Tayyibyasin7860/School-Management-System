@@ -43,6 +43,15 @@ class MailboxController extends CrudController
 //            echo $fee . "<br>";
 //        }
 //        dd();
+        request()->validate([
+            'category' => 'required',
+            'message' => 'required'
+        ]);
+        if(request()->filled('email')){
+            request()->validate([
+                'email' => 'required'
+            ]);
+        }
         if(request()->category == 'fee_defaulters')
         {
             $pending_fee = FeeType::where('status','Pending')
@@ -76,7 +85,7 @@ class MailboxController extends CrudController
             return redirect('/admin/mailbox')->with('message',$message);
 
         }else{
-            return redirect('/admin/mailbox')->withErrors(['email'=> 'No email sent.']);
+            return redirect('/admin/mailbox')->withErrors(['emailError'=> 'No email sent.']);
         }
     }
 
