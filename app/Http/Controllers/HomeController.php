@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\ExamSession;
+use App\Models\FeeReceipt;
+use App\Models\FeeType;
 use App\Models\Result;
 use Backpack\NewsCRUD\app\Models\Article;
 use Illuminate\Http\Request;
@@ -46,8 +48,13 @@ class HomeController extends Controller
     }
     public function fee()
     {
-        $user = auth()->user();
-        $user_fees = $user->fees;
+        $user_id = auth()->user()->id;
+//        $feeReceipt = FeeReceipt::where('student_id',$user_id);
+        $users = User::find(23);
+//        dd($users);
+        foreach($users->feeTypes as $feeType){
+            echo $feeType;
+        }
         return view('student.fee',compact('user','user_fees'));
     }
     public function exam()
@@ -63,6 +70,7 @@ class HomeController extends Controller
                 $exams [] = $exam;
             }
         }
+
 //        $exam_sessions = $user_admin->examSessions()->where('admin_id','2');
 //        foreach($user_admin_sessions as $user_admin_session){
 //            print_r($user_admin_session->exams());
@@ -73,7 +81,7 @@ class HomeController extends Controller
     public function result()
     {
         $user = auth()->user();
-        $user_results = User::find(auth()->user()->id)->results;
+        $user_results = User::find(auth()->user()->id)->exams;
 
         return view('student.result', compact('user_results','user'));
     }

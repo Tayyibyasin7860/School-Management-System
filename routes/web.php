@@ -33,6 +33,7 @@ Route::group([    'prefix' => 'student',
     Route::get('/result', 'HomeController@result')->name('result');
     $auth = auth()->user();
     Route::get('/feedback', 'StudentFeedbackController@create')->name('feedback');
+    Route::put('/feedback/{user}', 'StudentFeedbackController@store');
 
 });
 

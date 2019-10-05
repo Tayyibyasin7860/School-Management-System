@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentFeedbackController extends Controller
@@ -33,9 +35,26 @@ class StudentFeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(User $user, Request $request)
     {
-        //
+        $user_id = $user->id;
+        $user_school_admin = User::find($user_id)->schoolAdmin->id;
+
+        $data = $request->validate([
+            'subject' => 'required',
+            'feedback' => 'required'
+        ]);
+        Feedback::create([
+            'subject' => $request->subject,
+            'message' => $request->feedback,
+            'admin_id' => $user_school_admin,
+            'student_id' => $user_id
+        ]);
+
+        $message = "Feedback has been submitted successfuly.";
+        return redirect('student/feedback')->with([
+            'message' => $message,
+        ]);
     }
 
     /**

@@ -19,15 +19,14 @@ class StudentProfileController extends Controller
     {
         $user = auth()->user();
 
-        $user_id = auth()->user()->id;
-        $student = DB::table('student_details')->where('user_id', $user_id)->first();
+        $student_id = auth()->user()->id;
+        $student = DB::table('student_details')->where('student_id', $student_id)->first();
         return view('student/profile/index', compact('student', 'user'));
     }
 
     public function edit(User $user)
     {
         $user_id = $user->id;
-//        $student = DB::table('student_details')->where('user_id', $user_id)->first();
         $student = $user->StudentDetail;
         return view('student/profile/edit', compact('user', 'student'));
     }

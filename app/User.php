@@ -69,7 +69,7 @@ class User extends Authenticatable
     }
     //one student belongs to many fees
     public function feeTypes(){
-        return $this->belongsToMany('App\Models\FeeTypes','fee_receipts','fee_type_id','student_id')
+        return $this->belongsToMany('App\Models\FeeType','fee_receipts','fee_type_id','student_id')
             ->withPivot('amount','submitted_amount','due_date','submission_date','status');
     }
     //one admin has many fees
