@@ -33,9 +33,7 @@ class ExamCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-        $this->crud->query = $this->crud->query->with(['examSession' => function ($query) {
-            $query->where('admin_id', '=', backpack_user()->id);
-        }]);
+        
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
@@ -104,10 +102,9 @@ class ExamCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-//        $user_id = backpack_user()->id;
-//        $this->crud->query = $this->crud->query->with('examSession');
-//        }]);
-//        $this->crud->addClause('where', 'admin_id', backpack_user()->id);
+		$this->crud->addClause('whereHas', 'examSession', function($query) {
+            $query->where('admin_id', '=', backpack_user()->id);
+        });
     }
 
     public function store(StoreRequest $request)
