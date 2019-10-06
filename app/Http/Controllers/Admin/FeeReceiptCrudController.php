@@ -100,9 +100,8 @@ class FeeReceiptCrudController extends CrudController
             [
                 'label' => 'Fee Type',
                 'name' => 'fee_type_id',
-                'type' => 'select',
-                'entity' => 'feeType',
-                'attribute' => 'type'
+                'type' => 'select2_from_array',
+                'options' => User::myFeeTypes(),
             ],
             [
                 'name' => 'student_id',
@@ -185,11 +184,12 @@ class FeeReceiptCrudController extends CrudController
             'due_date' => 'required|date',
         ]);
         $class = ClassRoom::find(request()->class);
-
         $class_fee = $class->classFee->where('fee_type_id', request()->fee_type)->first();
 
-        $student_count = 0;
-        foreach ($class->students->where('admin_id')->pluck('student_id') as $student_id)
+        if($class_fee !== null && count($class->students) !== 0){
+            $student_count = 0;
+            foreach ($class->students->pluck('student_id') as $student_id)
+
             FeeReceipt::create([
                 'student_id' => $student_id,
                 'fee_type_id' => request()->fee_type,
@@ -198,36 +198,32 @@ class FeeReceiptCrudController extends CrudController
                 'due_date' => request()->due_date,
                 'status' => 'Pending',
             ]);
+                $message = 'All receipts are generated successfully.';
 
-        if ($student_count > 0) {
-            $message = 'All receipts are generated successfully.';
-        } else {
-            $message = 'No receipts were generated because this class has no students';
+            $classRooms = ClassRoom::where('admin_id', backpack_user()->id)->get();
+            $feeTypes = FeeType::where('admin_id', backpack_user()->id)->get();
+            return redirect('admin/fee-receipt/generate')->with([
+                'message' => $message,
+                'classRooms' => $classRooms,
+                'feeTypes' => $feeTypes,
+            ]);
         }
-        $classRooms = ClassRoom::where('admin_id', backpack_user()->id)->get();
-        $feeTypes = FeeType::where('admin_id', backpack_user()->id)->get();
-        return redirect('admin/fee-receipt/generate')->with([
-            'message' => $message,
-            'classRooms' => $classRooms,
-            'feeTypes' => $feeTypes,
-            'student_count' => $student_count
-        ]);
-    }
+        else{
 
-//    public function classFeeCheck($class_fee){
-//        if($class_fee !== null){
-//            return null;
-//        }
-//        else{
-//            $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
-//            $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
-//            $message = 'Please create fee for this class first';
-//
-//            return redirect('admin/fee-receipt/generate')->with([
-//                'message' => $message,
-//                'classRooms' => $classRooms,
-//                'feeTypes' => $feeTypes,
-//            ]);
-//        }
-//    }
-}
+            $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
+            $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
+            if($class_fee == null){
+                $message = 'Please create fee for this class first';
+            }
+            else{
+                $message = 'No receipts were generated because this class has no students';
+            }
+//            dd($message);
+            return redirect('admin/fee-receipt/generate')->with([
+                'errorMessage' => $message,
+                'classRooms' => $classRooms,
+                'feeTypes' => $feeTypes,
+            ]);
+        }
+    }
+    }

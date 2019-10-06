@@ -38,7 +38,7 @@ class ResultCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
-        
+
         $this->crud->addColumns([
 
             [
@@ -81,15 +81,28 @@ class ResultCrudController extends CrudController
                 'name' => 'obtained_marks',
             ]
         ]);
-//
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->addFields([
+                [
+                    'name' => 'student_id',
+                    'label' => "Student Name",
+                    'type' => 'select2_from_array',
+                    'options' => User::getAdminStudents(),
+                    'allows_null' => false,
+                ],
+            ]);
+        }else{
+            $this->crud->addFields([
+                [
+                    'label' => 'Student Name',
+                    'name' => 'student_id',
+                    'type' => 'select2',
+                    'entity'=>'student',
+                    'attribute' => 'name'
+                ],
+            ]);
+        }
         $this->crud->addFields([
-            [
-                'name' => 'student_id',
-                'label' => "Student Name",
-                'type' => 'select_from_array',
-                'options' => User::getAdminStudents(),
-                'allows_null' => false,
-            ],
             [
                 'name' => 'exam_id',
                 'label' => "Exam",
@@ -118,13 +131,15 @@ class ResultCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-		$this->crud->addClause('whereHas', 'student', function($query) {
-            $query->where('admin_id', '=', backpack_user()->id);
-        });
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->addClause('whereHas', 'student', function ($query) {
+                $query->where('admin_id', '=', backpack_user()->id);
+            });
+        }
     }
 
     public function store(StoreRequest $request)
-    {        
+    {
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here

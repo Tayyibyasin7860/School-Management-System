@@ -60,7 +60,7 @@ class StudentUserCrudController extends CrudController
 			'attribute' => 'title'
 		]
 	]);
-	
+
 	$this->crud->addFields([
 		[
 			'name'=>'name',
@@ -74,8 +74,8 @@ class StudentUserCrudController extends CrudController
 			'name'=>'password',
 			'label'=>'Password',
 			'type' => 'password',
-			
-			
+
+
 		]
 	]);
         $this->crud->removeField('admin_id');
@@ -94,7 +94,7 @@ class StudentUserCrudController extends CrudController
                 [
                     'label' => 'Admin',
                     'name' => 'admin_id',
-                    'type' => 'select2',
+                    'type' => 'select',
                     'entity' => 'schoolAdmin',
                     'attribute' => 'name',
                 ],
@@ -112,7 +112,13 @@ class StudentUserCrudController extends CrudController
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
         $user_id = backpack_user()->id;
-        $this->crud->addClause('where','admin_id','=',$user_id);
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
+        else{
+            $this->crud->addClause('where','admin_id','!=','');
+        }
+
     }
 
     public function store(StoreRequest $request)

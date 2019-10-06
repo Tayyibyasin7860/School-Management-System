@@ -68,33 +68,18 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ExamSession','admin_id');
     }
 
-
-
-	public static function myExamSessions(){
-
-		$examSessions = backpack_user()->examSessions;
-		$result = [];
-		foreach($examSessions as $session){
-			$result[$session->id] = $session->title . ' ' .$session->year;
-		}
-		return $result ;
-	}
-
-	public static function myExams(){
-
-		$exams = backpack_user()->exams;
-
-		$result = [];
-		foreach($examSessions as $session){
-			$result[$session->id] = $session->title . ' ' .$session->year;
-		}
-		return $result ;
-	}
-
-    //one student has many exams and belongsto many exams. students and exams both have joining table results.
+//one admin has many feedbacks
+    public function studentFeedbacks(){
+        return $this->hasMany('App\Models\Feedback','admin_id');
+    }
+    //one student has many feedbacks
+    public function feedbacks(){
+        return $this->hasMany('App\Models\Feedback','student_id');
+    }
+//one student has many exams and belongsto many exams. students and exams both have joining table results.
     public function exams(){
         return $this->belongsToMany('App\Models\Exam','results','student_id','exam_id')
-                    ->withPivot('total_marks', 'obtained_marks','remarks');
+            ->withPivot('total_marks', 'obtained_marks','remarks');
     }
     //one student belongs to many fees
     public function feeTypes(){
@@ -115,21 +100,48 @@ class User extends Authenticatable
     public function classes(){
         return $this->hasMany('App\Models\ClassRoom','admin_id');
     }
+    public function subjects(){
+        return $this->hasMany('App\Models\Subject','admin_id');
+    }
+
+    public static function myExamSessions(){
+
+		$examSessions = backpack_user()->examSessions;
+		$result = [];
+		foreach($examSessions as $session){
+			$result[$session->id] = $session->title . ' ' .$session->year;
+		}
+		return $result ;
+	}
+
+	public static function myExams(){
+
+		$exams = backpack_user()->exams;
+
+		$result = [];
+		foreach($examSessions as $session){
+			$result[$session->id] = $session->title . ' ' .$session->year;
+		}
+		return $result ;
+	}
+
+    public static function myFeeTypes(){
+
+        $feeTypes = backpack_user()->adminFeeTypes;
+
+        $voucherTypes = [];
+        foreach($feeTypes as $feeType){
+            $voucherTypes[$feeType->id] = $feeType->title;
+        }
+        return $voucherTypes ;
+    }
 
 	public function myClasses(){
 		return $this->classes->pluck('title','id')->toArray();
 	}
-
-
-    //one admin has many feedbacks
-    public function studentFeedbacks(){
-        return $this->hasMany('App\Models\Feedback','admin_id');
+    public function mySubjects(){
+        return $this->subjects()->pluck('title','id')->toArray();
     }
-    //one student has many feedbacks
-    public function feedbacks(){
-        return $this->hasMany('App\Models\Feedback','student_id');
-    }
-
 
     //profile button
     public function profileButton(){

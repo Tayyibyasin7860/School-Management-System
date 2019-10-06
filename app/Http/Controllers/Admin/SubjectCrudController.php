@@ -44,28 +44,43 @@ class SubjectCrudController extends CrudController
                'orderable' => false,
            ],
 		   [
-               'name' => 'title',               
-               'label' => 'Title',               
+               'name' => 'title',
+               'label' => 'Title',
            ],
 		]);
-		
+        if(auth()->user()->hasRole('super_admin')){
+            $this->crud->addColumns([
+                [
+                    'label' => 'Admin',
+                    'name'  => 'admin_id',
+                    'type'  => 'select',
+                    'entity'  => 'schoolAdmin',
+                    'attribute'  => 'name',
+                ]
+            ]);
+        }
 		$this->crud->addFields([
-		   
+
 		   [
-               'name' => 'title',               
-               'label' => 'Title',               
+               'name' => 'title',
+               'label' => 'Title',
            ],
 		]);
-		
-        $this->crud->removeColumn('admin_id');
-        $this->crud->removeField('admin_id');
+
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->removeColumn('admin_id');
+            $this->crud->removeField('admin_id');
+        }
+
 
         // add asterisk for fields that are required in SubjectRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
         $user_id = backpack_user()->id;
-        $this->crud->addClause('where','admin_id','=',$user_id);
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
     }
 
     public function store(StoreRequest $request)

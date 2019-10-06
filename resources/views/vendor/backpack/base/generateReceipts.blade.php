@@ -22,21 +22,15 @@
     <div class="col-md-6">
         <form id="contact-form" method="post" action="/admin/fee-receipt/generate">
             @csrf
-            @if(session()->has('message'))
-                @if(session()->has('student_count') && session()->get('student_count') > 0){
+                @if(session()->has('message')){
                     <div class="alert alert-success">
                         <strong>Success: </strong>{{ session()->get('message') }}
                     </div>
-                @elseif(session()->has('student_count') && session()->get('student_count') < 0)
+                @elseif(session()->has('errorMessage'))
                     <div class="alert alert-danger">
-                        <strong>Failure: </strong>{{ session()->get('message') }}
-                    </div>
-                    @else
-                    <div class="alert alert-danger">
-                        <strong>Failure: </strong>{{ session()->get('message') }}
+                        <strong>Failure: </strong>{{ session()->get('errorMessage') }}
                     </div>
                 @endif
-            @endif
             <div class="controls">
                     <div class="col-md-12">
                         <div class="form-group required">

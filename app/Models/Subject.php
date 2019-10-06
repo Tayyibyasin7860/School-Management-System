@@ -41,7 +41,9 @@ class Subject extends Model
     public function exams(){
         return $this->hasMany('App\Models\Exam');
     }
-
+    public function schoolAdmin(){
+        return $this->belongsTo('App\User','admin_id');
+    }
     public static function getAdminSubjects(){
         return Subject::where('admin_id',backpack_user()->id)->pluck('title','id')->toArray();
     }

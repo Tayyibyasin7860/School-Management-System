@@ -51,6 +51,17 @@ class ClassCrudController extends CrudController
                  'name'  => 'available_seats',
              ]
          ]);
+         if(auth()->user()->hasRole('super_admin')){
+             $this->crud->addColumns([
+                 [
+                     'label' => 'Admin',
+                     'name'  => 'admin_id',
+                     'type'  => 'select',
+                     'entity'  => 'schoolAdmin',
+                     'attribute'  => 'name',
+                 ]
+             ]);
+         }
         $this->crud->addFields([
             [
                 'label' => 'Name',
@@ -68,7 +79,9 @@ class ClassCrudController extends CrudController
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
         $user_id = backpack_user()->id;
-        $this->crud->addClause('where','admin_id','=',$user_id);
+        if (!auth()->user()->hasRole('super_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
     }
 
     public function store(StoreRequest $request)

@@ -36,14 +36,14 @@ class ClassRoom extends Model
     */
 
 	public function schoolAdmin(){
-        return $this->belongsTo('App\Models\User','admin_id');
+        return $this->belongsTo('App\User','admin_id');
     }
-	
+
 	public function classFee(){
         return $this->hasMany('App\Models\ClassFee','class_id');
     }
-	
-    
+
+
     public function students(){
         return $this->hasMany('App\Models\StudentDetail','class_id');
     }
