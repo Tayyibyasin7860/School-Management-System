@@ -23,19 +23,23 @@
         <form id="contact-form" method="post" action="/admin/fee-receipt/generate">
             @csrf
             @if(session()->has('message'))
-                @if(session()->get('student_count')>0){
+                @if(session()->has('student_count') && session()->get('student_count') > 0){
                     <div class="alert alert-success">
                         <strong>Success: </strong>{{ session()->get('message') }}
                     </div>
-                @else
+                @elseif(session()->has('student_count') && session()->get('student_count') < 0)
+                    <div class="alert alert-danger">
+                        <strong>Failure: </strong>{{ session()->get('message') }}
+                    </div>
+                    @else
                     <div class="alert alert-danger">
                         <strong>Failure: </strong>{{ session()->get('message') }}
                     </div>
                 @endif
             @endif
             <div class="controls">
-                    <div class="col-md-6">
-                        <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="form-group required">
                             <label for="fee_type">Fee Type</label>
                             <select id="fee_type" class="form-control" name="fee_type">
                                 <option value="">Select Fee Type</option>
@@ -47,9 +51,7 @@
                                {{ $errors->first('fee_type')}}
                             </small>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
+						<div class="form-group required">
                             <label for="class">Class</label>
                             <select id="class" class="form-control" name="class">
                                 <option value="">Select Class</option>
@@ -59,27 +61,6 @@
                             </select>
                             <small class="form-text text-muted text-danger">
                                  {{$errors->first('class')}}
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="amount">Total amount</label>
-                            <input style="width:222px;" type="number" name="amount" class="form-control" value="{{ old('amount') }}" data-error="Valid email is required.">
-                            <small class="form-text text-muted text-danger">
-                                {{ $errors->first('amount') }}
-                            </small>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="amount">Submitted amount</label>
-                            <input style="width:222px;" type="number" name="submitted_amount" class="form-control" value="{{ old('submitted_amount') }}" data-error="Valid email is required.">
-                            <small class="form-text text-muted text-danger">
-                                {{ $errors->first('submitted_amount') }}
                             </small>
                         </div>
                     </div>
@@ -96,30 +77,6 @@
                     </div>
 
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="submission_date">Submission Date</label>
-                            <input type="date" name="submission_date" class="form-control" value="{{ old('submission_date') }}" data-error="Valid email is required.">
-                            <small class="form-text text-muted text-danger">
-                                {{ $errors->first('submission_date') }}
-                            </small>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="class">Status</label>
-                            <select class="form-control" name="status">
-                                <option value="">Select status</option>
-                                <option value="pending">Pending</option>
-                                <option value="paid">Paid</option>
-                            </select>
-                            <small class="form-text text-muted text-danger">
-                                {{ $errors->first('status') }}
-                            </small>
-                        </div>
-                    </div>
 
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-success btn-send" value="Send Receipts">

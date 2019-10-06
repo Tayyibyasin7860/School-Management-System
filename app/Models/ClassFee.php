@@ -34,6 +34,14 @@ class ClassFee extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+	
+	public function classRoom(){
+        return $this->belongsTo('App\Models\ClassRoom','class_id');
+    }
+	
+	public function feeType(){
+        return $this->belongsTo('App\Models\FeeType','fee_type_id');
+    }
 //
     /*
     |--------------------------------------------------------------------------

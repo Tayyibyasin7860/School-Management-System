@@ -46,8 +46,8 @@ class ExamCrudController extends CrudController
             [
                 'label' => 'Exam Session',
                 'name' => 'exam_session_id',
-                'type' => 'select',
-                'entity' => 'examSession',
+                'type' => 'select_from_array',
+                'options'=>\App\User::myExamSessions(),
                 'attribute' => 'title'
             ],
             [
@@ -73,8 +73,8 @@ class ExamCrudController extends CrudController
             [
                 'label' => 'Exam Session',
                 'name' => 'exam_session_id',
-                'type' => 'select',
-                'entity' => 'examSession',
+                'type' => 'select2_from_array',
+                'options'=>\App\User::myExamSessions(),
                 'attribute' => 'title'
             ],
             [
@@ -94,7 +94,7 @@ class ExamCrudController extends CrudController
             [
                 'label' => 'Date',
                 'name' => 'date',
-                'type' => 'date'
+                'type' => 'date_picker'
             ],
         ]);
 
@@ -105,11 +105,12 @@ class ExamCrudController extends CrudController
 		$this->crud->addClause('whereHas', 'examSession', function($query) {
             $query->where('admin_id', '=', backpack_user()->id);
         });
+
     }
 
     public function store(StoreRequest $request)
     {
-        $request->request->set('admin_id', backpack_user()->id);
+        
         // your additional operations before save here
 //        $request->request->set('admin_id', backpack_user()->id);
         $redirect_location = parent::storeCrud($request);

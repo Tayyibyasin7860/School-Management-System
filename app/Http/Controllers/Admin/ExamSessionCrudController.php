@@ -37,6 +37,12 @@ class ExamSessionCrudController extends CrudController
 //        $this->crud->setFromDb();
 
         $this->crud->addColumns([
+			[
+               'name' => 'row_number',
+               'type' => 'row_number',
+               'label' => 'Sr. #',
+               'orderable' => false,
+           ],
             [
                 'label' => 'Title',
                 'name' => 'title'

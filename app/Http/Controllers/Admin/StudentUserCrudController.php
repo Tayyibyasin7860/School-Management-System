@@ -33,16 +33,53 @@ class StudentUserCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-//        $user = User::find(2);
-//        $user_id = User::find(2)->id;
-//        $user->setupData($user_id);
         $this->crud->addButtonFromModelFunction('line', 'profile', 'profileButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
 
-        $this->crud->removeColumn('admin_id');
+	$this->crud->addColumns([
+			[
+                'name' => 'row_number',
+                'type' => 'row_number',
+                'label' => 'Sr. #',
+                'orderable' => false,
+            ],
+		[
+			'name'=>'name',
+			'label'=>'Name'
+		],
+		[
+			'name'=>'email',
+			'label'=>'Email'
+		],
+		[
+			'name'=>'class_id',
+			'label'=>'Class',
+			'type' => 'select',
+			'entity' => 'studentDetail.classRoom',
+			'attribute' => 'title'
+		]
+	]);
+	
+	$this->crud->addFields([
+		[
+			'name'=>'name',
+			'label'=>'Name'
+		],
+		[
+			'name'=>'email',
+			'label'=>'Email'
+		],
+		[
+			'name'=>'password',
+			'label'=>'Password',
+			'type' => 'password',
+			
+			
+		]
+	]);
         $this->crud->removeField('admin_id');
-//        dd(backpack_user()->hasRole('super_admin'));
+
         if(backpack_user()->hasRole('super_admin')) {
             $this->crud->addFields([
                 [

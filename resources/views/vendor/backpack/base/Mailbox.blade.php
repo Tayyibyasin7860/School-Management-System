@@ -16,7 +16,7 @@
 
 
 @section('content')
-    <div class="col-md-6">
+    <div class="col-md-5">
         <form id="contact-form" method="post" action="/admin/mailbox">
             @csrf
             @if(session()->has('message'))
@@ -26,7 +26,7 @@
             @endif
             <div class="controls">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="form-group">
                             <label for="category">Category</label>
                             <select id="category" class="form-control" name="category">

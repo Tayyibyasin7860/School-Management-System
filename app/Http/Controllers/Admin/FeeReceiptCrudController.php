@@ -40,7 +40,7 @@ class FeeReceiptCrudController extends CrudController
 
         $userAdminStudents = User::getAdminStudents();
         $userAdminStudentsWithAllStudents [] = 'All Students';
-        foreach ($userAdminStudents as $userAdminStudent){
+        foreach ($userAdminStudents as $userAdminStudent) {
             $userAdminStudentsWithAllStudents [] = $userAdminStudent;
         }
 //        $userAdminStudentsWithAllStudents [] = User::getAdminStudents();
@@ -48,95 +48,107 @@ class FeeReceiptCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
-            $this->crud->addColumns([
-                [
-                    'label' => 'Student Name',
-                    'name' => 'student_id',
-                    'type' => 'select',
-                     'entity' => 'student',
-                    'attribute' => 'name'
-                ],
-                [
-                    'label' => 'Fee Type',
-                    'name' => 'fee_type_id',
-                    'type' => 'select',
-                    'entity' => 'feeType',
-                    'attribute' => 'type'
-                ],
-                [
-                    'label' => 'Amount',
-                    'name' => 'amount',
-                ],
-                [
-                    'label' => 'Amount',
-                    'name' => 'amount',
-                ],
-                [
-                    'label' => 'Submitted Amount',
-                    'name' => 'submitted_amount',
-                ],
-                [
-                    'label' => 'Due Date',
-                    'name' => 'due_date',
-                    'type' => 'date'
-                ],
-                [
-                    'label' => 'Status',
-                    'name' => 'status',
-                ],
-                [
-                    'label' => 'Submission Date',
-                    'name' => 'submission_date',
-                ],
-            ]);
-            $this->crud->addFields([
-                [
-                    'label' => 'Fee Type',
-                    'name' => 'fee_type_id',
-                    'type' => 'select',
-                    'entity' => 'feeType',
-                    'attribute' => 'type'
-                ],
-                [
-                    'name' => 'student_id',
-                    'label' => "Student Name",
-                    'type' => 'select_from_array',
-                    'options' => $userAdminStudents,
-                    'allows_null' => false,
-                ],
-                [
-                    'label' => 'Amount',
-                    'name' => 'amount',
-                ],
-                [
-                    'label' => 'Amount',
-                    'name' => 'amount',
-                ],
-                [
-                    'label' => 'Submitted Amount',
-                    'name' => 'submitted_amount',
-                ],
-                [
-                    'label' => 'Due Date',
-                    'name' => 'due_date',
-                    'type' => 'date'
-                ],
-                [
-                    'label' => 'Status',
-                    'name' => 'status',
-                    'type' => 'enum'
-                ],
-                [
-                    'label' => 'Submission Date',
-                    'name' => 'submission_date',
-                    'type' => 'date_picker',
-                    'allows_null' => true,
-                    'default'=>true
-                ],
-            ]);
+        $this->crud->addColumns([
+            [
+                'name' => 'row_number',
+                'type' => 'row_number',
+                'label' => 'Sr. #',
+                'orderable' => false,
+            ],
+            [
+                'label' => 'Student Name',
+                'name' => 'student_id',
+                'type' => 'select',
+                'entity' => 'student',
+                'attribute' => 'name'
+            ],
+            [
+                'label' => 'Fee Type',
+                'name' => 'fee_type_id',
+                'type' => 'select',
+                'entity' => 'feeType',
+                'attribute' => 'type'
+            ],
+            [
+                'label' => 'Amount',
+                'name' => 'amount',
+            ],
+            [
+                'label' => 'Amount',
+                'name' => 'amount',
+            ],
+
+            [
+                'label' => 'Due Date',
+                'name' => 'due_date',
+                'type' => 'date'
+            ],
+            [
+                'label' => 'Status',
+                'name' => 'status',
+            ],
+            [
+                'label' => 'Submitted Amount',
+                'name' => 'submitted_amount',
+            ],
+            [
+                'label' => 'Submission Date',
+                'name' => 'submission_date',
+            ],
+        ]);
+        $this->crud->addFields([
+            [
+                'label' => 'Fee Type',
+                'name' => 'fee_type_id',
+                'type' => 'select',
+                'entity' => 'feeType',
+                'attribute' => 'type'
+            ],
+            [
+                'name' => 'student_id',
+                'label' => "Student Name",
+                'type' => 'select_from_array',
+                'options' => $userAdminStudents,
+                'allows_null' => false,
+            ],
+            [
+                'label' => 'Amount',
+                'name' => 'amount',
+            ],
+            [
+                'label' => 'Amount',
+                'name' => 'amount',
+            ],
+
+            [
+                'label' => 'Due Date',
+                'name' => 'due_date',
+                'type' => 'date'
+            ],
+            [
+                'label' => 'Status',
+                'name' => 'status',
+                'type' => 'enum'
+            ],
+            [
+                'label' => 'Submitted Amount',
+                'name' => 'submitted_amount',
+            ],
+            [
+                'label' => 'Submission Date',
+                'name' => 'submission_date',
+                'type' => 'date_picker',
+                'allows_null' => true,
+                'default' => true
+            ],
+        ]);
         // add asterisk for fields that are required in FeeReceiptRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
+
+        $this->crud->addClause('whereHas', 'student', function ($query) {
+            $query->where('admin_id', '=', backpack_user()->id);
+        });
     }
 
     public function store(StoreRequest $request)
@@ -157,49 +169,43 @@ class FeeReceiptCrudController extends CrudController
         return $redirect_location;
     }
 
-    public function generateReceiptForm(){
+    public function generateReceiptForm()
+    {
 
-        $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
-        $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
-        return view('vendor/backpack/base/generateReceipts',compact('classRooms','feeTypes'));
+        $classRooms = ClassRoom::where('admin_id', backpack_user()->id)->get();
+        $feeTypes = FeeType::where('admin_id', backpack_user()->id)->get();
+        return view('vendor/backpack/base/generateReceipts', compact('classRooms', 'feeTypes'));
     }
 
-    public function generateReceipt(){
-                    request()->validate([
-                    'fee_type' => 'required',
-                    'class' => 'required',
-                    'amount' => 'required|numeric',
-                    'due_date' => 'required|date',
-                    'status' => 'required',
-                    ]);
-            if(request()->filled('submitted_amount') || request()->filled('submitted_amount')){
-                request()->validate([
-                    'submitted_amount' => 'required|numeric',
-                    'submission_date' => 'required|date',
-                ]);
-            }
-        $student_ids = ClassRoom::find(request()->class)->students()->pluck('student_id');
-            $student_count=0;
-        foreach($student_ids as $student_id){
-            $student_count++;
+    public function generateReceipt()
+    {
+        request()->validate([
+            'fee_type' => 'required',
+            'class' => 'required',
+            'due_date' => 'required|date',
+        ]);
+        $class = ClassRoom::find(request()->class);
+
+        $class_fee = $class->classFee->where('fee_type_id', request()->fee_type)->first();
+
+        $student_count = 0;
+        foreach ($class->students->where('admin_id')->pluck('student_id') as $student_id)
             FeeReceipt::create([
                 'student_id' => $student_id,
                 'fee_type_id' => request()->fee_type,
-                'amount' => request()->amount,
-                'submitted_amount' => request()->submitted_amount,
+                'amount' => $class_fee->amount,
+                'submitted_amount' => 0,
                 'due_date' => request()->due_date,
-                'submission_date' => request()->submission_date,
-                'status' => request()->status,
+                'status' => 'Pending',
             ]);
-        }
-        if($student_count>0){
-             $message = 'All receipts are generated successfuly.';
-        }
-        else{
+
+        if ($student_count > 0) {
+            $message = 'All receipts are generated successfully.';
+        } else {
             $message = 'No receipts were generated because this class has no students';
         }
-        $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
-        $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
+        $classRooms = ClassRoom::where('admin_id', backpack_user()->id)->get();
+        $feeTypes = FeeType::where('admin_id', backpack_user()->id)->get();
         return redirect('admin/fee-receipt/generate')->with([
             'message' => $message,
             'classRooms' => $classRooms,
@@ -207,4 +213,21 @@ class FeeReceiptCrudController extends CrudController
             'student_count' => $student_count
         ]);
     }
+
+//    public function classFeeCheck($class_fee){
+//        if($class_fee !== null){
+//            return null;
+//        }
+//        else{
+//            $classRooms = ClassRoom::where('admin_id',backpack_user()->id)->get();
+//            $feeTypes = FeeType::where('admin_id',backpack_user()->id)->get();
+//            $message = 'Please create fee for this class first';
+//
+//            return redirect('admin/fee-receipt/generate')->with([
+//                'message' => $message,
+//                'classRooms' => $classRooms,
+//                'feeTypes' => $feeTypes,
+//            ]);
+//        }
+//    }
 }

@@ -1,8 +1,5 @@
-@extends('layouts.app2')
-
-
-
-
+@extends('layouts.app')
+@section('title','Student | Feedback')
 @section('content')
 
     <div class="col-lg-9 animated fadeInRight">

@@ -4,11 +4,29 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/.github" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/documentation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/pages" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adminlte/plugins" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/almasaeed2010/adminlte" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/base" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/bootstrap-iconpicker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/ckeditor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/colorbox" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/cropper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/crud" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/elfinder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/generators" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/ladda" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/nestedSortable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/newscrud" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/pnotify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/select2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/summernote" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/backpack/tinymce" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/creativeorange/gravatar" />

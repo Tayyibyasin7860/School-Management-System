@@ -38,12 +38,7 @@ class ResultCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
-        $this->crud->setColumns([
-            [
-                'label' => 'admin',
-                'name' => 'admin_id'
-            ]
-        ]);
+        
         $this->crud->addColumns([
 
             [
@@ -70,6 +65,13 @@ class ResultCrudController extends CrudController
                 'entity' => 'exam.subject',
                 'attribute' => 'title'
             ],
+			[
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'exam.classRoom',
+                'attribute' => 'title'
+            ],
             [
                 'label' => 'Total Marks',
                 'name' => 'total_marks',
@@ -77,10 +79,6 @@ class ResultCrudController extends CrudController
             [
                 'label' => 'Obtained Marks',
                 'name' => 'obtained_marks',
-            ],
-            [
-                'label' => 'Teacher Remarks',
-                'name' => 'remarks',
             ]
         ]);
 //
@@ -97,7 +95,7 @@ class ResultCrudController extends CrudController
                 'label' => "Exam",
                 'type' => 'select',
                 'entity' => 'exam',
-                'attribute' => 'date',
+                'attribute' => 'descriptiveName',
             ],
             [
                 'label' => 'Total Marks',
@@ -120,13 +118,13 @@ class ResultCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-//                $this->crud->addClause('where','admin_id',backpack_user()->id);
+		$this->crud->addClause('whereHas', 'student', function($query) {
+            $query->where('admin_id', '=', backpack_user()->id);
+        });
     }
 
     public function store(StoreRequest $request)
-    {
-        $request->request->set('admin_id', backpack_user()->id);
-
+    {        
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here

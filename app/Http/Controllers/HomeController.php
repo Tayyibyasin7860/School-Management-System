@@ -49,20 +49,16 @@ class HomeController extends Controller
     public function fee()
     {
         $user_id = auth()->user()->id;
-//        $feeReceipt = FeeReceipt::where('student_id',$user_id);
-        $users = User::find(23);
-//        dd($users);
-        foreach($users->feeTypes as $feeType){
-            echo $feeType;
-        }
-        return view('student.fee',compact('user','user_fees'));
+        $user = User::find($user_id);
+
+        return view('student.fee',compact('user'));
     }
     public function exam()
     {
-        //getting currrent user
+        //getting current user
         $user = auth()->user();
-        $user_admin_sessions = User::find(auth()->user()->id)->schoolAdmin->examSessions;
-        $user_class_id = User::find(auth()->user()->id)->studentDetail->class->id;
+        $user_admin_sessions = $user->schoolAdmin->examSessions;
+        $user_class_id = $user->studentDetail->classRoom->id;
         $exams = [];
         foreach($user_admin_sessions as $user_admin_session){
             $user_admin_exams = $user_admin_session->exams->where('class_id',$user_class_id);
@@ -70,11 +66,6 @@ class HomeController extends Controller
                 $exams [] = $exam;
             }
         }
-
-//        $exam_sessions = $user_admin->examSessions()->where('admin_id','2');
-//        foreach($user_admin_sessions as $user_admin_session){
-//            print_r($user_admin_session->exams());
-//        }
         return view('student.exam', compact('exams','user'));
 
     }

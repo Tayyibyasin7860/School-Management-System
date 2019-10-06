@@ -34,15 +34,61 @@ class ClassFeeCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
-        $this->crud->addColumns([
-//            [
-//                'label' => 'Class',
-//                'name' => 'class_id',
-//                'entity' => 'fees',
-//                'attribute' => 'type'
-//            ],
-        ]);
+        //$this->crud->setFromDb();
+		
+		$feeTypes=  backpack_user()->adminFeeTypes->pluck('type','id')->toArray();
+		$this->crud->addFields([
+            
+            
+            [
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select2_from_array',
+                'options' => backpack_user()->myClasses(),
+                'attribute' => 'title'
+            ],
+			[
+                'label' => 'Fee Type',
+                'name' => 'fee_type_id',
+                'type' => 'select2_from_array',
+                'options' => $feeTypes,
+                'attribute' => 'type'
+            ],
+			[
+                'label' => 'Amount',
+                'name' => 'amount',
+                'type' => 'number'
+            ],
+		]);
+		$this->crud->addColumns([
+            [
+               'name' => 'row_number',
+               'type' => 'row_number',
+               'label' => 'Sr. #',
+               'orderable' => false,
+				],
+            
+            [
+                'label' => 'Class',
+                'name' => 'class_id',
+                'type' => 'select',
+                'entity' => 'classRoom',
+                'attribute' => 'title'
+            ],			
+			[
+                'label' => 'Fee Type',
+                'name' => 'fee_type_id',
+                'type' => 'select',
+                'entity' => 'feeType',
+                'attribute' => 'type'
+            ],
+			[
+                'label' => 'Amount',
+                'name' => 'amount',
+                'type' => 'number'
+            ],
+		]);
+        
         // add asterisk for fields that are required in ClassFeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

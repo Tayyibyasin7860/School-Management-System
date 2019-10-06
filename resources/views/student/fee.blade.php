@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 @section('title','Student | Fees')
 
 @section('content')
@@ -8,7 +8,7 @@
     <table class="table table-responsive">
         <thead class="text-capitalize">
         <th>
-            <b>Fee title</b>
+            <b>Fee Type</b>
         </th>
         <th>
             <b>Amount</b>
@@ -17,23 +17,35 @@
             <b>Due Date</b>
         </th>
         <th>
+            <b>Submitted amount</b>
+        </th>
+        <th>
+            <b>Submission date</b>
+        </th>
+        <th>
             <b>Status</b>
         </th>
         </thead>
         <tbody class="text-capitalize">
-        @foreach($user_fees as $fee)
+        @foreach($user->feeTypes as $feeType)
             <tr>
                 <td>
-                    {{ $fee->title }}
+                    {{ $feeType->type }}
                 </td>
                 <td>
-                    {{ $fee->amount }}
+                    {{ $feeType->pivot->amount }}
                 </td>
                 <td>
-                    {{ $fee->due_date}}
+                    {{ $feeType->pivot->due_date}}
                 </td>
                 <td>
-                    {{ $fee->status}}
+                    {{ $feeType->pivot->submitted_amount}}
+                </td>
+                <td>
+                    {{ $feeType->pivot->submission_date}}
+                </td>
+                <td>
+                    {{ $feeType->pivot->status}}
                 </td>
             </tr>
         @endforeach

@@ -46,6 +46,9 @@ class Exam extends Model
     public function examSession(){
         return $this->belongsTo('App\Models\ExamSession','exam_session_id');
     }
+	
+	
+	
     public function classRoom(){
         return $this->belongsTo('App\Models\ClassRoom','class_id');
     }
@@ -64,6 +67,10 @@ class Exam extends Model
     public function getAdminIdAttribute(){
         return $this->examSession->schoolAdmin->id;
     }
+	
+	public function getDescriptiveNameAttribute(){
+		return $this->examSession->title.' | '.$this->classRoom->title.' | '. $this->subject->title;;
+	}
 //    public function getExamSessionIdAttribute(){
 //        return $this->examSession()->where('admin_id',backpack()->user()->id);
 //    }

@@ -75,7 +75,6 @@
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
-      <path value="$PROJECT_DIR$/vendor/facade/ignition" />
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
@@ -110,6 +109,25 @@
       <path value="$PROJECT_DIR$/vendor/backpack/newscrud" />
       <path value="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/.github" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/bower_components" />
+      <path value="$PROJECT_DIR$/vendor/backpack/cropper" />
+      <path value="$PROJECT_DIR$/vendor/backpack/ladda" />
+      <path value="$PROJECT_DIR$/vendor/backpack/pnotify" />
+      <path value="$PROJECT_DIR$/vendor/backpack/tinymce" />
+      <path value="$PROJECT_DIR$/vendor/backpack/elfinder" />
+      <path value="$PROJECT_DIR$/vendor/backpack/select2" />
+      <path value="$PROJECT_DIR$/vendor/backpack/bootstrap-iconpicker" />
+      <path value="$PROJECT_DIR$/vendor/backpack/colorbox" />
+      <path value="$PROJECT_DIR$/vendor/backpack/ckeditor" />
+      <path value="$PROJECT_DIR$/vendor/backpack/nestedSortable" />
+      <path value="$PROJECT_DIR$/vendor/backpack/summernote" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/documentation" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/plugins" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/dist" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/build" />
+      <path value="$PROJECT_DIR$/vendor/adminlte/pages" />
+      <path value="$PROJECT_DIR$/vendor/facade/ignition" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

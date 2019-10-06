@@ -34,8 +34,29 @@ class SubjectCrudController extends CrudController
         */
 
         // TODO: remove setFromDb() and manually define Fields and Columns
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
 
+		$this->crud->addColumns([
+		   [
+               'name' => 'row_number',
+               'type' => 'row_number',
+               'label' => 'Sr. #',
+               'orderable' => false,
+           ],
+		   [
+               'name' => 'title',               
+               'label' => 'Title',               
+           ],
+		]);
+		
+		$this->crud->addFields([
+		   
+		   [
+               'name' => 'title',               
+               'label' => 'Title',               
+           ],
+		]);
+		
         $this->crud->removeColumn('admin_id');
         $this->crud->removeField('admin_id');
 

@@ -19,7 +19,7 @@ Route::group([
     CRUD::resource('user', 'UserCrudController');
     CRUD::resource('student', 'StudentUserCrudController');
     Route::group(['prefix' => 'student/{student_id}'], function () {
-        CRUD::resource('profile', 'StudentCrudController');
+        CRUD::resource('profile', 'StudentDetailCrudController');
 
     });
     CRUD::resource('class-subject', 'ClassSubjectBaseCrudController');

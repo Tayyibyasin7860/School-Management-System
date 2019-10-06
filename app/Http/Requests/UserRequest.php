@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
         ];
 
         if(!$this->request->get('id') || \Illuminate\Http\Request::get('password'))
-            $rules['password'] = 'required|confirmed';
+            $rules['password'] = 'required|confirmed|min:8';
 
         return $rules;
     }

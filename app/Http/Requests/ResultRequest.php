@@ -29,7 +29,7 @@ class ResultRequest extends FormRequest
             'student_id' => 'required',
             'total_marks' => 'required',
             'obtained_marks' => 'required',
-            'remarks' => 'required'
+            'remarks' => 'max:255'
         ];
     }
 

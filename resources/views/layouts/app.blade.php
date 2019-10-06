@@ -1,108 +1,136 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
+
 <head>
+    <title> @yield('title') </title>
+    <!-- META TAGS -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Education master is one of the best educational html template, it's suitable for all education websites like university,college,school,online education,tution center,distance education,computer education">
+    <meta name="keyword"
+          content="education html template, university template, college template, school template, online education template, tution center template">
+    <!-- FAV ICON(BROWSER TAB ICON) -->
+    <link rel="shortcut icon" href="{{ asset('images/fav.ico') }}" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700"
+          rel="stylesheet">
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <!-- ALL CSS FILES -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/style2.css') }}" rel="stylesheet"/>
+    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+    <link href="{{ asset('css/style-mob.css') }}" rel="stylesheet"/>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        // .add('pro-act');
+        // document.write(window.location.href);
 
-    <title> @yield('title', 'School Management Website') </title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <script type="text/javascript" src="http://naeka.github.io/jquery-switchbutton/jquery-1.6.2.min.js"></script>
-
-    <style>
-    .card-body table{margin:0 auto !important;}
-    .fa-sync-alt{cursor:pointer;}
-    </style>
-    @yield('header_scripts')
+        var v = document.getElementById("profile");
+        v.classList += "pro-act";
+    </script>
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    School Management System
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        @guest
-                           @else
-
-                            <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Dashboard</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{route('profile')}}">Profile</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{route('fee')}}">Fee</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{route('notice-board')}}">Notice Board</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{route('exam')}}">Exams</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{route('result')}}">Results</a></li>
-                        @endguest
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-
-                            </li>
-                            <li class="nav-item"> <i class="nav-link">|</i></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> </li>
-                        @else
-                           <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Account <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+<div class="pro-menu">
+    <div class="container">
+        <div class="col-md-9 col-md-offset-3">
+            <ul>
+                @if(Request::path() == 'student')
+                    <li><a href="{{ route('dashboard') }}" class="pro-act">My Dashboard</a></li>
+                @else
+                    <li><a href="{{ route('dashboard') }}">My Dashboard</a></li>
+                @endif
+                @if(Request::path() == 'student/profile')
+                    <li><a href="{{ route('profile') }}" class="pro-act">Profile</a></li>
+                @else
+                    <li><a href="{{ route('profile') }}">Profile</a></li>
+                @endif
+                @if(Request::path() == 'student/fee')
+                    <li><a href="{{ route('fee') }}" class="pro-act">Fee</a></li>
+                @else
+                    <li><a href="{{ route('fee') }}">Fee</a></li>
+                @endif
+                @if(Request::path() == 'student/exam')
+                    <li><a href="{{ route('exam') }}" class="pro-act">Exam</a></li>
+                @else
+                    <li><a href="{{ route('exam') }}">Exam</a></li>
+                @endif
+                @if(Request::path() == 'student/result')
+                    <li><a href="{{ route('result') }}" class="pro-act">Result</a></li>
+                @else
+                    <li><a href="{{ route('result') }}">Result</a></li>
+                @endif
+                @if(Request::path() == 'student/notice-board')
+                    <li><a href="{{ route('notice-board') }}" class="pro-act">notice-board</a></li>
+                @else
+                    <li><a href="{{ route('notice-board') }}">Notice Board</a></li>
+                @endif
+                @if(Request::path() == 'student/feedback')
+                    <li><a href="{{ route('feedback') }}" class="pro-act">Feedback</a></li>
+                @else
+                    <li><a href="{{ route('feedback') }}">Feedback</a></li>
+                @endif
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                        logout
+                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="stu-db">
+    <div class="container pg-inn">
+        <div class="col-md-3">
+            <div class="pro-user" style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ asset('storage/' . $user->StudentDetail->photo) }}); background-size: cover; width: 200px;height: 200px; ">
+{{--                <img src="{{ asset('storage/' . $user->StudentDetail->photo) }}" alt="user" class="img-circle" style="display: block; width: 100%; height: auto;">--}}
+            </div>
+            <form action="/student/update-photo/{{ $user->id }}" method="post" class="form"
+                  enctype="multipart/form-data">
+                @method('patch')
+                @csrf
+                <input type="file" name="photo" class="form-control">
+                <input type="submit" class="btn btn-success" style="width: 100%;" value="Change Profile Picture">
+            </form>
+
+
+            <div class="pro-user-bio">
+                <ul>
+                    <li>
+                        <h4>{{ $user->name }}</h4>
+                    </li>
+                    <li>Student Id: {{ $user->id }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="udb">
+
+                <div class="udb-sec udb-prof">
+                    @yield('content')
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </div>
     </div>
-    @section('footer_scripts')
-    <script>
-    $(function() {
+</div>
 
-    });
-    </script>
-@yield('footer_scripts')
+<!--Import jQuery before materialize.js-->
+<script src="{{ asset('js/main.min.js') }}"></script>
+<script src="{{ asset('images/fav.ico') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 </body>
+
+
 </html>

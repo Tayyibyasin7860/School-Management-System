@@ -45,9 +45,12 @@ class User extends Authenticatable
     ];
     protected $guard_name = 'web';
     //one student has one student detail
+
+
     public function studentDetail(){
         return $this->hasOne('App\Models\StudentDetail', 'student_id');
     }
+
     //one student at most belongs to one admin
     public function schoolAdmin()
     {
@@ -58,10 +61,36 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\User', 'admin_id');
     }
+
+
     //one admin(school) has many exam sessions
     public function examSessions(){
         return $this->hasMany('App\Models\ExamSession','admin_id');
     }
+
+
+
+	public static function myExamSessions(){
+
+		$examSessions = backpack_user()->examSessions;
+		$result = [];
+		foreach($examSessions as $session){
+			$result[$session->id] = $session->title . ' ' .$session->year;
+		}
+		return $result ;
+	}
+
+	public static function myExams(){
+
+		$exams = backpack_user()->exams;
+
+		$result = [];
+		foreach($examSessions as $session){
+			$result[$session->id] = $session->title . ' ' .$session->year;
+		}
+		return $result ;
+	}
+
     //one student has many exams and belongsto many exams. students and exams both have joining table results.
     public function exams(){
         return $this->belongsToMany('App\Models\Exam','results','student_id','exam_id')
@@ -69,13 +98,15 @@ class User extends Authenticatable
     }
     //one student belongs to many fees
     public function feeTypes(){
-        return $this->belongsToMany('App\Models\FeeType','fee_receipts','fee_type_id','student_id')
+        return $this->belongsToMany('App\Models\FeeType','fee_receipts','student_id','fee_type_id')
             ->withPivot('amount','submitted_amount','due_date','submission_date','status');
     }
     //one admin has many fees
     public function adminFeeTypes(){
         return $this->hasMany('App\Models\FeeType','admin_id');
     }
+
+
     //one admin has many articles
     public function articles(){
         return $this->hasMany('Backpack\NewsCRUD\app\Models\Article','admin_id');
@@ -84,6 +115,12 @@ class User extends Authenticatable
     public function classes(){
         return $this->hasMany('App\Models\ClassRoom','admin_id');
     }
+
+	public function myClasses(){
+		return $this->classes->pluck('title','id')->toArray();
+	}
+
+
     //one admin has many feedbacks
     public function studentFeedbacks(){
         return $this->hasMany('App\Models\Feedback','admin_id');
@@ -92,6 +129,8 @@ class User extends Authenticatable
     public function feedbacks(){
         return $this->hasMany('App\Models\Feedback','student_id');
     }
+
+
     //profile button
     public function profileButton(){
         if($this->studentDetail){
@@ -116,5 +155,15 @@ class User extends Authenticatable
             ]);
         }
 
+		$feeTypes = ['Admission Fee', 'Monthly Fee', 'Annual Fee'];
+		foreach ($feeTypes as $row){
+
+            Models\FeeType::create([
+                'type' => $row,
+
+                'admin_id' => $this->id
+            ]);
+        }
     }
+
 }
