@@ -23,69 +23,61 @@ class MailboxController extends CrudController
 
     public function send(Request $request)
     {
-
-//        $admin_students = User::find(backpack_user()->id)->students;
-//        foreach ($admin_students as $admin_student){
-//            $student_fees = $admin_student->fees;
-//            foreach($student_fees as $student_fee){
-//                    $fee_status = $student_fee->pivot->status;
-//                    if($fee_status = 'Pending'){
-//                        echo "pending";
-//                    }
-//            }
-////        }
-//        $admin = backpack_user()->id;
-////        $fees = $admin->fees();
-//
-//        dd(Exam::find(1)->examSession()->where('admin_id',$admin)->pluck('admin_id'));
-////        $pending_fee = $fee->pivot;
-//        foreach ($fees as $fee){
-//            echo $fee . "<br>";
-//        }
-//        dd();
         request()->validate([
             'category' => 'required',
             'message' => 'required'
         ]);
-        if(request()->filled('email')){
+        if (request()->filled('email')) {
             request()->validate([
                 'email' => 'required'
             ]);
         }
-        if(request()->category == 'fee_defaulters')
-        {
-            $pending_fee = FeeType::where('status','Pending')
-                ->whereHas('students', function($user){
-                    $user->where('admin_id', backpack_user()->id);
-                })
-                ->get();
-            dd($pending_fee);
+        if (request()->category == 'fee_defaulters') {
+            $users = User::where('admin_id', backpack_user()->id)->get();
             $emails = [];
-            foreach ($pending_fee as $fee){
-                $emails [] =  $fee->student->email;
+            foreach ($users as $user) {
+                foreach ($user->feeTypes as $feeReceipt) {
+                    $status = $feeReceipt->pivot->status;
+                    if($status == 'pending'){
+                        $pendingStudentId = $feeReceipt->pivot->student_id;
+                        echo $emails [] = User::where('id',$pendingStudentId)->pluck('email');
+                    }
+                }
             }
-        }else if($request->category =='all'){
+        }
+        else if (request()->category == 'announced_results') {
+            $users = User::where('admin_id', backpack_user()->id)->get();
+            $emails = [];
+            foreach ($users as $user) {
+                foreach ($user->exams as $exam) {
+                    $resultstudentId = $exam->pivot->student_id;
+                       $emails [] = User::where('id',$resultstudentId)->pluck('email');
+//                    }
+                }
+            }
+        }
+        else if ($request->category == 'all') {
             $students = User::where('admin_id', backpack_user()->id)->get();
-            foreach ($students as $student){
-                $emails [] =  $student->email;
+            foreach ($students as $student) {
+                $emails [] = $student->email;
             }
-        }else if(!empty($request->email)){
+        } else if (!empty($request->email)) {
             $emails [] = $request->email;
         }
 
-        if(!empty($emails)){
-
-            foreach ($emails as $email){
-                $mail = new AdminMail();
-                $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from '.config('app.name');
+        if (!empty($emails)) {
+            $message['message'] = request()->message;
+            foreach ($emails as $email) {
+                $mail = new AdminMail($message);
+                $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from ' . config('app.name');
                 Mail::to($email)->send($mail);
 //                sleep(1);
             }
             $message = 'Email(s) has been sent successfully.';
-            return redirect('/admin/mailbox')->with('message',$message);
+            return redirect('/admin/mailbox')->with('message', $message);
 
-        }else{
-            return redirect('/admin/mailbox')->withErrors(['emailError'=> 'No email sent.']);
+        } else {
+            return redirect('/admin/mailbox')->withErrors(['emailError' => 'No email sent.']);
         }
     }
 
@@ -96,7 +88,7 @@ class MailboxController extends CrudController
 
     public function studentEmail(User $student)
     {
-        return view('vendor/backpack/base/Mailbox',compact('student'));
+        return view('vendor/backpack/base/Mailbox', compact('student'));
     }
 
     public function update(Request $request, $id)

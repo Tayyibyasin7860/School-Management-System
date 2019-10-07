@@ -69,7 +69,9 @@ class ExamSessionCrudController extends CrudController
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
         $this->crud->removeColumn('admin_id');
         $this->crud->removeField('admin_id');
-        $this->crud->addClause('where','admin_id','=',backpack_user()->id);
+        if(auth()->user()->hasRole('school_admin')){
+            $this->crud->addClause('where','admin_id','=',backpack_user()->id);
+        }
     }
 
     public function store(StoreRequest $request)

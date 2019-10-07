@@ -32,6 +32,7 @@
                             <select id="category" class="form-control" name="category">
                                 <option value="one">Chosen recipient</option>
                                 <option value="fee_defaulters">Fee defaulters</option>
+                                <option value="announced_results">Announced Results</option>
                                 <option value="all">All Students</option>
                             </select>
                         </div>

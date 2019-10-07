@@ -12,14 +12,15 @@ class AdminMail extends Mailable
     use Queueable, SerializesModels;
 
     public $subject = '';
+    public $studentData;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($studentData)
     {
-        //
+        $this->studentData = $studentData;
     }
 
     /**

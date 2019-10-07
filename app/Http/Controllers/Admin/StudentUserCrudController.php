@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Mail\AdminMail;
 use App\Models\StudentDetail;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -9,6 +10,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\UserRequest as StoreRequest;
 use App\Http\Requests\UserRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class UserCrudController
@@ -132,7 +134,15 @@ class StudentUserCrudController extends CrudController
         }
 
         $request->request->set('admin_id', backpack_user()->id);
+        $studentPassword = $request->request->get('password_confirmation');
+        $studentEmail = $request->request->get('email');
+        $studentData = [];
+        $studentData ['studentEmail'] = $studentEmail;
+        $studentData ['studentPassword'] = $studentPassword;
 
+        $mail = new AdminMail($studentData);
+        $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from ' . config('app.name');
+        Mail::to($studentEmail)->send($mail);
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
