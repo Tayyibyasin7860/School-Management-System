@@ -37,6 +37,12 @@ class CategoryCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
+               'name' => 'row_number',
+               'type' => 'row_number',
+               'label' => 'Sr. #',
+               'orderable' => false,
+           ]);
+        $this->crud->addColumn([
             'name' => 'name',
             'label' => 'Name',
         ]);

@@ -35,10 +35,13 @@ class ArticleCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'date',
-        ]);
+               'name' => 'row_number',
+               'type' => 'row_number',
+               'label' => 'Sr. #',
+               'orderable' => false,
+           ]);
+
+
         $this->crud->addColumn([
             'name' => 'title',
             'label' => 'Title',
@@ -51,16 +54,20 @@ class ArticleCrudController extends CrudController
             'attribute' => 'name',
             'model' => "Backpack\NewsCRUD\app\Models\Category",
         ]);
-
+        $this->crud->addColumn([
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+        ]);
         // ------ CRUD FIELDS
-        $this->crud->addField([    // TEXT
+        $this->crud->addField([
             'name' => 'title',
             'label' => 'Title',
             'type' => 'text',
             'placeholder' => 'Your title here',
         ]);
 
-        $this->crud->addField([    // TEXT
+        $this->crud->addField([
             'name' => 'date',
             'label' => 'Date',
             'type' => 'date',

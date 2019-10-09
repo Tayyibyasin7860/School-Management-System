@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Mail\AdminMail;
 use App\Models\StudentDetail;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -10,7 +9,6 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\UserRequest as StoreRequest;
 use App\Http\Requests\UserRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * Class UserCrudController
@@ -62,7 +60,7 @@ class StudentUserCrudController extends CrudController
 			'attribute' => 'title'
 		]
 	]);
-
+	
 	$this->crud->addFields([
 		[
 			'name'=>'name',
@@ -76,8 +74,8 @@ class StudentUserCrudController extends CrudController
 			'name'=>'password',
 			'label'=>'Password',
 			'type' => 'password',
-
-
+			
+			
 		]
 	]);
         $this->crud->removeField('admin_id');
@@ -96,7 +94,7 @@ class StudentUserCrudController extends CrudController
                 [
                     'label' => 'Admin',
                     'name' => 'admin_id',
-                    'type' => 'select',
+                    'type' => 'select2',
                     'entity' => 'schoolAdmin',
                     'attribute' => 'name',
                 ],
@@ -109,18 +107,26 @@ class StudentUserCrudController extends CrudController
                     'type' => 'password'
                 ],
             ]);
+            
+            
+        $classes=  backpack_user()->myClasses();
+        $this->crud->addFilter([ // dropdown filter
+          'name' => 'class_id',
+          'type' => 'dropdown',
+          'label'=> 'Class'
+        ], $classes, function($value) { // if the filter is active
+             $this->crud->addClause('whereHas', 'studentDetail', function($query) use ($value) {
+                $query->where('class_id', $value);
+            });
+            
+        });
+        
         // add asterisk for fields that are required in UserRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
         $user_id = backpack_user()->id;
-        if (!auth()->user()->hasRole('super_admin')){
-            $this->crud->addClause('where','admin_id','=',$user_id);
-        }
-        else{
-            $this->crud->addClause('where','admin_id','!=','');
-        }
-
+        $this->crud->addClause('where','admin_id','=',$user_id);
     }
 
     public function store(StoreRequest $request)
@@ -134,15 +140,7 @@ class StudentUserCrudController extends CrudController
         }
 
         $request->request->set('admin_id', backpack_user()->id);
-        $studentPassword = $request->request->get('password_confirmation');
-        $studentEmail = $request->request->get('email');
-        $studentData = [];
-        $studentData ['studentEmail'] = $studentEmail;
-        $studentData ['studentPassword'] = $studentPassword;
 
-        $mail = new AdminMail($studentData);
-        $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from ' . config('app.name');
-        Mail::to($studentEmail)->send($mail);
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

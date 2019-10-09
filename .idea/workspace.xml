@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeedbackCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeedbackCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentUserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentUserCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/AdminMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/AdminMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/admin/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/admin/mail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/Mailbox.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/Mailbox.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -270,7 +270,8 @@
       <workItem from="1570206577367" duration="16932000" />
       <workItem from="1570252988590" duration="68535000" />
       <workItem from="1570396891611" duration="6648000" />
-      <workItem from="1570428445717" duration="14765000" />
+      <workItem from="1570428445717" duration="15705000" />
+      <workItem from="1570541479852" duration="4388000" />
     </task>
     <servers />
   </component>

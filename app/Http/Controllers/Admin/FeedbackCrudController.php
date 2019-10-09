@@ -40,6 +40,12 @@ class FeedbackCrudController extends CrudController
 //        $this->crud->setFromDb();
         $this->crud->addColumns([
             [
+                'name' => 'row_number',
+                'type' => 'row_number',
+                'label' => 'Sr. #',
+                'orderable' => false,
+            ],
+            [
                 'label' => 'Student Name',
                 'name' => 'student_id',
                 'type' => 'select',
@@ -60,6 +66,16 @@ class FeedbackCrudController extends CrudController
             'name' => 'submission_date'
             ]
         ]);
+        
+        $students = \App\User::where('admin_id', backpack_user()->id)->pluck('name','id')->toArray();
+        $this->crud->addFilter([ // dropdown filter
+          'name' => 'student_id',
+          'type' => 'select2',
+          'label'=> 'Student'
+        ], $students, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'student_id', $value);
+        });
+        
         // add asterisk for fields that are required in FeedbackRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

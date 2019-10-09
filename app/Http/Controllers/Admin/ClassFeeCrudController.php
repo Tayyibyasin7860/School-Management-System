@@ -89,6 +89,15 @@ class ClassFeeCrudController extends CrudController
             ],
 		]);
         
+        $classes=  backpack_user()->myClasses();
+        $this->crud->addFilter([ // dropdown filter
+          'name' => 'class_id',
+          'type' => 'dropdown',
+          'label'=> 'Class'
+        ], $classes, function($value) { // if the filter is active
+            $this->crud->addClause('where', 'class_id', $value);
+        });
+        
         // add asterisk for fields that are required in ClassFeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
