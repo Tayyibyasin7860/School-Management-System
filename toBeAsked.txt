@@ -1,7 +1,2 @@
-image kesy lagani hai student ki admin crud se
-student k 2 profile create horhy hain jo k nhi hone chahye
-lougout hone k bad route per janay se can() function wala error
-submission date null kesy ho fee reciepts cud mein
-classes not showing in class subjects crud
-on admin registration 10 classes are creating but admin_id is not set
-admin is not filtering in exam crud
+super admin panel:
+reorder not working on categories crud

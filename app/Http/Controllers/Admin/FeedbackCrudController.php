@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
+use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -66,22 +68,43 @@ class FeedbackCrudController extends CrudController
             'name' => 'submission_date'
             ]
         ]);
-        
-        $students = \App\User::where('admin_id', backpack_user()->id)->pluck('name','id')->toArray();
-        $this->crud->addFilter([ // dropdown filter
-          'name' => 'student_id',
-          'type' => 'select2',
-          'label'=> 'Student'
-        ], $students, function($value) { // if the filter is active
-            $this->crud->addClause('where', 'student_id', $value);
-        });
-        
+
+        if (backpack_user()->hasRole('school_admin')) {
+            $students = User::where('admin_id', backpack_user()->id)->pluck('name', 'id')->toArray();
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'student_id',
+                'type' => 'select2',
+                'label' => 'Student'
+            ], $students, function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'student_id', $value);
+            });
+        }
+        if(backpack_user()->hasRole('super_admin')){
+            $this->crud->addColumn([
+                'label' => 'Admin',
+                'name' => 'admin_id',
+                'type' => 'select',
+                'entity' => 'schoolAdmin',
+                'attribute' => 'name',
+            ]);
+        }
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'admin_id','=',$value);
+            });
+        }
         // add asterisk for fields that are required in FeedbackRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        $this->crud->addClause('where', 'admin_id','=',backpack_user()->id);
-    }
+        $user_id = backpack_user()->id;
+        if (auth()->user()->hasRole('school_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }    }
 
     public function store(StoreRequest $request)
     {

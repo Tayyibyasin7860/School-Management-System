@@ -20,4 +20,15 @@ class ExamSession extends Model
     public function exams(){
         return $this->hasMany('App\Models\Exam','exam_session_id');
     }
+
+    //functions
+    public static function getExamSessionWithAdminAttribute(){
+        $examSessions = ExamSession::all();
+        $examSessionWithAdmin = [];
+        foreach($examSessions as $examSession){
+            $examSessionWithAdmin[$examSession->id] = $examSession->title . ' ' . $examSession->year . ' | ' . $examSession->schoolAdmin->name;
+        }
+        return $examSessionWithAdmin;
+    }
+
 }

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Mail\AdminMail;
+use App\Jobs\MailboxMailJob;
+use App\Mail\MailboxMail;
 use App\Models\Exam;
 use App\Models\FeeType;
 use App\Models\StudentDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Models\Fee;
@@ -66,11 +69,11 @@ class MailboxController extends CrudController
         }
 
         if (!empty($emails)) {
-            $message['message'] = request()->message;
+            $message = request()->message;
             foreach ($emails as $email) {
-                $mail = new AdminMail($message);
+                $mail = (new MailboxMail($message))->delay(Carbon::now()->addSeconds(3));
                 $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from ' . config('app.name');
-                Mail::to($email)->send($mail);
+                MailboxMailJob::dispatch($email, $mail);
 //                sleep(1);
             }
             $message = 'Email(s) has been sent successfully.';
@@ -81,23 +84,8 @@ class MailboxController extends CrudController
         }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function studentEmail(User $student)
     {
         return view('vendor/backpack/base/Mailbox', compact('student'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -35,7 +35,6 @@ Route::group([
     // Backpack\NewsCRUD
     CRUD::resource('article', 'ArticleCrudController');
     CRUD::resource('category', 'CategoryCrudController');
-    CRUD::resource('tag', 'TagCrudController');
 
     CRUD::resource('exam', 'ExamCrudController');
     CRUD::resource('result', 'ResultCrudController');

@@ -40,6 +40,7 @@ class FeeReceipt extends Model
     public function feeType(){
         return $this->belongsTo('App\Models\FeeType','fee_type_id');
     }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -51,7 +52,6 @@ class FeeReceipt extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

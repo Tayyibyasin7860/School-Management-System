@@ -131,7 +131,7 @@ class ResultCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')){
             $this->crud->addClause('whereHas', 'student', function ($query) {
                 $query->where('admin_id', '=', backpack_user()->id);
             });

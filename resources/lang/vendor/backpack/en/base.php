@@ -10,9 +10,9 @@ return [
 
     'registration_closed'    => 'Registration is closed.',
     'no_email_column'        => 'Users do not have an associated email address.',
-    'first_page_you_see'     => 'The first page you see after login',
-    'login_status'           => 'Login status',
-    'logged_in'              => 'You are logged in!',
+    'first_page_you_see'     => 'Manage your school',
+    'dashboard_disc_short'   => 'You are Logged In',
+    'dashboard_disc_long'   => 'Here you can create student account, make their profiles, assign them exams and published their results. Additionally you can also make classes, subjects, exam sessions, send email and see student feedback.',
     'toggle_navigation'      => 'Toggle navigation',
     'administration'         => 'ADMINISTRATION',
     'user'                   => 'USER',

@@ -72,9 +72,10 @@ class Exam extends Model
     public function getDescriptiveNamesAttribute(){
         return ExamSession::find($this->id)->pluck('title');  //->pluck.' | '.$this->classRoom->title.' | '. $this->subject->title;;
     }
-//    public function getExamSessionIdAttribute(){
-//        return $this->examSession()->where('admin_id',backpack()->user()->id);
-//    }
+    public function sgetDescriptiveNamesAttribute(){
+        return ExamSession::find($this->id)->pluck('title');  //->pluck.' | '.$this->classRoom->title.' | '. $this->subject->title;;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

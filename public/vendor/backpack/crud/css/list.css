@@ -62,7 +62,7 @@
 	}
 
 	#crudTable td {
-		outline: none;
+        outline: none;
 	}
 
 	#crudTable.has-hidden-columns .details-control {

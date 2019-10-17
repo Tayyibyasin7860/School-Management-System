@@ -28,7 +28,14 @@ class ClassRoom extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public static function getClassWithAdminAttribute(){
+        $classes = ClassRoom::all();
+        $classesWithAdmin = [];
+        foreach($classes as $class){
+            $classesWithAdmin[$class->id] = $class->title . ' | ' . $class->schoolAdmin->name;
+        }
+        return $classesWithAdmin;
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\StudentDetail;
-use App\User;
+use App\Jobs\WelcomeStudentMailJob;
+use App\Mail\WelcomeStudentMail;
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\UserRequest as StoreRequest;
 use App\Http\Requests\UserRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use Carbon\Carbon;
+use \Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\App;
 
 /**
  * Class UserCrudController
@@ -36,7 +40,6 @@ class StudentUserCrudController extends CrudController
         $this->crud->addButtonFromModelFunction('line', 'profile', 'profileButton', 'end');
         // TODO: remove setFromDb() and manually define Fields and Columns
         //$this->crud->setFromDb();
-
 	$this->crud->addColumns([
 			[
                 'name' => 'row_number',
@@ -60,7 +63,7 @@ class StudentUserCrudController extends CrudController
 			'attribute' => 'title'
 		]
 	]);
-	
+
 	$this->crud->addFields([
 		[
 			'name'=>'name',
@@ -74,32 +77,11 @@ class StudentUserCrudController extends CrudController
 			'name'=>'password',
 			'label'=>'Password',
 			'type' => 'password',
-			
-			
+
+
 		]
 	]);
         $this->crud->removeField('admin_id');
-
-        if(backpack_user()->hasRole('super_admin')) {
-            $this->crud->addFields([
-                [
-                    'label' => 'Admin',
-                    'name' => 'admin_id',
-                    'type' => 'select2',
-                    'entity' => 'schoolAdmin',
-                    'attribute' => 'name',
-                ],
-            ]);
-            $this->crud->addColumns([
-                [
-                    'label' => 'Admin',
-                    'name' => 'admin_id',
-                    'type' => 'select2',
-                    'entity' => 'schoolAdmin',
-                    'attribute' => 'name',
-                ],
-            ]);
-        }
         $this->crud->addFields([
                 [
                     'label' => 'Confirm Password',
@@ -107,26 +89,59 @@ class StudentUserCrudController extends CrudController
                     'type' => 'password'
                 ],
             ]);
-            
-            
-        $classes=  backpack_user()->myClasses();
-        $this->crud->addFilter([ // dropdown filter
-          'name' => 'class_id',
-          'type' => 'dropdown',
-          'label'=> 'Class'
-        ], $classes, function($value) { // if the filter is active
-             $this->crud->addClause('whereHas', 'studentDetail', function($query) use ($value) {
-                $query->where('class_id', $value);
+
+
+        if (backpack_user()->hasRole('school_admin')) {
+            $classes = backpack_user()->myClasses();
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'class_id',
+                'type' => 'dropdown',
+                'label' => 'Class'
+            ], $classes, function ($value) { // if the filter is active
+                $this->crud->addClause('whereHas', 'studentDetail', function ($query) use ($value) {
+                    $query->where('class_id', $value);
+                });
             });
-            
-        });
-        
+        }
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'admin_id','=',$value);
+            });
+        }
+        if(backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFields([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select_from_array',
+                    'options'=>Role::getAllAdmins()
+                ],
+            ]);
+            $this->crud->addColumns([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select',
+                    'entity' => 'schoolAdmin',
+                    'attribute' => 'name',
+                ],
+            ]);
+        }
         // add asterisk for fields that are required in UserRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
         $user_id = backpack_user()->id;
-        $this->crud->addClause('where','admin_id','=',$user_id);
+        if (auth()->user()->hasRole('school_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
+        if (auth()->user()->hasRole('super_admin')){
+            $this->crud->addClause('where','admin_id','!=','');
+        }
     }
 
     public function store(StoreRequest $request)
@@ -139,9 +154,23 @@ class StudentUserCrudController extends CrudController
             $request->request->remove('password');
         }
 
-        $request->request->set('admin_id', backpack_user()->id);
+        if(backpack_user()->hasRole('school_admin')){
+            $request->request->set('admin_id', backpack_user()->id);
+        }
+
+        $studentPassword = $request->request->get('password_confirmation');
+        $studentEmail = $request->request->get('email');
+        $studentData = [];
+        $studentData ['studentEmail'] = $studentEmail;
+        $studentData ['studentPassword'] = $studentPassword;
+
+        $mail = (new WelcomeStudentMail($studentData))->delay(Carbon::now()->addSeconds(3));
+        $mail->subject = ($request->subject) ? $request->subject : 'Important Notice from ' . config('app.name');
+
+        WelcomeStudentMailJob::dispatch($studentEmail, $mail);
 
         $redirect_location = parent::storeCrud($request);
+
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         $this->crud->entry->assignRole('student');

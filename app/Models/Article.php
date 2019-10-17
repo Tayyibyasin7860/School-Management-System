@@ -10,7 +10,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 class Article extends Model
 {
     use CrudTrait;
-    use Sluggable, SluggableScopeHelpers;
+//    use Sluggable, SluggableScopeHelpers;
 
     /*
     |--------------------------------------------------------------------------
@@ -22,11 +22,10 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date','admin_id'];
+    protected $fillable = ['title', 'content', 'image', 'category_id', 'date','admin_id'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [
-        'featured'  => 'boolean',
         'date'      => 'date',
     ];
 
@@ -35,14 +34,14 @@ class Article extends Model
      *
      * @return array
      */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'slug_or_title',
-            ],
-        ];
-    }
+//    public function sluggable()
+//    {
+//        return [
+//            'slug' => [
+//                'source' => 'slug_or_title',
+//            ],
+//        ];
+//    }
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +65,7 @@ class Article extends Model
         return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
     }
     public function schoolAdmin(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','admin_id');
     }
     /*
     |--------------------------------------------------------------------------
@@ -74,12 +73,12 @@ class Article extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function scopePublished($query)
-    {
-        return $query->where('status', 'PUBLISHED')
-                    ->where('date', '<=', date('Y-m-d'))
-                    ->orderBy('date', 'DESC');
-    }
+//    public function scopePublished($query)
+//    {
+//        return $query->where('status', 'PUBLISHED')
+//                    ->where('date', '<=', date('Y-m-d'))
+//                    ->orderBy('date', 'DESC');
+//    }
 
     /*
     |--------------------------------------------------------------------------
@@ -88,14 +87,14 @@ class Article extends Model
     */
 
     // The slug is created automatically from the "title" field if no slug exists.
-    public function getSlugOrTitleAttribute()
-    {
-        if ($this->slug != '') {
-            return $this->slug;
-        }
-
-        return $this->title;
-    }
+//    public function getSlugOrTitleAttribute()
+//    {
+//        if ($this->slug != '') {
+//            return $this->slug;
+//        }
+//
+//        return $this->title;
+//    }
 
     /*
     |--------------------------------------------------------------------------

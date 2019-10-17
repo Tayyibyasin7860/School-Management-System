@@ -2,13 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c507a5e2-9f71-4fba-90bb-9ecbc34e6a1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/MailboxMailJob.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/WelcomeStudentMailJob.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/WelcomeStudentMail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_10_12_183842_create_jobs_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/admin/mailbox.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/admin/welcome-student.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ClassFeeCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ExamSessionCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeReceiptCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeTypeCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeeTypeCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeedbackCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FeedbackCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MailboxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ResultCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SchoolAdminUserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SchoolAdminUserCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentDetailCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentDetailCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentUserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/StudentUserCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubjectCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubjectCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagCrudController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminMailController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ArticleRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ArticleRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CategoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CategoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/TagRequest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/AdminMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/MailboxMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ClassRoom.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ClassRoom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ExamSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ExamSession.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/FeeReceipt.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/FeeReceipt.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Subject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/backpack/base.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/backpack/base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2015_08_04_130507_create_article_tag_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2015_08_04_130520_create_articles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2015_08_04_130520_create_articles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2015_08_04_130551_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2015_08_04_130551_create_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2015_08_04_131626_create_tags_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2016_07_24_060017_add_slug_to_categories_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2016_07_24_060101_add_slug_to_tags_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/email_templates/action.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/email_templates/alert.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/email_templates/billing.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/email_templates/img/header.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/email_templates/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/backpack/crud/css/list.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/backpack/crud/css/list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/vendor/backpack/en/base.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/vendor/backpack/en/base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/admin/mail.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/backpack/custom.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/backpack/custom.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toBeAsked.txt" beforeDir="false" afterPath="$PROJECT_DIR$/toBeAsked.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,25 +236,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor/backpack/base" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
-      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\student" />
-      <recent name="D:\xampp\htdocs\School_Management_System\resources\views" />
-      <recent name="D:\xampp\htdocs\School Management System\resources\views\Student\profile" />
-      <recent name="D:\xampp\htdocs\School Management System\app\Http\Controllers\Admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\xampp\htdocs\School_Management_System\resources\views\vendor\backpack\base" />
       <recent name="D:\xampp\htdocs\School_Management_System\app\Http\Controllers\Admin" />
       <recent name="D:\xampp\htdocs\School_Management_System\public\storage\uploads" />
       <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
       <recent name="D:\xampp\htdocs\School Management System\resources\views\vendor\backpack\crud\fields" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\emails\admin" />
+      <recent name="D:\xampp\htdocs\School_Management_System\app\Models" />
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views\student" />
+      <recent name="D:\xampp\htdocs\School_Management_System\resources\views" />
+      <recent name="D:\xampp\htdocs\School Management System\resources\views\Student\profile" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -272,6 +327,14 @@
       <workItem from="1570396891611" duration="6648000" />
       <workItem from="1570428445717" duration="15705000" />
       <workItem from="1570541479852" duration="4388000" />
+      <workItem from="1570789932733" duration="5627000" />
+      <workItem from="1570904626682" duration="3518000" />
+      <workItem from="1571032814981" duration="1447000" />
+      <workItem from="1571039415723" duration="16784000" />
+      <workItem from="1571119668614" duration="17086000" />
+      <workItem from="1571222398118" duration="4289000" />
+      <workItem from="1571233314908" duration="13196000" />
+      <workItem from="1571292120291" duration="40281000" />
     </task>
     <servers />
   </component>

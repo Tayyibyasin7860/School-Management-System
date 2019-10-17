@@ -37,11 +37,26 @@ class SchoolAdminUserCrudController extends CrudController
         $this->crud->setFromDb();
         $this->crud->removeField('admin_id');
         $this->crud->removeColumn('admin_id');
+
+        $this->crud->addField([
+            'label' => 'Password Confirmation',
+            'name' => 'password_confirmation',
+            'type' => 'password'
+        ]);
+
         // add asterisk for fields that are required in UserRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-
+        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        if(request()->user()->can('list role'))
+            $this->crud->allowAccess('list');
+        if(request()->user()->can('create role'))
+            $this->crud->allowAccess('create');
+        if(request()->user()->can('update role'))
+            $this->crud->allowAccess('update');
+        if(request()->user()->can('delete role'))
+            $this->crud->allowAccess('delete');
         $this->crud->addClause('role','school_admin');
     }
 
@@ -55,7 +70,7 @@ class SchoolAdminUserCrudController extends CrudController
         }
         $redirect_location = parent::storeCrud($request);
 
-        $this->crud->entry->assignRole('admin');
+        $this->crud->entry->assignRole('school_admin');
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -47,36 +48,58 @@ class FeeTypeCrudController extends CrudController
 				'name'=>'type',
 				'label'=>'Fee Type'
 			],
-			[
-				'name'=>'due_date',
-				'label'=>'Due Date'
-			]
 		]);
 		$this->crud->addFields([
-			
+
 			[
 				'name'=>'type',
 				'label'=>'Fee Type'
 			],
-			[
-				'name'=>'due_date',
-				'label'=>'Due Date',
-				'type'=>'number',
-				'hint'=>'Select day of month.'
-			]
 		]);
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'admin_id','=',$value);
+            });
+        }
+        if(backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFields([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select_from_array',
+                    'options'=>Role::getAllAdmins()
+                ],
+            ]);
+            $this->crud->addColumns([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select',
+                    'entity' => 'schoolAdmin',
+                    'attribute' => 'name',
+                ],
+            ]);
+        }
         // add asterisk for fields that are required in FeeTypeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
-		
-		$user_id = backpack_user()->id;
-        $this->crud->addClause('where','admin_id','=',$user_id);
+
+        $user_id = backpack_user()->id;
+        if (auth()->user()->hasRole('school_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
     }
 
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-		$request->request->set('admin_id', backpack_user()->id);
+        if (backpack_user()->hasRole('school_admin')) {
+            $request->request->set('admin_id', backpack_user()->id);
+        }
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
