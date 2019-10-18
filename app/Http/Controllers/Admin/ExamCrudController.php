@@ -6,6 +6,7 @@ use App\Models\ClassRoom;
 use App\Models\ExamSession;
 use App\Models\Subject;
 use App\User;
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -152,6 +153,20 @@ class ExamCrudController extends CrudController
             ],
         ]);
 
+
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+            $this->crud->addClause('whereHas', 'classRoom', function ($query) use ($value) {
+                    $query->where('admin_id',$value);
+                });
+                
+            });
+        }
+        
         // add asterisk for fields that are required in ExamRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
