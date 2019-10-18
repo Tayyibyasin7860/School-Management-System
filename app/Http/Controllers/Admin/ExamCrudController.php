@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Exam;
+use App\Models\ClassRoom;
+use App\Models\ExamSession;
+use App\Models\Subject;
 use App\User;
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ExamRequest as StoreRequest;
 use App\Http\Requests\ExamRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
-use Illuminate\Support\Facades\App;
 
 /**
  * Class ExamCrudController
@@ -35,11 +37,10 @@ class ExamCrudController extends CrudController
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')){
             $this->crud->addColumns([
                 [
                     'label' => 'Exam Session',
@@ -95,13 +96,12 @@ class ExamCrudController extends CrudController
                 [
                     'label' => 'Exam Session',
                     'name' => 'exam_session_id',
-                    'type' => 'select',
-                    'entity'=>'examSession',
-                    'attribute' => 'title'
-                ],
+                    'type' => 'select_from_array',
+                    'options' => ExamSession::getExamSessionWithAdminAttribute()
+                ]
             ]);
         }
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')){
             $user = User::find(auth()->user()->id);
             $myClasses = $user->myClasses();
             $this->crud->addFields([
@@ -118,13 +118,12 @@ class ExamCrudController extends CrudController
                 [
                     'label' => 'Class',
                     'name' => 'class_id',
-                    'type' => 'select',
-                    'entity'=>'classes',
-                    'attribute' => 'title'
-                ],
+                    'type' => 'select2_from_array',
+                    'options' => ClassRoom::getClassWithAdminAttribute()
+                ]
             ]);
         }
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')){
             $user = User::find(auth()->user()->id);
             $mySubjects = $user->mySubjects();
             $this->crud->addFields([
@@ -140,10 +139,9 @@ class ExamCrudController extends CrudController
             $this->crud->addFields([
                 [
                     'label' => 'Subject',
-                    'name' => 'class_id',
-                    'type' => 'select',
-                    'entity'=>'subjects',
-                    'attribute' => 'title'
+                    'name' => 'subject_id',
+                    'type' => 'select2_from_array',
+                    'options' => Subject::getSubjectWithAdminAttribute()
                 ],
             ]);
         }
@@ -155,11 +153,25 @@ class ExamCrudController extends CrudController
             ],
         ]);
 
+
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+            $this->crud->addClause('whereHas', 'classRoom', function ($query) use ($value) {
+                    $query->where('admin_id',$value);
+                });
+                
+            });
+        }
+        
         // add asterisk for fields that are required in ExamRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')){
             $this->crud->addClause('whereHas', 'examSession', function ($query) {
                 $query->where('admin_id', '=', backpack_user()->id);
             });
