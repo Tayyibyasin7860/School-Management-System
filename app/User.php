@@ -143,17 +143,24 @@ class User extends Authenticatable
     //profile button
     public function profileButton(){
         if($this->studentDetail){
-            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> View Profile</a>';
             //return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/'.$this->studentDetail->id.'/edit') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
         }else{
-            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Create Profile</a>';
         //'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'
         }
     }
     public static function getAdminStudents(){
         return User::where('admin_id',backpack_user()->id)->pluck('name','id')->toArray();
     }
-
+    public function getStudentDetailAdminAttribute(){
+        $admin_classes = $this->schoolAdmin->classes->pluck('title','id');
+        $classes = [];
+        foreach ($admin_classes as $key => $value){
+            $classes [$key] = $value;
+        }
+        return $classes;
+    }
     public function setupData(){
         $classes  = ['Play Group', 'Prep', 'Nursary', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
         foreach ($classes as $class){

@@ -8,7 +8,7 @@ use App\Models\Subject;
 use App\User;
 use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use Illuminate\Http\Request;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ExamRequest as StoreRequest;
 use App\Http\Requests\ExamRequest as UpdateRequest;
@@ -40,23 +40,23 @@ class ExamCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields and Columns
 //        $this->crud->setFromDb();
 
-        if (auth()->user()->hasRole('school_admin')){
+        if (auth()->user()->hasRole('school_admin')) {
             $this->crud->addColumns([
                 [
                     'label' => 'Exam Session',
                     'name' => 'exam_session_id',
                     'type' => 'select_from_array',
-                    'options'=>\App\User::myExamSessions(),
+                    'options' => \App\User::myExamSessions(),
                     'attribute' => 'title'
                 ],
             ]);
-        }else{
+        } else {
             $this->crud->addColumns([
                 [
                     'label' => 'Exam Session',
                     'name' => 'exam_session_id',
                     'type' => 'select',
-                    'entity'=> 'examSession',
+                    'entity' => 'examSession',
                     'attribute' => 'title'
                 ],
             ]);
@@ -81,27 +81,53 @@ class ExamCrudController extends CrudController
                 'name' => 'date',
             ],
         ]);
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('super_admin')) {
+            $this->crud->addFields([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select2_from_array',
+                    'options' => Role::getAllAdmins()
+                ],
+            ]);
+            $this->crud->addFields([
+                [
+                    // 1-n relationship
+                    'label' => "Exam Session", // Table column heading
+                    'type' => "select2_from_ajax",
+                    'name' => 'exam_session_id', // the column that contains the ID of that connected entity
+                    'entity' => 'examSession', // the method that defines the relationship in your Model
+                    'attribute' => "title", // foreign key attribute that is shown to user
+                    'data_source' => url("api/exam-session"), // url to controller search function (with /{id} should return model)
+                    'placeholder' => "Select an Exam Session", // placeholder for the select
+                    'minimum_input_length' => 2, // minimum characters to type before querying results
+                     'dependencies'         => ['admin_id'], // when a dependency changes, this select2 is reset to null
+                    // ‘method'                    => ‘GET’, // optional - HTTP method to use for the AJAX call (GET, POST)
+                    // 'include_all_form_fields'  => false, // optional - only send the current field through AJAX (for a smaller payload if you're not using multiple chained select2s)
+                ]
+            ]);
+        }
+        if (auth()->user()->hasRole('school_admin')) {
             $this->crud->addFields([
                 [
                     'label' => 'Exam Session',
                     'name' => 'exam_session_id',
                     'type' => 'select2_from_array',
-                    'options'=> User::myExamSessions(),
+                    'options' => User::myExamSessions(),
                     'attribute' => 'title'
                 ],
             ]);
-        }else{
+        } else {
             $this->crud->addFields([
-                [
-                    'label' => 'Exam Session',
-                    'name' => 'exam_session_id',
-                    'type' => 'select_from_array',
-                    'options' => ExamSession::getExamSessionWithAdminAttribute()
-                ]
+//                [
+//                    'label' => 'Exam Session',
+//                    'name' => 'exam_session_id',
+//                    'type' => 'select_from_array',
+//                    'options' => ExamSession::getExamSessionWithAdminAttribute()
+//                ]
             ]);
         }
-        if (auth()->user()->hasRole('school_admin')){
+        if (auth()->user()->hasRole('school_admin')) {
             $user = User::find(auth()->user()->id);
             $myClasses = $user->myClasses();
             $this->crud->addFields([
@@ -113,7 +139,7 @@ class ExamCrudController extends CrudController
                     'attribute' => 'title'
                 ],
             ]);
-        }else{
+        } else {
             $this->crud->addFields([
                 [
                     'label' => 'Class',
@@ -123,7 +149,7 @@ class ExamCrudController extends CrudController
                 ]
             ]);
         }
-        if (auth()->user()->hasRole('school_admin')){
+        if (auth()->user()->hasRole('school_admin')) {
             $user = User::find(auth()->user()->id);
             $mySubjects = $user->mySubjects();
             $this->crud->addFields([
@@ -135,7 +161,7 @@ class ExamCrudController extends CrudController
                     'attribute' => 'title'
                 ],
             ]);
-        }else{
+        } else {
             $this->crud->addFields([
                 [
                     'label' => 'Subject',
@@ -160,18 +186,18 @@ class ExamCrudController extends CrudController
                 'type' => 'dropdown',
                 'label' => 'Admins'
             ], Role::getAllAdmins(), function ($value) { // if the filter is active
-            $this->crud->addClause('whereHas', 'classRoom', function ($query) use ($value) {
-                    $query->where('admin_id',$value);
+                $this->crud->addClause('whereHas', 'classRoom', function ($query) use ($value) {
+                    $query->where('admin_id', $value);
                 });
-                
+
             });
         }
-        
+
         // add asterisk for fields that are required in ExamRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        if (auth()->user()->hasRole('school_admin')){
+        if (auth()->user()->hasRole('school_admin')) {
             $this->crud->addClause('whereHas', 'examSession', function ($query) {
                 $query->where('admin_id', '=', backpack_user()->id);
             });
@@ -197,5 +223,35 @@ class ExamCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+    public function adminExamSessions(Request $request)
+    {
+        $search_term = $request->input('q');
+        $form = collect($request->input('form'))->pluck('value', 'name');
+
+        $options = ExamSession::query();
+
+        // if no category has been selected, show no options
+        if (! $form['admin_id']) {
+            return [];
+        }
+
+        // if a category has been selected, only show articles in that category
+        if ($form['admin_id']) {
+            $options = $options->where('admin_id', $form['admin_id']);
+        }
+
+        if ($search_term) {
+            $results = $options->where('title', 'LIKE', '%'.$search_term.'%')->paginate(10);
+        } else {
+            $results = $options->paginate(10);
+        }
+
+        return $options->paginate(10);
+    }
+
+    public function show($id)
+    {
+        return ExamSession::find($id);
     }
 }

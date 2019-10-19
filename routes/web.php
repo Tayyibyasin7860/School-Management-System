@@ -36,4 +36,3 @@ Route::group([    'prefix' => 'student',
     Route::put('/feedback/{user}', 'StudentFeedbackController@store');
 
 });
-

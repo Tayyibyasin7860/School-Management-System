@@ -37,6 +37,7 @@ Route::group([
     CRUD::resource('category', 'CategoryCrudController');
 
     CRUD::resource('exam', 'ExamCrudController');
+
     CRUD::resource('result', 'ResultCrudController');
 
     CRUD::resource('role', 'RoleCrudController');
@@ -54,3 +55,5 @@ Route::group([
     CRUD::resource('fee-type', 'FeeTypeCrudController');
     CRUD::resource('feedback', 'FeedbackCrudController');
 });
+Route::get('api/exam-session', 'App\Http\Controllers\Admin\ExamCrudController@adminExamSessions');
+Route::get('api/exam-session/{id}', 'App\Http\Controllers\Admin\ExamCrudController@show');

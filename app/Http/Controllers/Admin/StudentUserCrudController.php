@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Jobs\WelcomeStudentMailJob;
 use App\Mail\WelcomeStudentMail;
 use App\Models\Role;
+use App\Models\StudentDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -11,6 +12,7 @@ use App\Http\Requests\UserRequest as StoreRequest;
 use App\Http\Requests\UserRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 use Carbon\Carbon;
+use http\Client\Curl\User;
 use \Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\App;
 
