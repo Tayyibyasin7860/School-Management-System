@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	"use strict";
-    $('.chips').material_chip();
-    $('select').material_select();
+    // $('.chips').material_chip();
+    // $('select').material_select();
 
     //FILTER SELECT OPTIONS
     $(".wed-fil-1").on('click', function() {
@@ -24,21 +24,21 @@ $(document).ready(function() {
         $(".fil-5").addClass("filt-eff-1");
     });
 
-    //MEGA MENU	
+    //MEGA MENU
     $(".about-menu").hover(function() {
         $(".about-mm").fadeIn();
     });
     $(".about-menu").mouseleave(function() {
         $(".about-mm").fadeOut();
     });
-    //MEGA MENU	
+    //MEGA MENU
     $(".admi-menu").hover(function() {
         $(".admi-mm").fadeIn();
     });
     $(".admi-menu").mouseleave(function() {
         $(".admi-mm").fadeOut();
     });
-    //MEGA MENU	
+    //MEGA MENU
     $(".cour-menu").hover(function() {
         $(".cour-mm").fadeIn();
     });
@@ -115,44 +115,44 @@ $(document).ready(function() {
     $(".ed-mi-close").on('click', function() {
         $(".ed-mm-inn").removeClass("ed-mm-act");
     });
-	
+
     //MATERIAL SELECT BOX
-    $('select').material_select();
+    // $('select').material_select();
 
     //MATERIAL COLLAPSIBLE
-    $('.collapsible').collapsible();
+    // $('.collapsible').collapsible();
 
     //MATERIAL CHIP COMMON
-    $('.chips').material_chip();
-    $('.chips-initial').material_chip({
-        data: [{
-            tag: 'Apple',
-        }, {
-            tag: 'Microsoft',
-        }, {
-            tag: 'Google',
-        }],
-    });
+    // $('.chips').material_chip();
+    // $('.chips-initial').material_chip({
+    //     data: [{
+    //         tag: 'Apple',
+    //     }, {
+    //         tag: 'Microsoft',
+    //     }, {
+    //         tag: 'Google',
+    //     }],
+    // });
 
     //MATERIAL CHIP PLACEHOLDER
-    $('.chips-placeholder').material_chip({
-        placeholder: 'Enter a tag',
-        secondaryPlaceholder: '+Amini (press enter)',
-    });
+    // $('.chips-placeholder').material_chip({
+    //     placeholder: 'Enter a tag',
+    //     secondaryPlaceholder: '+Amini (press enter)',
+    // });
 
     //MATERIAL CHIP AUTO-COMPLETE
-    $('.chips-autocomplete').material_chip({
-        autocompleteOptions: {
-            data: {
-                'Apple': null,
-                'Microsoft': null,
-                'Google': null
-            },
-            limit: Infinity,
-            minLength: 1
-        }
-    });
-	
+    // $('.chips-autocomplete').material_chip({
+    //     autocompleteOptions: {
+    //         data: {
+    //             'Apple': null,
+    //             'Microsoft': null,
+    //             'Google': null
+    //         },
+    //         limit: Infinity,
+    //         minLength: 1
+    //     }
+    // });
+
     //GOOGLE MAP - SCROLL REMOVE
     $('.contact-map')
         .on('click', function() {
@@ -170,33 +170,34 @@ $(document).ready(function() {
     //$(".man-drop").fadeOut();
     //$(".mob-close").fadeOut();
     //$(".desk-hide").fadeIn();
-    //});	
+    //});
 
-    //RIGHT CLICK DISABLE	
+    //RIGHT CLICK DISABLE
     //$("body").on("contextmenu",function(){
     //return false;
-    //}); 
-    $('.slider').slider({
-        height: 500,
-        interval: 1000
-    });
-    $('.dropdown-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrainWidth: 400, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left', // Displays dropdown with edge aligned to the left of button
-        stopPropagation: false // Stops event propagation
-    });
-    $('.dropdown-button2').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: ($('.dropdown-content').width() * 3) / 2.5 + 5, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    });
+    //});
+    // $('.slider').slider({
+    //     height: 500,
+    //     interval: 1000
+    // });
+    // $('.dropdown-button').dropdown({
+    //     inDuration: 300,
+    //     outDuration: 225,
+    //     constrainWidth: 400, // Does not change width of dropdown to that of the activator
+    //     hover: true, // Activate on hover
+    //     gutter: 0, // Spacing from edge
+    //     belowOrigin: false, // Displays dropdown below the button
+    //     alignment: 'left', // Displays dropdown with edge aligned to the left of button
+    //     stopPropagation: false // Stops event propagation
+    // });
+    // $('.dropdown-button2').dropdown({
+    //     inDuration: 300,
+    //     outDuration: 225,
+    //     constrain_width: false, // Does not change width of dropdown to that of the activator
+    //     hover: true, // Activate on hover
+    //     gutter: ($('.dropdown-content').width() * 3) / 2.5 + 5, // Spacing from edge
+    //     belowOrigin: false, // Displays dropdown below the button
+    //     alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    // });
 });
+//

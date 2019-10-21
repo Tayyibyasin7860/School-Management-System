@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
-class Category extends Model
+class Tag extends Model
 {
     use CrudTrait;
     use Sluggable, SluggableScopeHelpers;
@@ -18,11 +18,11 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'categories';
+    protected $table = 'tags';
     protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['admin_id','name', 'slug', 'parent_id'];
+    protected $fillable = ['name','admin_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -55,19 +55,9 @@ class Category extends Model
     {
         return $this->belongsTo('App\User','admin_id');
     }
-    public function parent()
-    {
-        return $this->belongsTo('Backpack\NewsCRUD\app\Models\Category', 'parent_id');
-    }
-
-    public function children()
-    {
-        return $this->hasMany('Backpack\NewsCRUD\app\Models\Category', 'parent_id');
-    }
-
     public function articles()
     {
-        return $this->hasMany('Backpack\NewsCRUD\app\Models\Article');
+        return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Article', 'article_tag');
     }
 
     /*
@@ -76,19 +66,19 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function scopeFirstLevelItems($query)
-    {
-        return $query->where('depth', '1')
-                    ->orWhere('depth', null)
-                    ->orderBy('lft', 'ASC');
-    }
-
     /*
     |--------------------------------------------------------------------------
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
+    public static function getTagsWithAdminAttribute(){
+        $tags = Tag::all();
+        $tagsWithAdmin = [];
+        foreach($tags as $tag){
+            $tagsWithAdmin[$tag->id] = $tag->name . ' | ' . $tag->schoolAdmin->name;
+        }
+        return $tagsWithAdmin;
+    }
     // The slug is created automatically from the "name" field if no slug exists.
     public function getSlugOrNameAttribute()
     {
@@ -98,14 +88,7 @@ class Category extends Model
 
         return $this->name;
     }
-    public static function getCategoriesWithAdminAttribute(){
-        $categories = Category::all();
-        $categoriesWithAdmin = [];
-        foreach($categories as $category){
-            $categoriesWithAdmin[$category->id] = $category->name . ' | ' . $category->schoolAdmin->name;
-        }
-        return $categoriesWithAdmin;
-    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

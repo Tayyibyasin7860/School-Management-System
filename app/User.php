@@ -107,7 +107,9 @@ class User extends Authenticatable
     public function categories(){
         return $this->hasMany('App\Models\Category','admin_id');
     }
-
+    public function tags(){
+        return $this->hasMany('App\Models\Tag','admin_id');
+    }
     public static function myExamSessions(){
 
 		$examSessions = backpack_user()->examSessions;
@@ -143,10 +145,10 @@ class User extends Authenticatable
     //profile button
     public function profileButton(){
         if($this->studentDetail){
-            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> View Profile</a>';
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile') .'" class="btn btn-xs btn-success"><i class="fa fa-file-text-o"></i> View Profile</a>';
             //return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/'.$this->studentDetail->id.'/edit') .'" class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Profile</a>';
         }else{
-            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Create Profile</a>';
+            return '<a data-button-type="review" title="Profile" href="'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/create') .' " class="btn btn-xs btn-warning"><i class="fa fa-file-text-o"></i> Create Profile</a>';
         //'. url(config('backpack.base.route_prefix').'/student/'. $this->id.'/profile/2') .'
         }
     }

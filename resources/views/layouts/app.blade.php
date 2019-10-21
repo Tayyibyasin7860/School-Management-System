@@ -25,62 +25,54 @@
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="{{ asset('css/style-mob.css') }}" rel="stylesheet"/>
 
-    <script>
-        // .add('pro-act');
-        // document.write(window.location.href);
-
-
-        var v = document.getElementById("profile");
-        v.classList += "pro-act";
-    </script>
 </head>
 
 <body>
 
 <div class="pro-menu">
     <div class="container">
-        <div class="col-md-9 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-3">
             <ul>
                 @if(Request::path() == 'student')
-                    <li><a href="{{ route('dashboard') }}" class="pro-act">My Dashboard</a></li>
+                    <li><a href="{{ route('dashboard') }}" class="pro-act">Dashboard</a></li>
                 @else
-                    <li><a href="{{ route('dashboard') }}">My Dashboard</a></li>
+                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 @endif
                 @if(Request::path() == 'student/profile')
-                    <li><a href="{{ route('profile') }}" class="pro-act">Profile</a></li>
+                    <li><a href="{{ route('profile') }}" class="pro-act">My Profile</a></li>
                 @else
-                    <li><a href="{{ route('profile') }}">Profile</a></li>
+                    <li><a href="{{ route('profile') }}">My Profile</a></li>
                 @endif
                 @if(Request::path() == 'student/fee')
-                    <li><a href="{{ route('fee') }}" class="pro-act">Fee</a></li>
+                    <li><a href="{{ route('fee') }}" class="pro-act">Fee Receipts</a></li>
                 @else
-                    <li><a href="{{ route('fee') }}">Fee</a></li>
+                    <li><a href="{{ route('fee') }}">Fee Receipts</a></li>
                 @endif
                 @if(Request::path() == 'student/exam')
-                    <li><a href="{{ route('exam') }}" class="pro-act">Exam</a></li>
+                    <li><a href="{{ route('exam') }}" class="pro-act">Exams</a></li>
                 @else
-                    <li><a href="{{ route('exam') }}">Exam</a></li>
+                    <li><a href="{{ route('exam') }}">Exams</a></li>
                 @endif
                 @if(Request::path() == 'student/result')
-                    <li><a href="{{ route('result') }}" class="pro-act">Result</a></li>
+                    <li><a href="{{ route('result') }}" class="pro-act">Results</a></li>
                 @else
-                    <li><a href="{{ route('result') }}">Result</a></li>
+                    <li><a href="{{ route('result') }}">Results</a></li>
                 @endif
                 @if(Request::path() == 'student/notice-board')
-                    <li><a href="{{ route('notice-board') }}" class="pro-act">notice-board</a></li>
+                    <li><a href="{{ route('notice-board') }}" class="pro-act">Notice Board</a></li>
                 @else
-                    <li><a href="{{ route('notice-board') }}">Notice Board</a></li>
+                    <li><a href="student/notice-board">Notice Board</a></li>
                 @endif
                 @if(Request::path() == 'student/feedback')
-                    <li><a href="{{ route('feedback') }}" class="pro-act">Feedback</a></li>
+                    <li><a href="{{ route('feedback') }}" class="pro-act">Provide </a></li>
                 @else
-                    <li><a href="{{ route('feedback') }}">Feedback</a></li>
+                    <li><a href="{{ route('feedback') }}">Provide Feedback</a></li>
                 @endif
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        logout
+                        Logout
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -94,10 +86,11 @@
 <div class="stu-db">
     <div class="container pg-inn">
         <div class="col-md-3">
-            <div class="pro-user" style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ asset('storage/' . $user->StudentDetail->photo) }}); background-size: cover; width: 200px;height: 200px; ">
+
+            <div class="pro-user" style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ asset('storage/' . auth()->user()->StudentDetail->photo) }}); background-size: cover; width: 200px;height: 200px; ">
 {{--                <img src="{{ asset('storage/' . $user->StudentDetail->photo) }}" alt="user" class="img-circle" style="display: block; width: 100%; height: auto;">--}}
             </div>
-            <form action="/student/update-photo/{{ $user->id }}" method="post" class="form"
+            <form action="/student/update-photo/{{ auth()->user()->id }}" method="post" class="form"
                   enctype="multipart/form-data">
                 @method('patch')
                 @csrf
@@ -109,9 +102,9 @@
             <div class="pro-user-bio">
                 <ul>
                     <li>
-                        <h4>{{ $user->name }}</h4>
+                        <h4>{{ auth()->user()->name }}</h4>
                     </li>
-                    <li>Student Id: {{ $user->id }}</li>
+                    <li>Student Id: {{ auth()->user()->id }}</li>
                 </ul>
             </div>
         </div>
@@ -125,7 +118,8 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+@yield('page_level_js')
 <!--Import jQuery before materialize.js-->
 <script src="{{ asset('js/main.min.js') }}"></script>
 <script src="{{ asset('images/fav.ico') }}"></script>

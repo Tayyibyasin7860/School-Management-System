@@ -16,39 +16,7 @@
 </head>
 
 <body class="gray-bg">
-<div class="navbar-wrapper">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                    <div class="top-right links">
-                        <a class="navbar-brand" href="/">Home</a>
-                    </div>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    @if(Request::path() !== 'login')
-                    <a class="navbar-brand" href="{{ route('login') }}">Login</a>
-                    @else
-                    <a class="navbar-brand" href="http://127.0.0.1:8000/login" style="background-color: #1ab394;color: white;">Login</a>
-                    @endif
-                        @if(Request::path() !== 'register')
-                        <a class="navbar-brand" href="{{ url('/register') }}">Register</a>
-                    @else
-                        <a class="navbar-brand" href="{{ url('/register') }}" style="background-color: #1ab394; color: white;">Register</a>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<div class="middle-box text-center loginscreen animated fadeInDown">
+<div class="middle-box text-center loginscreen animated fadeInDown margin-bottom" style="padding-bottom: 40px;">
     <div>
         <div>
 
@@ -98,12 +66,6 @@
             <p class="text-muted text-center"><small>Do not have an account?</small></p>
             <a class="btn btn-sm btn-white btn-block" href="{{ route('register') }}">Register as an Admin</a>
         </form>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg">
-        <p><strong>&copy;SMS</strong><br/> The all in one solution for your school
-            management problems</p>
     </div>
 </div>
 <!-- Mainly scripts -->

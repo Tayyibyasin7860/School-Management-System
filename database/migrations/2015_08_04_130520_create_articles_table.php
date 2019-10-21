@@ -16,9 +16,12 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->string('title');
+            $table->string('slug')->default('');
             $table->text('content');
             $table->string('image')->nullable();
+            $table->enum('status', ['PUBLISHED', 'DRAFT'])->default('PUBLISHED');
             $table->date('date');
+            $table->boolean('featured')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

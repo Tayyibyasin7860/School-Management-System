@@ -38,7 +38,7 @@ class StudentDetailCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\StudentDetail');
       //  $this->crud->setRoute(config('backpack.base.route_prefix') . '/student');
-        $this->crud->setEntityNameStrings('profile', 'profiles');
+        $this->crud->setEntityNameStrings($student_name . '\'s' . ' profile', 'profiles');
         $this->crud->addClause('where', 'student_id', '=', $student_id);
         /*
         |--------------------------------------------------------------------------
@@ -75,8 +75,8 @@ class StudentDetailCrudController extends CrudController
             [
                 'label' => 'Class',
                 'name' => 'class_id',
-                'type' => 'select2_from_array',
-                'options' => backpack_user()->myClasses(),
+                'type' => 'select',
+                'entity' => 'ClassRoom',
                 'attribute' => 'title'
             ],
             [

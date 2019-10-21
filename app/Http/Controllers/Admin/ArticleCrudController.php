@@ -3,51 +3,47 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use App\Models\Role;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as StoreRequest;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest as UpdateRequest;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
 class ArticleCrudController extends CrudController
 {
     public function __construct()
     {
         parent::__construct();
-
-
-
     }
     public function setup()
     {
+
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-
         $this->crud->setModel("App\Models\Article");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/article');
         $this->crud->setEntityNameStrings('Announcement or News', 'Notice Board');
+
         /*
         |--------------------------------------------------------------------------
         | COLUMNS AND FIELDS
         |--------------------------------------------------------------------------
         */
-        $categories = backpack_user()->categories->pluck('name','id')->toArray();
+        if (auth()->user()->hasRole('school_admin')) {
+            $categories = backpack_user()->categories->pluck('name', 'id')->toArray();
+            $tags = backpack_user()->tags->pluck('name', 'id')->toArray();
+
+        }
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-               'name' => 'row_number',
-               'type' => 'row_number',
-               'label' => 'Sr. #',
-               'orderable' => false,
-           ]);
-
-
-        $this->crud->addColumn([
-            'name' => 'title',
-            'label' => 'Title',
-            'limit' => 40
+            'name' => 'row_number',
+            'type' => 'row_number',
+            'label' => 'Sr. #',
+            'orderable' => false,
         ]);
         if (backpack_user()->hasRole('super_admin')) {
             $this->crud->addColumn([
@@ -58,34 +54,60 @@ class ArticleCrudController extends CrudController
                 'attribute' => 'name'
             ]);
         }
+        // ------ CRUD COLUMNS
+        $this->crud->addColumn([
+            'name' => 'date',
+            'label' => 'Date',
+            'type' => 'date',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Status',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'title',
+            'label' => 'Title',
+        ]);
         $this->crud->addColumn([
             'label' => 'Category',
             'type' => 'select',
             'name' => 'category_id',
             'entity' => 'category',
             'attribute' => 'name',
-            'model' => "Backpack\NewsCRUD\app\Models\Category",
-        ]);
-        $this->crud->addColumn([
-            'name' => 'content',
-            'label' => 'Content',
-            'limit' => 2000
+            'model' => "App\Models\Category",
         ]);
 
-        $this->crud->addColumn([
-            'name' => 'date',
-            'label' => 'Date',
-            'type' => 'date',
-        ]);
         // ------ CRUD FIELDS
-        $this->crud->addField([
+        if (backpack_user()->hasRole('school_admin')) {
+            $this->crud->addField([    // CHECKBOX
+                'name' => 'admin_id',
+                'label' => 'Admin ID',
+                'type' => 'hidden',
+                'value' => backpack_user()->id
+            ]);
+        }else{
+            $this->crud->addField([    // CHECKBOX
+                'name' => 'admin_id',
+                'label' => 'Admin ID',
+                'type' => 'select2_from_array',
+                'options'=>Role::getAllAdmins()
+            ]);
+        }
+        $this->crud->addField([    // TEXT
             'name' => 'title',
             'label' => 'Title',
             'type' => 'text',
             'placeholder' => 'Your title here',
         ]);
-
         $this->crud->addField([
+            'name' => 'slug',
+            'label' => 'Slug (URL)',
+            'type' => 'text',
+            'hint' => 'Will be automatically generated from your title, if left empty.',
+            // 'disabled' => 'disabled'
+        ]);
+
+        $this->crud->addField([    // TEXT
             'name' => 'date',
             'label' => 'Date',
             'type' => 'date',
@@ -103,6 +125,11 @@ class ArticleCrudController extends CrudController
             'type' => 'ckeditor',
             'placeholder' => 'Your textarea text here',
         ]);
+        $this->crud->addField([    // Image
+            'name' => 'image',
+            'label' => 'Image',
+            'type' => 'image',
+        ]);
         if (backpack_user()->hasRole('school_admin')) {
             $this->crud->addField([
                 'label' => 'Category',
@@ -118,6 +145,11 @@ class ArticleCrudController extends CrudController
                 'options' => Category::getCategoriesWithAdminAttribute(),
             ]);
         }
+        $this->crud->addField([    // ENUM
+            'name' => 'status',
+            'label' => 'Status',
+            'type' => 'enum',
+        ]);
         if (backpack_user()->hasRole('super_admin')) {
             $this->crud->addFilter([ // dropdown filter
                 'name' => 'admin_id',
@@ -127,35 +159,14 @@ class ArticleCrudController extends CrudController
                 $this->crud->addClause('where', 'admin_id','=',$value);
             });
         }
-        if (backpack_user()->hasRole('school_admin')) {
-            $this->crud->addField([    // CHECKBOX
-                'name' => 'admin_id',
-                'label' => 'Admin ID',
-                'type' => 'hidden',
-                'value' => backpack_user()->id
-            ]);
-        }else{
-            $this->crud->addField([    // CHECKBOX
-                'name' => 'admin_id',
-                'label' => 'Admin ID',
-                'type' => 'select_from_array',
-                'options'=>Role::getAllAdmins()
-            ]);
-        }
-        $this->crud->addField([    // CHECKBOX
-            'name' => 'status',
-            'label' => 'Status',
-            'type' => 'hidden',
-            'value' => 'Published'
-        ]);
-        $this->crud->enableAjaxTable();
 
+        $this->crud->allowAccess('show');
+        $this->crud->enableAjaxTable();
         $user_id = backpack_user()->id;
         if (auth()->user()->hasRole('school_admin')){
             $this->crud->addClause('where','admin_id','=',$user_id);
         }
     }
-
     public function store(StoreRequest $request)
     {
         return parent::storeCrud();

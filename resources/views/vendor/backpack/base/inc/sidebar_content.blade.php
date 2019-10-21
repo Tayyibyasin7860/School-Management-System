@@ -34,8 +34,9 @@
 <li class="treeview">
     <a href="#"><i class="fa fa-newspaper-o"></i> <span>Notice Board</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
-        <li><a href="{{ backpack_url('article') }}"><i class="fa fa-newspaper-o"></i> <span>Announcement/News</span></a></li>
-        <li><a href="{{ backpack_url('category') }}"><i class="fa fa-list"></i> <span>Categories</span></a></li>
+        <li><a href='{{ backpack_url('article') }}'><i class='fa fa-newspaper-o'></i> <span>Announcements/News</span></a></li>
+        <li><a href='{{ backpack_url('category') }}'><i class='fa fa-list'></i> <span>Categories</span></a></li>
+        <li><a href='{{ backpack_url('tag') }}'><i class='fa fa-tag'></i> <span>Tags</span></a></li>
     </ul>
 </li>
 <li><a href='{{ backpack_url('mailbox') }}'><i class='fa fa-user'></i> <span>Mailbox</span></a></li>

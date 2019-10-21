@@ -71,8 +71,8 @@
         <a href="" class="btn btn-primary">Learn more</a>
     </div>
     <div class="col-lg-6 text-right wow fadeInRight animated"
-         style="visibility: visible; animation-name: fadeInRight; padding-top: 10px; padding-bottom: 30px;">
-        <img src="img/landing/dashboard.png" alt="dashboard" class="img-responsive pull-right">
+         style="visibility: visible; animation-name: fadeInRight; padding: 10px 0px 30px 50px;">
+        <img src="img/admin.jpg" alt="dashboard" class="img-responsive pull-right">
     </div>
 </section>
 
