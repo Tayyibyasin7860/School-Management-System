@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ClassRoom;
+use App\Models\Role;
 use App\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -40,22 +42,47 @@ class ClassFeeCrudController extends CrudController
         //$this->crud->setFromDb();
 
 		$feeTypes=  backpack_user()->adminFeeTypes->pluck('type','id')->toArray();
-		$this->crud->addFields([
-
-
-            [
-                'label' => 'Class',
-                'name' => 'class_id',
-                'type' => 'select_from_array',
-                'options' => $admin->myClasses(),
-            ],
-			[
-                'label' => 'Fee Type',
-                'name' => 'fee_type_id',
-                'type' => 'select2_from_array',
-                'options' => $feeTypes,
-                'attribute' => 'type'
-            ],
+        if (auth()->user()->hasRole('school_admin')) {
+            $this->crud->addFields([
+                [
+                    'label' => 'Class',
+                    'name' => 'class_id',
+                    'type' => 'select_from_array',
+                    'options' => $admin->myClasses(),
+                ],
+            ]);
+        } else {
+            $this->crud->addFields([
+                [
+                    'label' => 'Class',
+                    'name' => 'class_id',
+                    'type' => 'select2_from_array',
+                    'options' => ClassRoom::getClassWithAdminAttribute()
+                ]
+            ]);
+        }
+        if (auth()->user()->hasRole('school_admin')) {
+            $this->crud->addFields([
+                [
+                    'name' => 'fee_type_id',
+                    'label' => "Fee Type",
+                    'type' => 'select2_from_array',
+                    'options' => User::adminFeesTypes(),
+                    'allows_null' => false,
+                ],
+            ]);
+        } else {
+            $this->crud->addFields([
+                [
+                    'name' => 'fee_type_id',
+                    'label' => "Fee Type",
+                    'type' => 'select2',
+                    'entity' => 'feeType',
+                    'attribute' => 'type',
+                ]
+            ]);
+        }
+        $this->crud->addFields([
 			[
                 'label' => 'Amount',
                 'name' => 'amount',
@@ -99,7 +126,11 @@ class ClassFeeCrudController extends CrudController
         ], $classes, function($value) { // if the filter is active
             $this->crud->addClause('where', 'class_id', $value);
         });
-
+        if (auth()->user()->hasRole('school_admin')) {
+            $this->crud->addClause('whereHas', 'classRoom', function ($query) {
+                $query->where('admin_id', '=', backpack_user()->id);
+            });
+        }
         // add asterisk for fields that are required in ClassFeeRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');

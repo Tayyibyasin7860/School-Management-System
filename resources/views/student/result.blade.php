@@ -27,7 +27,7 @@
         @foreach($user_results as $result)
             <tr>
                 <td>
-                    {{ $result->examSession->title . " " . $result->examSession->year }}
+                    <b>{{ $result->examSession->title . " " . $result->examSession->year }}</b>
                 </td>
                 <td>
                     {{ $result->subject->title }}

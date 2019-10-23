@@ -28,8 +28,9 @@ class FeedbackCrudController extends CrudController
         $this->crud->setModel('App\Models\Feedback');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/feedback');
         $this->crud->setEntityNameStrings('feedback', 'all student feedbacks');
-        $this->crud->removeAllButtonsFromStack('line');
+        $this->crud->denyAccess('update');
         $this->crud->removeButton('create');
+
 
 
         /*

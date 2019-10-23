@@ -23,7 +23,7 @@ class ArticleController extends Controller
         $categories = explode('/', $categories);
         $category = array_pop($categories);
 
-        $category = Category::where('slug', $category)->first();
+        $category = auth()->user()->schoolAdmin->categories->where('slug',$category)->first();
 
         if(empty($category))
 
@@ -31,45 +31,40 @@ class ArticleController extends Controller
 
         $articles = $category->articles()
             ->orderBy('date', 'Desc')
-            ->published()
-            ->skip(0)
-            ->take(4)
-            ->get();
-
+            ->paginate(5);
         $articles_count = $category->articles()
             ->orderBy('date', 'Desc')
             ->published()
             ->get()->count();
-
 
         return view('student.article.category', compact('category','articles','articles_count'));
 
     }
 
-    public function paginate($categories, Request $request)
-    {
-        $categories = explode('/', $categories);
-        $category = array_pop($categories);
-
-        $category = Category::where('slug', $category)->first();
-        if(empty($category))
-            abort(404);
-
-        $skip = ($request->page * 4) - 4;
-        $articles = $category->articles()
-            ->orderBy('date', 'Desc')
-            ->published()
-            ->skip($skip)
-            ->take(4)
-            ->get();
-        $articles_count = $category->articles()
-            ->orderBy('date', 'Desc')
-            ->published()
-            ->get()->count();
-
-        return view('student.article._category', compact('articles','articles_count'));
-
-    }
+//    public function paginate($categories, Request $request)
+//    {
+//        $categories = explode('/', $categories);
+//        $category = array_pop($categories);
+//
+//        $category = Category::where('slug', $category)->first();
+//        if(empty($category))
+//            abort(404);
+//
+//        $skip = ($request->page * 4) - 4;
+//        $articles = $category->articles()
+//            ->orderBy('date', 'Desc')
+//            ->published()
+//            ->skip($skip)
+//            ->take(4)
+//            ->get();
+//        $articles_count = $category->articles()
+//            ->orderBy('date', 'Desc')
+//            ->published()
+//            ->get()->count();
+//
+//        return view('student.article._category', compact('articles','articles_count'));
+//
+//    }
 
 
     /**

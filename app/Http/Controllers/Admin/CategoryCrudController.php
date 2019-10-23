@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Backpack\NewsCRUD\app\Http\Requests\CategoryRequest as StoreRequest;
@@ -18,7 +19,10 @@ class CategoryCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel("Backpack\NewsCRUD\app\Models\Category");
+    }
+    public function setup()
+    {
+        $this->crud->setModel("App\Models\Category");
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/category');
         $this->crud->setEntityNameStrings('category', 'categories');
 
@@ -28,51 +32,73 @@ class CategoryCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->allowAccess('reorder');
-        $this->crud->enableReorder('name', 2);
-
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-                                'name' => 'name',
-                                'label' => 'Name',
-                            ]);
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
         $this->crud->addColumn([
-                                'name' => 'slug',
-                                'label' => 'Slug',
-                            ]);
-        $this->crud->addColumn([
-                                'label' => 'Parent',
-                                'type' => 'select',
-                                'name' => 'parent_id',
-                                'entity' => 'parent',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
+            'name' => 'slug',
+            'label' => 'Slug',
+        ]);
 
         // ------ CRUD FIELDS
+        $this->crud->addField([    // CHECKBOX
+            'name' => 'admin_id',
+            'label' => 'Admin ID',
+            'type' => 'hidden',
+            'value' => backpack_user()->id
+        ]);
         $this->crud->addField([
-                                'name' => 'name',
-                                'label' => 'Name',
-                            ]);
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
         $this->crud->addField([
-                                'name' => 'slug',
-                                'label' => 'Slug (URL)',
-                                'type' => 'text',
-                                'hint' => 'Will be automatically generated from your name, if left empty.',
-                                // 'disabled' => 'disabled'
-                            ]);
-        $this->crud->addField([
-                                'label' => 'Parent',
-                                'type' => 'select',
-                                'name' => 'parent_id',
-                                'entity' => 'parent',
-                                'attribute' => 'name',
-                                'model' => "Backpack\NewsCRUD\app\Models\Category",
-                            ]);
+            'name' => 'slug',
+            'label' => 'Slug (URL)',
+            'type' => 'text',
+            'hint' => 'Will be automatically generated from your name, if left empty.',
+            // 'disabled' => 'disabled'
+        ]);
+        if (auth()->user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'admin_id','=',$value);
+            });
+        }
+        if(backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFields([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select_from_array',
+                    'options'=>Role::getAllAdmins()
+                ],
+            ]);
+            $this->crud->addColumns([
+                [
+                    'label' => 'Admin',
+                    'name' => 'admin_id',
+                    'type' => 'select',
+                    'entity' => 'schoolAdmin',
+                    'attribute' => 'name',
+                ],
+            ]);
+        }
+        $user_id = backpack_user()->id;
+
+        if (auth()->user()->hasRole('school_admin')){
+            $this->crud->addClause('where','admin_id','=',$user_id);
+        }
     }
 
     public function store(StoreRequest $request)
     {
+//        $request->request->set('admin_id', backpack_user()->id);
+//        dd($request->request);
         return parent::storeCrud();
     }
 

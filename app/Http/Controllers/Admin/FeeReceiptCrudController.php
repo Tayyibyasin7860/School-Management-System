@@ -106,21 +106,49 @@ class FeeReceiptCrudController extends CrudController
                 'name' => 'submission_date',
             ],
         ]);
+
+        if (auth()->user()->hasRole('school_admin')) {
+            $this->crud->addFields([
+                [
+                    'name' => 'fee_type_id',
+                    'label' => "Fee Type",
+                    'type' => 'select2_from_array',
+                    'options' => User::adminFeesTypes(),
+                    'allows_null' => false,
+                ],
+            ]);
+        } else {
+            $this->crud->addFields([
+                [
+                    'name' => 'fee_type_id',
+                    'label' => "Fee Type",
+                    'type' => 'select2',
+                    'entity' => 'feeType',
+                    'attribute' => 'type',
+                ]
+            ]);
+        }
+        if (auth()->user()->hasRole('school_admin')) {
+            $this->crud->addFields([
+                [
+                    'name' => 'student_id',
+                    'label' => "Student Name",
+                    'type' => 'select2_from_array',
+                    'options' => $userAdminStudents,
+                    'allows_null' => false,
+                ],
+            ]);
+        } else {
+            $this->crud->addFields([
+                [
+                    'name' => 'student_id',
+                    'label' => "Student",
+                    'type' => 'select2_from_array',
+                    'options' => User::onlyStudents(),
+                ]
+            ]);
+        }
         $this->crud->addFields([
-            [
-                'name' => 'fee_type_id',
-                'label' => "Fee Type",
-                'type' => 'select2_from_array',
-                'options' => User::adminFeesTypes(),
-                'allows_null' => false,
-            ],
-            [
-                'name' => 'student_id',
-                'label' => "Student Name",
-                'type' => 'select2_from_array',
-                'options' => $userAdminStudents,
-                'allows_null' => false,
-            ],
             [
                 'label' => 'Amount',
                 'name' => 'amount',
@@ -148,8 +176,6 @@ class FeeReceiptCrudController extends CrudController
                 'label' => 'Submission Date',
                 'name' => 'submission_date',
                 'type' => 'date_picker',
-                'allows_null' => true,
-                'default' => true
             ],
         ]);
         // add asterisk for fields that are required in FeeReceiptRequest
@@ -176,16 +202,6 @@ class FeeReceiptCrudController extends CrudController
                     $query->where('admin_id', $value);
                 });
             });
-        }
-        if (backpack_user()->hasRole('super_admin')) {
-            $this->crud->addFields([
-                [
-                    'label' => 'Admin',
-                    'name' => 'admin_id',
-                    'type' => 'select_from_array',
-                    'options' => Role::getAllAdmins()
-                ],
-            ]);
         }
         if (backpack_user()->hasRole('school_admin')) {
             $this->crud->addClause('whereHas', 'student', function ($query) {

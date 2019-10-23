@@ -44,13 +44,13 @@ class Result extends Model
     {
         return $this->belongsTo('App\User','student_id');
     }
-	
+
 	public function subject()
     {
         return $this->belongsTo('App\Models\Subject','subject_id');
     }
-	
-	
+
+
     /*
     |--------------------------------------------------------------------------
     | Helper functions
@@ -72,9 +72,9 @@ class Result extends Model
     {
         return $this->exam->examSession->title;
     }
-	
+
 	public function getRelatedClassAttribute(){
-		
+
 		return $this->student->studentDetail->id;
 	}
     /*

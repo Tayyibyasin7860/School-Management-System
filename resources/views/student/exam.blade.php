@@ -10,16 +10,16 @@
                     <thead>
                     <tr>
                         <th>
-                            Sr.#
+                            <b>Sr.#</b>
                         </th>
                         <th>
-                            Exam Session
+                            <b>Exam Session</b>
                         </th>
                         <th>
-                            Subject
+                            <b>Subject</b>
                         </th>
                         <th>
-                            Date
+                            <b>Date</b>
                         </th>
                     </tr>
                     </thead>
@@ -28,7 +28,7 @@
                     @foreach($exams as $exam)
                     <tr>
                         <th scope="row">
-                            {{ $rowNumber++ }}
+                            <b>{{ $rowNumber++ }}</b>
                         </th>
                         <td>
                             {{ $exam->examSession->title . " " . $exam->examSession->year }}

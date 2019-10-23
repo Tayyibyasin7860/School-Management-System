@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Result;
+use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\User;
 
@@ -20,6 +21,7 @@ class ResultCrudController extends CrudController
 {
     public function setup()
     {
+        $allStudents = User::onlyStudents();
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Basic Information
@@ -65,7 +67,7 @@ class ResultCrudController extends CrudController
                 'entity' => 'exam.subject',
                 'attribute' => 'title'
             ],
-			[
+            [
                 'label' => 'Class',
                 'name' => 'class_id',
                 'type' => 'select',
@@ -81,7 +83,7 @@ class ResultCrudController extends CrudController
                 'name' => 'obtained_marks',
             ]
         ]);
-        if (!auth()->user()->hasRole('super_admin')){
+        if (auth()->user()->hasRole('school_admin')) {
             $this->crud->addFields([
                 [
                     'name' => 'student_id',
@@ -91,25 +93,46 @@ class ResultCrudController extends CrudController
                     'allows_null' => false,
                 ],
             ]);
-        }else{
+        } else {
             $this->crud->addFields([
                 [
-                    'label' => 'Student Name',
                     'name' => 'student_id',
-                    'type' => 'select2',
-                    'entity'=>'student',
-                    'attribute' => 'name'
+                    'label' => "Student Name",
+                    'type' => 'select2_from_array',
+                    'options' => $allStudents,
+                    'allows_null' => false,
+                ],
+            ]);
+        }
+        if (auth()->user()->hasRole('super_admin')) {
+            $this->crud->addFields([
+                [
+                    'name' => 'exam_id',
+                    'label' => "Exam",
+                    'type' => 'select',
+                    'entity' => 'exam',
+                    'attribute' => 'examAdmin',
+                ],
+            ]);
+        } else {
+            $this->crud->addFields([
+                [
+                    'name' => 'exam_id',
+                    'label' => "Exam",
+                    'type' => 'select',
+                    'entity' => 'exam',
+                    'attribute' => 'descriptiveName',
                 ],
             ]);
         }
         $this->crud->addFields([
-            [
-                'name' => 'exam_id',
-                'label' => "Exam",
-                'type' => 'select',
-                'entity' => 'exam',
-                'attribute' => 'descriptiveName',
-            ],
+//            [
+//                'name' => 'exam_id',
+//                'label' => "Exam",
+//                'type' => 'select',
+//                'entity' => 'exam',
+//                'attribute' => 'descriptiveName',
+//            ],
             [
                 'label' => 'Total Marks',
                 'name' => 'total_marks',
@@ -131,7 +154,19 @@ class ResultCrudController extends CrudController
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 
-        if (auth()->user()->hasRole('school_admin')){
+        if (backpack_user()->hasRole('super_admin')) {
+            $this->crud->addFilter([ // dropdown filter
+                'name' => 'admin_id',
+                'type' => 'dropdown',
+                'label' => 'Admins'
+            ], Role::getAllAdmins(), function ($value) { // if the filter is active
+                $this->crud->addClause('whereHas', 'student', function ($query) use ($value) {
+                    $query->where('admin_id', $value);
+                });
+
+            });
+        }
+        if (auth()->user()->hasRole('school_admin')) {
             $this->crud->addClause('whereHas', 'student', function ($query) {
                 $query->where('admin_id', '=', backpack_user()->id);
             });

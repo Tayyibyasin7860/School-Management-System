@@ -28,7 +28,7 @@
 </head>
 
 <body>
-
+@if(auth()->check())
 <div class="pro-menu">
     <div class="container">
         <div class="col-md-8 col-md-offset-3">
@@ -58,11 +58,11 @@
                 @else
                     <li><a href="{{ route('result') }}">Results</a></li>
                 @endif
-                @if(Request::path() == 'student/notice-board')
-                    <li><a href="{{ route('notice-board') }}" class="pro-act">Notice Board</a></li>
-                @else
-                    <li><a href="student/notice-board">Notice Board</a></li>
-                @endif
+                @php
+
+                    @endphp
+                <li><a href="{{ route('notice-board') }}"
+                       class="{{ (Request::is('student/notice-board/*')) ? 'pro-act' : ''}}">Notice Board</a></li>
                 @if(Request::path() == 'student/feedback')
                     <li><a href="{{ route('feedback') }}" class="pro-act">Provide </a></li>
                 @else
@@ -83,12 +83,13 @@
         </div>
     </div>
 </div>
+@endif
 <div class="stu-db">
     <div class="container pg-inn">
         <div class="col-md-3">
-
-            <div class="pro-user" style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ asset('storage/' . auth()->user()->StudentDetail->photo) }}); background-size: cover; width: 200px;height: 200px; ">
-{{--                <img src="{{ asset('storage/' . $user->StudentDetail->photo) }}" alt="user" class="img-circle" style="display: block; width: 100%; height: auto;">--}}
+            @if(auth()->check())
+            <div class="pro-user"
+                 style="border-radius: 50%;background-repeat:no-repeat; background-position: center; background-image:url({{ auth()->user()->StudentDetail->photo ? asset('storage/' . auth()->user()->StudentDetail->photo) : asset('storage/' . 'uploads/student-defualt-profile.jpg')}}); background-size: cover; width: 200px;height: 200px; ">
             </div>
             <form action="/student/update-photo/{{ auth()->user()->id }}" method="post" class="form"
                   enctype="multipart/form-data">
@@ -107,6 +108,7 @@
                     <li>Student Id: {{ auth()->user()->id }}</li>
                 </ul>
             </div>
+            @endif
         </div>
         <div class="col-md-9">
             <div class="udb">
@@ -122,7 +124,6 @@
 @yield('page_level_js')
 <!--Import jQuery before materialize.js-->
 <script src="{{ asset('js/main.min.js') }}"></script>
-<script src="{{ asset('images/fav.ico') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 

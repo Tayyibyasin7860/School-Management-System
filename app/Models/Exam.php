@@ -67,8 +67,11 @@ class Exam extends Model
     }
 
 	public function getDescriptiveNameAttribute(){
-		return $this->examSession->title.' | '.$this->classRoom->title.' | '. $this->subject->title;;
+		return $this->examSession->title.' | '.$this->classRoom->title.' | '. $this->subject->title;
 	}
+    public function getExamAdminAttribute(){
+        return $this->examSession->title.' | '.$this->classRoom->title.' | '. $this->subject->title . ' | ' . $this->examSession->schoolAdmin->name;
+    }
     public function getDescriptiveNamesAttribute(){
         return ExamSession::find($this->id)->pluck('title');  //->pluck.' | '.$this->classRoom->title.' | '. $this->subject->title;;
     }

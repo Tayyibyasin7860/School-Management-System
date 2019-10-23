@@ -65,7 +65,9 @@
 
             <p class="text-muted text-center"><small>Do not have an account?</small></p>
             <a class="btn btn-sm btn-white btn-block" href="{{ route('register') }}">Register as an Admin</a>
+            OR
         </form>
+        <a class="btn btn-sm btn-warning" href="{{ route('welcome') }}">Back to Home</a>
     </div>
 </div>
 <!-- Mainly scripts -->

@@ -30,7 +30,7 @@
         @foreach($user->feeTypes as $feeType)
             <tr>
                 <td>
-                    {{ $feeType->type }}
+                    <b>{{ $feeType->type }}</b>
                 </td>
                 <td>
                     {{ $feeType->pivot->amount }}
@@ -45,7 +45,9 @@
                     {{ $feeType->pivot->submission_date}}
                 </td>
                 <td>
-                    {{ $feeType->pivot->status}}
+                    <span style="background-color: {{$feeType->pivot->status == 'pending' ? 'red' : 'green'}};
+                        color: white; font-weight: bold;">{{ $feeType->pivot->status}}
+                    </span>
                 </td>
             </tr>
         @endforeach

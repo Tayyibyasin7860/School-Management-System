@@ -35,7 +35,6 @@ class ArticleCrudController extends CrudController
         */
         if (auth()->user()->hasRole('school_admin')) {
             $categories = backpack_user()->categories->pluck('name', 'id')->toArray();
-            $tags = backpack_user()->tags->pluck('name', 'id')->toArray();
 
         }
         // ------ CRUD COLUMNS

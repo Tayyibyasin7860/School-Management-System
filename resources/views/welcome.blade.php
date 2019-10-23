@@ -76,64 +76,9 @@
     </div>
 </section>
 
-<section id="contact" class="gray-section contact">
+<section id="contact" class="gray-section contact" style="padding-bottom: 50px;">
     <div class="container">
         <div class="row pt-30">
-            <div class="col-md-6">
-                <h3 class="line-bottom mt-0 mb-30">Interested in discussing?</h3>
-
-                <!-- Contact Form -->
-                <form id="contact_form" name="contact_form" class="" action="#" method="post" novalidate="novalidate">
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Name <small>*</small></label>
-                                <input name="form_name" class="form-control" type="text" placeholder="Enter Name"
-                                       required="" aria-required="true">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Email <small>*</small></label>
-                                <input name="form_email" class="form-control required email" type="email"
-                                       placeholder="Enter Email" aria-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Subject <small>*</small></label>
-                                <input name="form_subject" class="form-control required" type="text"
-                                       placeholder="Enter Subject" aria-required="true">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message"
-                                  aria-required="true"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input name="form_botcheck" class="form-control" type="hidden" value="">
-                        <button type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"
-                                data-loading-text="Please wait...">Send your message
-                        </button>
-                        <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button>
-                    </div>
-                </form>
-
-                =
-            </div>
             <div class="col-md-6">
                 <h3 class="line-bottom mt-0">Get in touch with us</h3>
                 <p>Let’s talk about how can you grow your business, have a cup of coffee/tea with us. We are sure you will get satisfied with our work and our School Management Website. .</p>
@@ -160,12 +105,6 @@
                         <p><a href="mailto:supporte@yourdomin.com">supporte@yourdomin.com</a></p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy;SMS</strong><br/> The all in one solution for your school
-                    management problems</p>
             </div>
         </div>
     </div>

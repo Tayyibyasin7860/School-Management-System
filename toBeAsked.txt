@@ -1,4 +1,2 @@
 super admin panel:
 reorder not working on categories crud
-todo:
-fix notice-board route error

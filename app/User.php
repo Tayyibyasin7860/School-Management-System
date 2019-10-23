@@ -141,7 +141,18 @@ class User extends Authenticatable
     public function mySubjects(){
         return $this->subjects()->pluck('title','id')->toArray();
     }
-
+    public static function onlyStudents(){
+        $users = User::whereNotNull('admin_id')->get();
+        $students = [];
+        foreach ($users as $user){
+            $students = $users->pluck('name','id');
+        }
+        $allStudents = [];
+        foreach ($students as $key => $value){
+            $allStudents[$key] = $value;
+        }
+        return $allStudents;
+    }
     //profile button
     public function profileButton(){
         if($this->studentDetail){
