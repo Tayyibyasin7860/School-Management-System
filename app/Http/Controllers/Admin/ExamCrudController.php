@@ -102,6 +102,7 @@ class ExamCrudController extends CrudController
                 ]
             ]);
         }
+        die;
         if (auth()->user()->hasRole('school_admin')) {
             $user = User::find(auth()->user()->id);
             $myClasses = $user->myClasses();
