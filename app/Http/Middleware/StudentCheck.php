@@ -16,7 +16,7 @@ class StudentCheck
     public function handle($request, Closure $next)
     {
 
-        if (auth()->user()->hasPermissionTo('view student panel')) {
+        if (auth()->user()->can('view student panel')) {
             return $next($request);
         } else {
             return redirect('/admin');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -60,7 +61,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\User
      */
     protected function create(array $data)
@@ -71,17 +72,77 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
     public function register(Request $request)
     {
-
+//        $roles = Role::all();
+//        $superAdminRoleExists = false;
+//        foreach ($roles as $role) {
+//            if($role->name == 'super_admin'){
+//                $superAdminRoleExists = true;
+//            }
+//        }
+//        dump($superAdminRoleExists);
+//        $users = User::all();
+//        $superAdminExists = false;
+//
+//        foreach($users as $user){
+//            if ($user->roles->first()->name == 'super_admin') {
+//                $superAdminExists = true;
+//            }
+//        }
+//        dump($superAdminExists);
+//        die;
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
         $this->guard()->login($user);
 
-        //assign defualt role of school admin to new registered admin
-        auth()->user()->assignRole('school_admin');
-        $user->setupData();
+        //if super admin role doesn't exist then create it
+        $roles = Role::all();
+        $superAdminRoleExists = false;
+        $schoolAdminRoleExists = false;
+        foreach ($roles as $role) {
+            if($role->name == 'super_admin'){
+                $superAdminRoleExists = true;
+            }
+            if($role->name == 'school_admin'){
+                $schoolAdminRoleExists = true;
+            }
+        }
+        if (!$superAdminRoleExists) {
+            Role::create([
+                'name' => 'super_admin',
+                'guard_name' => 'web'
+            ]);
+        }
+
+        //if super admin does not exist than assign role of super admin to new registered user
+        $users = User::all();
+        $superAdminExists = false;
+
+        foreach($users as $user){
+                if ($user->roles->first() && $user->roles->first()->name == 'super_admin') {
+                    $superAdminExists = true;
+            }
+        }
+        if(!$superAdminExists){
+            auth()->user()->assignRole('super_admin');
+        }
+        //if super admin exists than assign school admin role to new registered user
+        else{
+            if(!$schoolAdminRoleExists){
+                Role::create([
+                    'name' => 'school_admin',
+                    'guard_name' => 'web'
+                ]);
+            }
+            auth()->user()->assignRole('school_admin');
+        }
+        //setup data for school admin i.e. classes, subjects etc
+        if (auth()->user()->hasRole('school_admin')) {
+            $user->setupData();
+        }
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

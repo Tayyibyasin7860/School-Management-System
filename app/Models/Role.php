@@ -56,7 +56,8 @@ class Role extends Model
     }
     public static function getAllAdmins(){
         $roles = Role::where('name','school_admin')->first();
-        $admin_users = $roles->users->pluck('name','id');
+        $admin_users = $roles->users->count()
+            ? $roles->users->pluck('name','id') : [];
         $admin_users_names = [];
         foreach($admin_users as $key => $admin_user){
             $admin_users_names[$key] = $admin_user;
