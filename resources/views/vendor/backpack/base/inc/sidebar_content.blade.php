@@ -41,18 +41,18 @@
 <li><a href='{{ backpack_url('mailbox') }}'><i class='fa fa-user'></i> <span>Mailbox</span></a></li>
 <li><a href='{{ backpack_url('feedback') }}'><i class='fa fa-user'></i> <span>Student Feedback</span></a></li>
 @endcan
-{{--    @can('view roles and permissions')--}}
-{{--    <li class="treeview">--}}
-{{--        <a href="#"><i class="fa fa-users"></i> <span>Roles & Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>--}}
-{{--        <ul class="treeview-menu">--}}
+    @can('view roles and permissions')
+    <li class="treeview">
+        <a href="#"><i class="fa fa-users"></i> <span>Roles & Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
 
 
-{{--                <li><a href="{{ backpack_url('role') }}"><i class="fa fa-id-card"></i> <span>Roles</span></a></li>--}}
+                <li><a href="{{ backpack_url('role') }}"><i class="fa fa-id-card"></i> <span>Roles</span></a></li>
 
 
 
-{{--                <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-cogs"></i> <span>Permissions</span></a></li>--}}
-{{--        </ul>--}}
-{{--    </li>--}}
-{{--    @endcan--}}
+                <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-cogs"></i> <span>Permissions</span></a></li>
+        </ul>
+    </li>
+    @endcan
 
