@@ -35,6 +35,8 @@ class PermissionCrudController extends CrudController
 //        $this->crud->enableBulkActions();
 //        $this->crud->addBulkDeleteButton();
 
+        $this->crud->addButtonFromModelFunction('top', 'generatePermissions', 'generatePermissionsButton', 'beginning');
+
         $this->crud->addFields([
             [
                 'label'=>'Name',

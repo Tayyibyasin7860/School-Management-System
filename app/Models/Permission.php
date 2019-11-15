@@ -31,7 +31,7 @@ class Permission extends Model
     */
 
     public function generatePermissionsButton($crud = false){
-        return '<a class="btn btn-primary ladda-button" href="'.backpack_url('permission/generate').'" data-toggle="tooltip" title="Generate Permissions"><i class="fa fa-refresh"></i> Generate Permissions</a>';
+        return '<a class="btn btn-success ladda-button" href="'.backpack_url('permission/generate').'" data-toggle="tooltip" title="Generate Permissions"><i class="fa fa-refresh"></i> Generate Permissions</a>';
     }
 
     public static function getModels($path = null)
