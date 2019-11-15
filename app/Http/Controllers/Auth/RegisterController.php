@@ -75,24 +75,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-//        $roles = Role::all();
-//        $superAdminRoleExists = false;
-//        foreach ($roles as $role) {
-//            if($role->name == 'super_admin'){
-//                $superAdminRoleExists = true;
-//            }
-//        }
-//        dump($superAdminRoleExists);
-//        $users = User::all();
-//        $superAdminExists = false;
-//
-//        foreach($users as $user){
-//            if ($user->roles->first()->name == 'super_admin') {
-//                $superAdminExists = true;
-//            }
-//        }
-//        dump($superAdminExists);
-//        die;
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
