@@ -26,6 +26,7 @@ class StudentProfileController extends Controller
 
     public function edit(User $user)
     {
+        abort_unless($user->id === auth()->id(), 403);
         $user_id = $user->id;
         $student = $user->StudentDetail;
         return view('student/profile/edit', compact('user', 'student'));
@@ -33,6 +34,7 @@ class StudentProfileController extends Controller
 
     public function update(User $user)
     {
+        abort_unless($user->id === auth()->id(), 403);
         $attributes = [];
         if (request()->filled('phone_number')) {
             $attributes [] = [ 'phone_number' => 'Phone Number' ];
@@ -73,6 +75,7 @@ class StudentProfileController extends Controller
 
     public function updateImage(User $user)
     {
+        abort_unless($user->id === auth()->id(), 403);
         if (request()->hasFile('photo')) {
             request()->validate([
                 'photo' => 'required'
